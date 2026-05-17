@@ -13,8 +13,12 @@ Build a polished, cinematic-editorial-dark personal portfolio for **Javier Lanz 
 
 **Deploy target**: GitHub Pages project page at `https://javielanz.github.io/javiport`.
 
+**Design source**: produced in Google Stitch via the prompt pack in `STITCH_PROMPT.md`. The Stitch MCP is connected — future Claude sessions can call Stitch directly to iterate on components. Final exported HTML + CSS is committed under `STITCH_EXPORT/` and ported into Astro components in **M3**. The Stitch export is the visual source of truth for layout, component structure, spacing, and particle treatment; PLAN.md spec governs where Stitch's output diverges from project requirements (a11y, perf budget, i18n, etc.).
+
 **Companion docs (read before executing)**:
 - `COPY_REGISTER.md` — every visible string on the site in EN + ES. Use verbatim. Do not improvise copy.
+- `STITCH_PROMPT.md` — prompts driving Stitch design generation. Read to understand the visual brief Stitch was given.
+- `STITCH_EXPORT/` — the imported Stitch HTML/CSS that becomes the visual foundation in M3.
 - `AUDIT.md` — append-only change log (auto-maintained; do not edit by hand outside the audit-trail skill).
 
 ---
@@ -67,7 +71,7 @@ Located in `C:\Users\LANZ\SL\javiport` (will be reorganized in M5):
 | Framework | **Astro 5** (`astro@^5`) | Static-first → Lighthouse 95+. Native i18n routing + Content Collections enforce EN/ES parity. View Transitions baked in. One-line GH Pages deploy. |
 | Styling | **Tailwind CSS 4** (`tailwindcss@^4` via `@tailwindcss/vite`) | Zero-config, design tokens via `@theme`, smallest CSS bundle. |
 | Motion | **Motion One** (`motion@^11`) | ~3.8 KB lib over Web Animations API. Covers everything antigravity.google does without 30 KB Framer Motion overhead. |
-| Particles | **Custom canvas implementation** (no library) | ~5 KB vanilla JS. Full control over physics, perfect bundle budget. See §6. |
+| Particles | **Stitch-exported implementation preferred** (if interactive + ≤ 8 KB); custom canvas fallback per §7 | Stitch's V1 particle output was approved. Adopt the exported particle code if it has real cursor reactivity and fits the JS budget; otherwise build from scratch per §7 spec. |
 | Interactivity | **React islands** (`@astrojs/react`) used **only** for lang toggle persistence + lightbox/gallery | Keeps hero JS budget tight. |
 | Content | **Astro Content Collections** with Zod schemas | Build-time validation catches missing translations and broken metadata. |
 | Fonts | **Fraunces** (display) + **Geist** (body) + **Geist Mono** (meta) | All free, all variable, all on Google Fonts. Self-host via `astro-font` for perf. |
@@ -286,7 +290,9 @@ Type scale (clamp-based, fluid):
 
 **Mimics antigravity.google's hero**: a soft field of dots that respond to cursor position with subtle gravitational drift, returning to their home position when the cursor leaves.
 
-**Implementation**: `src/components/ParticleField.client.ts` — vanilla TypeScript, no framework, mounted via `client:load` on a `<canvas>` in the hero.
+**Source preference**: If Stitch's exported particle implementation (in `STITCH_EXPORT/`) satisfies ALL of (a) responds to cursor movement, (b) fits within an 8 KB JS budget, (c) honors `prefers-reduced-motion`, then adopt it directly during M3 import. Use the tuning notes below to refine if needed. If any condition fails, build from scratch per the implementation spec below.
+
+**Implementation** (fallback / from-scratch path): `src/components/ParticleField.client.ts` — vanilla TypeScript, no framework, mounted via `client:load` on a `<canvas>` in the hero.
 
 **Physics**:
 - Each particle has `home` (xy), `pos` (xy), `vel` (xy)
@@ -520,14 +526,19 @@ Each milestone = one self-contained task with explicit deliverables and acceptan
 
 **Done when**: first push to `main` triggers the workflow, builds clean, deploys to `https://javielanz.github.io/javiport/es/` (with `/javiport/` base path correctly applied).
 
-### M3 — Design tokens & typography
+### M3 — Import Stitch export & extract design tokens
 **Deliverables**:
-- `src/styles/global.css` with full Tailwind 4 `@theme` block per §6
-- Font self-hosting via `astro-font` (Fraunces, Geist, Geist Mono — variable, Latin + Latin-Ext subsets)
+- `STITCH_EXPORT/` populated with the raw Stitch export (HTML, CSS, any JS, assets) committed as-received before adaptation begins — preserves a clean baseline for diffs
+- Stitch's HTML structure ported into Astro components under `src/components/` (componentized by section: `Hero.astro`, `About.astro`, `WorkGrid.astro`, etc. — one section per file)
+- `src/styles/global.css` with full Tailwind 4 `@theme` block. Extract colors, type scale, and spacing from Stitch's output; adjust §6 spec if Stitch diverged in well-justified ways and document the diff in this section's commit message
+- Font self-hosting via `astro-font` (Fraunces, Geist, Geist Mono — variable, Latin + Latin-Ext subsets); swap in if Stitch used different faces
+- Particle implementation: if Stitch's export satisfies §7's source-preference checks, port it into `src/components/ParticleField.client.ts`; otherwise scaffold the from-scratch spec for M7 to complete
 - `src/components/Layout.astro` (base shell, meta tags, font preload, `<ViewTransitions />`)
-- A throwaway `/dev/tokens.astro` page (in `src/pages/` behind `import.meta.env.DEV` guard) showing color swatches + type ramp — useful for visual QA, removed in M10
+- A throwaway `/dev/tokens.astro` page (in `src/pages/` behind `import.meta.env.DEV` guard) showing color swatches + type ramp — useful for visual QA, removed in M11
 
-**Done when**: dev tokens page renders all colors and the type scale; fonts load with `font-display: swap`; no FOUT longer than 200 ms.
+**Done when**: home page renders at `/es/` and `/en/` matching Stitch's visual output (copy still hardcoded EN, no real data wiring yet); dev tokens page renders all colors and the type scale; fonts load with `font-display: swap`; no FOUT longer than 200 ms.
+
+**Suggested commit boundary**: two commits — first the raw `STITCH_EXPORT/` import, second the Astro componentization + token extraction. Lets reviewers diff the adaptation cleanly.
 
 ### M4 — Content model
 **Deliverables**:
@@ -693,6 +704,7 @@ Explicit non-goals — do not build these unless escalated:
 | Item | Who | When |
 |---|---|---|
 | Repo Settings → Pages source = "GitHub Actions" | Santiago or Javi in GitHub UI | Before M2 first deploy |
+| Stitch export delivered to `STITCH_EXPORT/` | Santiago after MCP iteration converges | Before M3 |
 | Vimeo unlisted upload of `IMG_5728.mov` + URL | Javi (his Vimeo account) | Before M9 short-films case study |
 | Additional Suzuki / EGCars campaign material if available | Santiago/Javi share into `media/raw/` | Before M9 EGCars case study |
 | Final review of EN/ES copy before deploy | Santiago/Javi | Before M10 ship |

@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+
+# Astro / Vite build output
+dist/
+.astro/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Raw media — originals are processed into media/web/ by scripts/media-build.mjs
+# Only media/web/ should be tracked.
+media/raw/
+
+# Current loose media at repo root (to be moved into media/raw/ during M5).
+# Ignore by name pattern so they aren't accidentally committed before the move.
+/IMG_*.MOV
+/IMG_*.MP4
+/IMG_*.mov
+/IMG_*.mp4
+/WhatsApp Image*.jpeg
+/WhatsApp Image*.jpg
+
+# Auto-generated AUDIT file (per audit-trail skill)
+AUDIT.md

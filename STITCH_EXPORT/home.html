@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Javier Lanz Bethencourt - Content Strategist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&amp;family=Geist+Mono:wght@100..900&amp;family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#93000a",
+                        "on-secondary": "#31302c",
+                        "secondary-fixed-dim": "#c9c6c0",
+                        "primary": "#f0be7b",
+                        "surface-container-high": "#2b2a28",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed": "#2b1701",
+                        "on-primary": "#452b00",
+                        "on-secondary-container": "#b8b5ae",
+                        "on-surface-variant": "#d3c4b4",
+                        "hairline": "#2A2521",
+                        "outline-variant": "#4f4539",
+                        "tertiary": "#e6c09a",
+                        "secondary-container": "#484742",
+                        "surface-container": "#211f1e",
+                        "tertiary-fixed": "#ffdcbb",
+                        "primary-fixed-dim": "#f0be7b",
+                        "on-tertiary-fixed-variant": "#5c4225",
+                        "on-primary-fixed": "#2a1800",
+                        "surface-elevated": "#14110F",
+                        "surface-variant": "#363433",
+                        "primary-fixed": "#ffddb5",
+                        "tertiary-container": "#bf9c79",
+                        "on-primary-container": "#513200",
+                        "surface-container-low": "#1d1b1a",
+                        "tertiary-fixed-dim": "#e6c09a",
+                        "on-primary-fixed-variant": "#624007",
+                        "on-error-container": "#ffdad6",
+                        "on-background": "#e6e1df",
+                        "on-secondary-fixed": "#1c1c18",
+                        "surface-tint": "#f0be7b",
+                        "surface-dim": "#141312",
+                        "inverse-surface": "#e6e1df",
+                        "inverse-primary": "#7d571e",
+                        "surface-container-lowest": "#0f0e0d",
+                        "surface-bright": "#3b3937",
+                        "on-tertiary-container": "#4c3418",
+                        "text-subtle": "#5C544B",
+                        "text-muted": "#8A8074",
+                        "surface": "#141312",
+                        "on-secondary-fixed-variant": "#484742",
+                        "outline": "#9c8f80",
+                        "primary-container": "#c99a5b",
+                        "on-error": "#690005",
+                        "on-surface": "#e6e1df",
+                        "inverse-on-surface": "#32302f",
+                        "secondary-fixed": "#e6e2db",
+                        "surface-container-highest": "#363433",
+                        "on-tertiary": "#432c11",
+                        "secondary": "#c9c6c0",
+                        "background": "#0A0908"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "section-padding-max": "12rem",
+                        "gutter": "1.25rem",
+                        "max-width": "1440px",
+                        "columns": "12",
+                        "section-padding-min": "6rem"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Literata"],
+                        "display-xl-mobile": ["Literata"],
+                        "metadata": ["Geist Mono"],
+                        "display-xl": ["Literata"],
+                        "body-lg": ["Geist"],
+                        "body-md": ["Geist"],
+                        "headline-md": ["Literata"],
+                        "label": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "display-xl-mobile": ["48px", { "lineHeight": "1.1", "fontWeight": "300" }],
+                        "metadata": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "display-xl": ["80px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "300" }],
+                        "body-lg": ["20px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "400" }],
+                        "label": ["14px", { "lineHeight": "1.0", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        html { scroll-behavior: smooth; }
+        body { background-color: #0A0908; color: #F5F1EA; }
+        .bg-amber-glow { background: radial-gradient(circle at center, rgba(201, 154, 91, 0.05) 0%, transparent 70%); }
+
+        /* Interactive Particles */
+        #particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Animations */
+        @media (prefers-reduced-motion: no-preference) {
+            .hero-word {
+                display: inline-block;
+                opacity: 0;
+                transform: translateY(12px);
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+            }
+            .hero-word.reveal {
+                animation: maskReveal 1200ms cubic-bezier(0.2, 0, 0, 1) forwards;
+            }
+            @keyframes maskReveal {
+                0% {
+                    opacity: 0;
+                    transform: translateY(12px);
+                    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0);
+                    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                }
+            }
+
+            .hero-fade-in {
+                opacity: 0;
+                transform: translateY(12px);
+                transition: opacity 1200ms cubic-bezier(0.2, 0, 0, 1), transform 1200ms cubic-bezier(0.2, 0, 0, 1);
+            }
+            .hero-fade-in.reveal {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .scroll-reveal-mask {
+                opacity: 0;
+                transform: translateY(24px);
+                clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+                transition: opacity 1000ms cubic-bezier(0.2, 0, 0, 1), transform 1000ms cubic-bezier(0.2, 0, 0, 1), clip-path 1000ms cubic-bezier(0.2, 0, 0, 1);
+            }
+            .scroll-reveal-mask.is-revealed {
+                opacity: 1;
+                transform: translateY(0);
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+
+            .scroll-reveal-fade {
+                opacity: 0;
+                transform: translateY(12px);
+                transition: opacity 1000ms cubic-bezier(0.2, 0, 0, 1), transform 1000ms cubic-bezier(0.2, 0, 0, 1);
+            }
+            .scroll-reveal-fade.is-revealed {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-word, .hero-fade-in, .scroll-reveal-mask, .scroll-reveal-fade {
+                opacity: 0;
+                transition: opacity 800ms ease;
+            }
+            .hero-word.reveal, .hero-fade-in.reveal, .scroll-reveal-mask.is-revealed, .scroll-reveal-fade.is-revealed {
+                opacity: 1;
+            }
+        }
+
+        /* Hover States */
+        .work-card-image {
+            transition: transform 700ms cubic-bezier(0.2, 0, 0, 1), filter 700ms ease;
+        }
+        .group:hover .work-card-image {
+            transform: scale(1.03);
+            filter: grayscale(0%);
+        }
+
+        .work-card-title {
+            position: relative;
+            display: inline-block;
+        }
+        .work-card-title::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: #c99a5b;
+            transition: width 400ms cubic-bezier(0.2, 0, 0, 1);
+        }
+        .group:hover .work-card-title::after {
+            width: 100%;
+        }
+
+        .work-card-summary {
+            transition: letter-spacing 400ms ease, color 300ms ease;
+        }
+        .group:hover .work-card-summary {
+            letter-spacing: 0.1em;
+            color: #c99a5b;
+        }
+
+        /* Nav Transition */
+        #main-nav {
+            background-color: transparent;
+            backdrop-filter: blur(0px);
+            border-bottom-color: transparent;
+        }
+        #main-nav.scrolled {
+            background-color: rgba(10, 9, 8, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom-color: #2A2521;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 transition-all duration-500 hidden md:block" id="main-nav">
+<div class="flex justify-between items-center w-full px-gutter py-6 max-w-max-width mx-auto">
+<div class="font-headline-md text-headline-md uppercase tracking-tighter text-on-surface dark:text-on-surface">Javier Lanz</div>
+<nav class="flex gap-8">
+<a class="text-on-surface-variant dark:text-on-surface-variant font-metadata hover:text-primary transition-colors duration-300" href="#about">About</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-metadata hover:text-primary transition-colors duration-300" href="#work">Work</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-metadata hover:text-primary transition-colors duration-300" href="#capabilities">Capabilities</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-metadata hover:text-primary transition-colors duration-300" href="#experience">Experience</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-metadata hover:text-primary transition-colors duration-300" href="#education">Education</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-metadata hover:text-primary transition-colors duration-300" href="#contact">Contact</a>
+</nav>
+<div class="font-metadata text-metadata text-on-surface-variant hover:text-primary transition-colors duration-300 cursor-pointer">ES</div>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative h-screen flex flex-col justify-center items-center text-center px-gutter overflow-hidden bg-amber-glow" id="hero">
+<canvas id="particle-canvas"></canvas>
+<div class="z-10 max-w-4xl mx-auto relative pointer-events-none">
+<h1 class="font-display-xl text-display-xl text-on-surface mb-6" id="hero-title">
+<span class="hero-word" style="animation-delay: 100ms;">Javier</span>
+<span class="hero-word" style="animation-delay: 300ms;">Lanz</span>
+<span class="hero-word" style="animation-delay: 500ms;">Bethencourt</span>
+</h1>
+<p class="font-body-lg text-body-lg text-text-muted hero-fade-in" style="transition-delay: 800ms;">Content Strategist with a director's eye.</p>
+</div>
+<div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 hero-fade-in" style="transition-delay: 1200ms;">
+<span class="font-metadata text-metadata text-text-muted">SCROLL</span>
+<span class="material-symbols-outlined text-text-muted animate-bounce">arrow_downward</span>
+</div>
+</section>
+<!-- About Section -->
+<section class="py-section-padding-max px-gutter max-w-max-width mx-auto" id="about">
+<div class="max-w-[680px] mx-auto text-center md:text-left">
+<span class="font-metadata text-metadata text-primary-container mb-4 block scroll-reveal-fade">ABOUT</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-8 scroll-reveal-mask">Strategy at 24 frames per second.</h2>
+<p class="font-body-lg text-body-lg text-text-muted mb-6 scroll-reveal-fade" style="transition-delay: 100ms;">
+                    I believe that every piece of content should be treated as a scene in a larger narrative. My approach combines analytical strategy with a deeply editorial, cinematic sensibility to craft stories that not only engage but resonate.
+                </p>
+<p class="font-body-lg text-body-lg text-text-muted scroll-reveal-fade" style="transition-delay: 200ms;">
+                    Working at the intersection of creative direction and strategic planning, I help brands articulate their vision through meticulous design, compelling narratives, and rigorous execution.
+                </p>
+</div>
+</section>
+<!-- Selected Work -->
+<section class="py-section-padding-min px-gutter max-w-max-width mx-auto" id="work">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-16 text-center md:text-left border-b border-hairline pb-4 scroll-reveal-mask">Selected Work</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter md:gap-x-12 md:gap-y-24">
+<!-- Card 1 -->
+<div class="group cursor-pointer scroll-reveal-fade">
+<div class="aspect-[16/10] bg-surface-elevated overflow-hidden mb-6 border-b border-hairline group-hover:border-primary-container transition-colors duration-500">
+<img alt="2025 · PHOTOGRAPHY: The Streets of Caracas" class="work-card-image w-full h-full object-cover grayscale opacity-80" data-alt="A cinematic, high-contrast black and white street photography shot of a bustling urban intersection in Caracas. Strong shadows stretch across the textured asphalt, illuminated by shafts of natural sunlight piercing through tall buildings. The composition is highly editorial, focusing on geometric lines and negative space. The mood is raw and documentary-style, reflecting an overarching deep, minimalist aesthetic with rich tonal depth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiaf7W7AG-zyN-ErmT4jMFXbgcKFfBOuzahnLnSA0RLtMcVMuMBzvhlFLpmsO80UxsGUSYL2T2hgiQic1o3KA6tnACAvs8T3vG6OlFXB_TZkxeQFTM-aZQ7zg5RIQrYzo3F2aABvZmqz8bhtFk259STj4Dy976DksZpyaOegYpbre5Mp3Ck8gNnf1juf8arvg5jj1oMJnDwcxuWZIQyONCnETny2f2kDgSDaHPrmbJYqOILpRMn8bxeTUid5MwniiR6qtgc-KFMZE"/>
+</div>
+<span class="font-metadata text-metadata text-text-muted block mb-2 work-card-summary">2025 · PHOTOGRAPHY</span>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary-container transition-colors duration-300 work-card-title">The Streets of Caracas</h3>
+</div>
+<!-- Card 2 -->
+<div class="group cursor-pointer md:mt-16 scroll-reveal-fade" style="transition-delay: 150ms;">
+<div class="aspect-[16/10] bg-surface-elevated overflow-hidden mb-6 border-b border-hairline group-hover:border-primary-container transition-colors duration-500">
+<img alt="2024 · ESSAY: The Cinematic Universe of Christopher Nolan" class="work-card-image w-full h-full object-cover grayscale opacity-80" data-alt="An abstract, architectural composition featuring towering, brutalist structures intersecting at sharp angles against a dark, moody sky. The scene is rendered in deep, muted tones of charcoal and slate, with subtle warm amber light leaks suggesting a cinematic film grain. The atmosphere is tense and cerebral, echoing a science fiction narrative while strictly adhering to a high-end, minimalist editorial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTbVAdcUcVqUBJXH1tdMzmHaf_GEFdupx2U3tgmvEvp7cGJxaX6wb-yeZsntnGeR8kkwZtJj88cUf1vxzf2gjOjZot1O5OINep9KMeUlgjp0es0qoaGYB4vU_vK2izpgSCRCSPtl9IyW48ajRThHqbKTSn01w7Ys0LaVP05DmTepZa3gfrWV3FiCepJ1ISi7OIjkLfj1zHGfue4dYB-_fU_QVENgHd-Xowi1Vde0EWOOclaprNAB-RvgilR3i5BpxSk2cYIAjeu58"/>
+</div>
+<span class="font-metadata text-metadata text-text-muted block mb-2 work-card-summary">2024 · ESSAY</span>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary-container transition-colors duration-300 work-card-title">The Cinematic Universe of Christopher Nolan</h3>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-padding-min border-t border-hairline bg-background dark:bg-background mt-32">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter w-full px-gutter max-w-max-width mx-auto items-end">
+<div class="md:col-span-6 scroll-reveal-fade">
+<div class="font-headline-md text-headline-md text-on-surface mb-2">Javier Lanz</div>
+<div class="font-body-md text-body-md text-text-muted">© 2024 Javier Lanz Bethencourt</div>
+</div>
+<div class="md:col-span-6 flex gap-6 md:justify-end mt-8 md:mt-0 scroll-reveal-fade" style="transition-delay: 100ms;">
+<a class="font-metadata text-metadata text-text-muted dark:text-text-muted hover:text-primary dark:hover:text-primary transition-all duration-500" href="#">Astro</a>
+<a class="font-metadata text-metadata text-text-muted dark:text-text-muted hover:text-primary dark:hover:text-primary transition-all duration-500" href="#">GitHub</a>
+<a class="font-metadata text-metadata text-text-muted dark:text-text-muted hover:text-primary dark:hover:text-primary transition-all duration-500" href="#">ES</a>
+</div>
+</div>
+</footer>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Hero Entrance
+        setTimeout(() => {
+            document.querySelectorAll('.hero-word').forEach(el => el.classList.add('reveal'));
+            document.querySelectorAll('.hero-fade-in').forEach(el => el.classList.add('reveal'));
+        }, 100);
+
+        // Sticky Nav Scroll
+        const nav = document.getElementById('main-nav');
+        const hero = document.getElementById('hero');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > hero.offsetHeight - 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for Scroll Reveals
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-revealed');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal-mask, .scroll-reveal-fade').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Particles
+        const canvas = document.getElementById('particle-canvas');
+        if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            const numParticles = 140;
+            let mouse = { x: null, y: null };
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.x;
+                mouse.y = e.y;
+            });
+            window.addEventListener('mouseout', () => {
+                mouse.x = null;
+                mouse.y = null;
+            });
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.baseX = this.x;
+                    this.baseY = this.y;
+                    this.size = Math.random() * 1.5 + 0.5;
+                    this.vx = (Math.random() - 0.5) * 0.2;
+                    this.vy = (Math.random() - 0.5) * 0.2;
+                    this.color = 'rgba(245, 241, 234, 0.4)'; // ivory
+                    this.targetColor = 'rgba(245, 241, 234, 0.4)';
+                }
+
+                update() {
+                    // Brownian drift
+                    this.baseX += this.vx;
+                    this.baseY += this.vy;
+
+                    if (this.baseX < 0 || this.baseX > canvas.width) this.vx *= -1;
+                    if (this.baseY < 0 || this.baseY > canvas.height) this.vy *= -1;
+
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+
+                    this.targetColor = 'rgba(245, 241, 234, 0.4)';
+
+                    if (mouse.x != null && distance < 180) {
+                        // Part softly
+                        let forceDirectionX = dx / distance;
+                        let forceDirectionY = dy / distance;
+                        let force = (180 - distance) / 180;
+                        let directionX = forceDirectionX * force * 2;
+                        let directionY = forceDirectionY * force * 2;
+
+                        this.x -= directionX;
+                        this.y -= directionY;
+
+                        if (distance < 120) {
+                             this.color = '#C99A5B'; // amber
+                        } else {
+                            this.color = 'rgba(245, 241, 234, 0.4)';
+                        }
+                    } else {
+                        // Return slowly
+                        if (this.x !== this.baseX) {
+                            let dx = this.x - this.baseX;
+                            this.x -= dx / 20;
+                        }
+                        if (this.y !== this.baseY) {
+                            let dy = this.y - this.baseY;
+                            this.y -= dy / 20;
+                        }
+                        this.color = this.targetColor;
+                    }
+                }
+
+                draw() {
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < numParticles; i++) {
+                particles.push(new Particle());
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                }
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+    });
+</script>
+</body></html>

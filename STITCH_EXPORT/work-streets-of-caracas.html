@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Streets of Caracas - ELARA STRATEGY</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#211f1e",
+                        "on-tertiary-fixed-variant": "#5c4225",
+                        "secondary-container": "#484742",
+                        "primary-fixed": "#ffddb5",
+                        "on-secondary-fixed": "#1c1c18",
+                        "outline": "#9c8f80",
+                        "tertiary": "#e6c09a",
+                        "surface-elevated": "#14110F",
+                        "on-tertiary-container": "#4c3418",
+                        "on-secondary-container": "#b8b5ae",
+                        "surface-container-lowest": "#0f0e0d",
+                        "surface-dim": "#141312",
+                        "secondary": "#c9c6c0",
+                        "on-tertiary-fixed": "#2b1701",
+                        "surface-variant": "#363433",
+                        "on-surface-variant": "#d3c4b4",
+                        "secondary-fixed-dim": "#c9c6c0",
+                        "surface-bright": "#3b3937",
+                        "inverse-on-surface": "#32302f",
+                        "primary-fixed-dim": "#f0be7b",
+                        "error-container": "#93000a",
+                        "surface-container-high": "#2b2a28",
+                        "inverse-surface": "#e6e1df",
+                        "on-primary-fixed": "#2a1800",
+                        "on-surface": "#e6e1df",
+                        "text-muted": "#8A8074",
+                        "on-primary": "#452b00",
+                        "surface-tint": "#f0be7b",
+                        "surface-container-highest": "#363433",
+                        "primary": "#f0be7b",
+                        "tertiary-fixed-dim": "#e6c09a",
+                        "secondary-fixed": "#e6e2db",
+                        "on-error-container": "#ffdad6",
+                        "error": "#ffb4ab",
+                        "on-background": "#e6e1df",
+                        "hairline": "#2A2521",
+                        "on-error": "#690005",
+                        "text-subtle": "#5C544B",
+                        "tertiary-container": "#bf9c79",
+                        "outline-variant": "#4f4539",
+                        "on-primary-fixed-variant": "#624007",
+                        "on-primary-container": "#513200",
+                        "surface-container-low": "#1d1b1a",
+                        "on-secondary": "#31302c",
+                        "background": "#141312",
+                        "surface": "#141312",
+                        "primary-container": "#c99a5b",
+                        "on-tertiary": "#432c11",
+                        "inverse-primary": "#7d571e",
+                        "tertiary-fixed": "#ffdcbb",
+                        "on-secondary-fixed-variant": "#484742"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "1.25rem",
+                        "section-padding-min": "6rem",
+                        "section-padding-max": "12rem",
+                        "max-width": "1440px",
+                        "columns": "12"
+                    },
+                    "fontFamily": {
+                        "display-xl-mobile": ["Literata"],
+                        "display-xl": ["Literata"],
+                        "body-lg": ["Geist"],
+                        "headline-lg": ["Literata"],
+                        "metadata": ["Geist Mono"],
+                        "label": ["Geist"],
+                        "body-md": ["Geist"],
+                        "headline-md": ["Literata"]
+                    },
+                    "fontSize": {
+                        "display-xl-mobile": ["48px", { "lineHeight": "1.1", "fontWeight": "300" }],
+                        "display-xl": ["80px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "300" }],
+                        "body-lg": ["20px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "metadata": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "label": ["14px", { "lineHeight": "1.0", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .text-balance {
+                text-wrap: balance;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface/90 backdrop-blur-md text-primary font-label text-label uppercase tracking-widest fixed top-0 w-full z-50 border-b border-hairline flat no shadows transition-all ease-in-out duration-300">
+<div class="flex justify-between items-center px-gutter py-6 max-w-max-width mx-auto">
+<a class="font-display-xl text-body-lg text-on-surface tracking-tighter" href="/">ELARA STRATEGY</a>
+<nav class="hidden md:flex gap-8">
+<a class="text-primary font-medium border-b border-primary pb-1" href="/work">Work</a>
+<a class="text-text-muted hover:text-primary transition-colors duration-500" href="/ethos">Ethos</a>
+<a class="text-text-muted hover:text-primary transition-colors duration-500" href="/contact">Contact</a>
+</nav>
+<div class="flex items-center">
+<button class="md:hidden text-on-surface hover:text-primary transition-colors duration-500">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow pt-24">
+<!-- Hero Cover -->
+<section class="relative w-full h-[60vh] md:h-[70vh] flex items-end pb-gutter px-gutter max-w-max-width mx-auto">
+<div class="absolute inset-0 z-0 overflow-hidden">
+<img alt="" class="w-full h-full object-cover object-center scale-105 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBRFgvr8atfkG4Qr_InzSiX4t_6y6dmrwVmV4MXp89bFPpoIUp3Ada9_uPCZowbvUQh28dUsn_Bn9_5ZR1qo54T2DASNlELeYLoC1qFzgfJ91FhcXBupAIN6Kay3NjgfA1Ly0pxX2ebm47PpioWU3cToGcyaQn9PA5dMQ6Lv2gAFysd6Kmj9WqPha4P16tyomO5bQLss-_j5so4WnV6LUCl5AOMs1slzzOb1T3i6d6Eh69B3kHbaxKUOiz35mN3k5X-6vImg8dr6A"/>
+<iframe class="absolute inset-0 w-full h-full border-none pointer-events-none mix-blend-screen opacity-70 z-10" srcdoc="{{DATA:SCREEN:SCREEN_10}}"></iframe>
+<div class="absolute inset-0 z-20 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+</div>
+<div class="relative z-30 w-full md:w-2/3">
+<p class="font-metadata text-metadata text-primary uppercase tracking-widest mb-4">2025 · PHOTOGRAPHY · CARACAS</p>
+<h1 class="font-display-xl-mobile md:font-display-xl text-display-xl-mobile md:text-display-xl text-on-surface mb-6 text-balance">The Streets of Caracas</h1>
+<p class="font-headline-md text-headline-md text-secondary text-balance max-w-2xl">A documentary series on the city as it is, not as it's reported.</p>
+</div>
+</section>
+<!-- Project Meta Strip -->
+<section class="max-w-max-width mx-auto px-gutter py-8 border-t border-b border-hairline my-12">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 font-metadata text-metadata text-text-muted uppercase tracking-widest">
+<div>
+<span class="block text-text-subtle mb-2">ROLE</span>
+<span class="text-on-surface">Photographer, Editor</span>
+</div>
+<div>
+<span class="block text-text-subtle mb-2">YEAR</span>
+<span class="text-on-surface">2025</span>
+</div>
+<div>
+<span class="block text-text-subtle mb-2">LOCATION</span>
+<span class="text-on-surface">Caracas, Venezuela</span>
+</div>
+<div>
+<span class="block text-text-subtle mb-2">FRAMES</span>
+<span class="text-on-surface">~40 selected</span>
+</div>
+</div>
+</section>
+<!-- Intro Paragraph -->
+<section class="max-w-[680px] mx-auto px-gutter py-section-padding-min text-center">
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed text-balance">
+                Most photography of Caracas is reactive — protests, queues, scarcity. This series isn't. It's the city on a Tuesday morning. It explores the quiet resilience, the textures of daily life, and the enduring spirit of a place often misunderstood by the global narrative.
+            </p>
+</section>
+<!-- Gallery -->
+<section class="max-w-max-width mx-auto px-gutter py-12 flex flex-col gap-gutter">
+<div class="w-full">
+<img alt="" class="w-full h-auto object-cover opacity-90 hover:opacity-100 transition-opacity duration-700 rounded-DEFAULT" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAvaAz8yfaqd9aZdnlktPYeD91Y5PkuL0P6gG_kohkjTaOlD1GWLxCmYoxNQ406q2uQ24_3ujYQ2Ay_6v7wVlgzG1Qw7dOux2iKVXaF4ef00bldt08fpf-HFxKA_ewxsmqtq8IdyPUL559wpeYwKNceZMjdEjH9vDZqxxhKI2eGwsxSCh3Vz5qyPJLKqUAGf_Nxn9-W01FnbPOLHJxwGbXe1hTtfgMKYovYwgxIMz4I394amAKAetpTBjXIp3JtIAg63l1S7ucEmQ"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-5 h-[600px]">
+<img alt="" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity duration-700 rounded-DEFAULT" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0zYcpdSjwSJd0J4i4EMyf2kYHovZngN1SQlt1Dltjx76d6VGlc4uv4qYcGo1HWjtdcYfhgmt12h633kIGdjKTHnpTlYKM-6ki-lIdiva1QoPSvAJKbif8pmgBXqQxDLFq2_nIrrC95Kh-DFS49cK3Etql6iFsWowYOR_27xYIJ-q5sL6GLcAr-O4QgnZoQx7Pi6SNV8TW9oBoGjVw-4h0nKSHMVzZlDZg0bgy8DHTtEKyJAxsyZOdQKpE6AsdxV1SjPaVPwnsc50"/>
+</div>
+<div class="md:col-span-7 h-[400px]">
+<img alt="" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity duration-700 rounded-DEFAULT" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKNeqptPnyCT_PgiA9GQ3gjmeImmqTwH-FxTYeO0mtOg-ywCosVNTMzaecJ6WtYWmWLL2KE1y1RXVqwgItmsrMV7cSyR-WQx4ylwOfX2wE84b1S2ELxT2Txviz_UvAgEjUgVHMKxSbEnpbj6IT5cUwXquSAbGkGUXcehN0PETWVi1OvdRlg7NIMhL-xezZpK-a1cp1t6w0s1VZlKC876vkm9uEJCbhAlkcGjcivtar7ZmlZPMtI1fNLNTS4iJPQPh2WKibwzFYGZs"/>
+</div>
+</div>
+<div class="w-full mt-12">
+<img alt="" class="w-full h-[70vh] object-cover opacity-90 hover:opacity-100 transition-opacity duration-700 rounded-DEFAULT" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBRFgvr8atfkG4Qr_InzSiX4t_6y6dmrwVmV4MXp89bFPpoIUp3Ada9_uPCZowbvUQh28dUsn_Bn9_5ZR1qo54T2DASNlELeYLoC1qFzgfJ91FhcXBupAIN6Kay3NjgfA1Ly0pxX2ebm47PpioWU3cToGcyaQn9PA5dMQ6Lv2gAFysd6Kmj9WqPha4P16tyomO5bQLss-_j5so4WnV6LUCl5AOMs1slzzOb1T3i6d6Eh69B3kHbaxKUOiz35mN3k5X-6vImg8dr6A"/>
+</div>
+</section>
+<!-- Pull Quote -->
+<section class="w-full bg-surface-elevated py-section-padding-min my-24 border-y border-hairline">
+<div class="max-w-4xl mx-auto px-gutter text-center">
+<blockquote class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary italic mb-8">
+                    "The city doesn't pose. You wait."
+                </blockquote>
+<cite class="font-metadata text-metadata text-text-muted not-italic tracking-widest uppercase">— J.L.</cite>
+</div>
+</section>
+<!-- Outro Paragraph -->
+<section class="max-w-[680px] mx-auto px-gutter py-section-padding-min mb-24">
+<p class="font-body-md text-body-md text-text-muted leading-relaxed text-center">
+                Shot exclusively on the Fujifilm X-T4 with a 23mm lens, emphasizing constraints to force tighter composition. Processed in Lightroom to bring out the natural tones of the early morning light without artificially boosting contrast.
+            </p>
+</section>
+<section class="max-w-max-width mx-auto px-gutter py-section-padding-min border-t border-hairline">
+<div class="flex justify-between items-end mb-12">
+<h2 class="font-metadata text-metadata text-text-subtle uppercase tracking-widest">MORE WORK</h2>
+<a class="font-label text-label text-primary hover:text-tertiary transition-colors duration-300" href="/work">Back to all work →</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="group cursor-pointer">
+<div class="h-64 bg-surface-elevated mb-4 rounded-DEFAULT overflow-hidden border border-hairline">
+<img alt="" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAvaAz8yfaqd9aZdnlktPYeD91Y5PkuL0P6gG_kohkjTaOlD1GWLxCmYoxNQ406q2uQ24_3ujYQ2Ay_6v7wVlgzG1Qw7dOux2iKVXaF4ef00bldt08fpf-HFxKA_ewxsmqtq8IdyPUL559wpeYwKNceZMjdEjH9vDZqxxhKI2eGwsxSCh3Vz5qyPJLKqUAGf_Nxn9-W01FnbPOLHJxwGbXe1hTtfgMKYovYwgxIMz4I394amAKAetpTBjXIp3JtIAg63l1S7ucEmQ"/>
+</div>
+<h3 class="font-body-lg text-body-lg text-on-surface mb-2">Neon Nights</h3>
+<p class="font-metadata text-metadata text-text-muted uppercase">Photography</p>
+</div>
+<div class="group cursor-pointer">
+<div class="h-64 bg-surface-elevated mb-4 rounded-DEFAULT overflow-hidden border border-hairline">
+<img alt="" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0zYcpdSjwSJd0J4i4EMyf2kYHovZngN1SQlt1Dltjx76d6VGlc4uv4qYcGo1HWjtdcYfhgmt12h633kIGdjKTHnpTlYKM-6ki-lIdiva1QoPSvAJKbif8pmgBXqQxDLFq2_nIrrC95Kh-DFS49cK3Etql6iFsWowYOR_27xYIJ-q5sL6GLcAr-O4QgnZoQx7Pi6SNV8TW9oBoGjVw-4h0nKSHMVzZlDZg0bgy8DHTtEKyJAxsyZOdQKpE6AsdxV1SjPaVPwnsc50"/>
+</div>
+<h3 class="font-body-lg text-body-lg text-on-surface mb-2">Concrete Jungle</h3>
+<p class="font-metadata text-metadata text-text-muted uppercase">Editorial</p>
+</div>
+<div class="group cursor-pointer">
+<div class="h-64 bg-surface-elevated mb-4 rounded-DEFAULT overflow-hidden border border-hairline">
+<img alt="" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKNeqptPnyCT_PgiA9GQ3gjmeImmqTwH-FxTYeO0mtOg-ywCosVNTMzaecJ6WtYWmWLL2KE1y1RXVqwgItmsrMV7cSyR-WQx4ylwOfX2wE84b1S2ELxT2Txviz_UvAgEjUgVHMKxSbEnpbj6IT5cUwXquSAbGkGUXcehN0PETWVi1OvdRlg7NIMhL-xezZpK-a1cp1t6w0s1VZlKC876vkm9uEJCbhAlkcGjcivtar7ZmlZPMtI1fNLNTS4iJPQPh2WKibwzFYGZs"/>
+</div>
+<h3 class="font-body-lg text-body-lg text-on-surface mb-2">Silent Echoes</h3>
+<p class="font-metadata text-metadata text-text-muted uppercase">Documentary</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface text-primary font-metadata text-metadata uppercase tracking-widest w-full border-t border-hairline flat no shadows">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-gutter py-section-padding-min max-w-max-width mx-auto">
+<div>
+<a class="font-display-xl text-headline-md text-on-surface block mb-6" href="/">ELARA STRATEGY</a>
+<p class="text-text-subtle">© 2024 ELARA STRATEGY. ALL RIGHTS RESERVED.</p>
+</div>
+<div class="flex flex-col gap-4">
+<a class="text-text-subtle hover:text-primary transition-colors duration-500 opacity-80 hover:opacity-100 transition-opacity" href="#">INSTITUTIONAL</a>
+<a class="text-text-subtle hover:text-primary transition-colors duration-500 opacity-80 hover:opacity-100 transition-opacity" href="#">HOSTED BY VERCEL</a>
+<a class="text-text-subtle hover:text-primary transition-colors duration-500 opacity-80 hover:opacity-100 transition-opacity" href="#">ENGLISH (US)</a>
+</div>
+<div class="flex justify-end items-end">
+<a class="text-text-subtle hover:text-primary transition-colors duration-300" href="#top">BACK TO TOP ↑</a>
+</div>
+</div>
+</footer>
+</body></html>

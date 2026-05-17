@@ -7,8 +7,8 @@ dist/
 
 # Environment
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
 
 # OS junk
 .DS_Store
@@ -43,3 +43,11 @@ media/raw/
 
 # Auto-generated AUDIT file (per audit-trail skill)
 AUDIT.md
+
+# Raw media files not in media/web/
+*.MP4
+*.mov
+*.MOV
+*.jpeg
+*.jpg
+!media/web/**

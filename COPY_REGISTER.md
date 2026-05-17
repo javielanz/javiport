@@ -4,6 +4,8 @@
 > Reflow agents: use these strings verbatim. Do not improvise copy unless a slot is explicitly marked TBD.
 > Voice notes at the bottom — read them before adding/editing copy.
 
+> **Font substitution note**: the display face is **Literata** (Stitch substituted from the originally-specified Fraunces — composition is tuned to it). Any inline reference below to "Fraunces" should be read as **Literata**. This supersedes contradicting references.
+
 ---
 
 ## 1. Brand strings (same in both languages)

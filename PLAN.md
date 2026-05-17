@@ -74,7 +74,7 @@ Located in `C:\Users\LANZ\SL\javiport` (will be reorganized in M5):
 | Particles | **Stitch-exported implementation preferred** (if interactive + ≤ 8 KB); custom canvas fallback per §7 | Stitch's V1 particle output was approved. Adopt the exported particle code if it has real cursor reactivity and fits the JS budget; otherwise build from scratch per §7 spec. |
 | Interactivity | **React islands** (`@astrojs/react`) used **only** for lang toggle persistence + lightbox/gallery | Keeps hero JS budget tight. |
 | Content | **Astro Content Collections** with Zod schemas | Build-time validation catches missing translations and broken metadata. |
-| Fonts | **Fraunces** (display) + **Geist** (body) + **Geist Mono** (meta) | All free, all variable, all on Google Fonts. Self-host via `astro-font` for perf. |
+| Fonts | **Literata** (display) + **Geist** (body) + **Geist Mono** (meta) | All free, all variable, all on Google Fonts. Self-host via `astro-font` for perf. Literata replaces the original Fraunces choice — Stitch substituted during design generation and the composition is tuned to Literata's proportions. |
 | Linting | `eslint` + `@astrojs/eslint-config-recommended` + `prettier` + `prettier-plugin-astro` | Standard. |
 | Type-checking | `astro check` in CI | Catches schema and template type errors. |
 | Node | **v22 LTS** | Matches Astro 5 baseline; pin via `.nvmrc` and `engines` in `package.json`. |
@@ -226,9 +226,11 @@ Custom build-time check (`scripts/check-parity.mjs`, run in CI before `astro bui
 
 | Role | Face | Loaded as |
 |---|---|---|
-| Display (hero, section heads) | **Fraunces** variable (`opsz`, `wght`, `SOFT`) | `font-display` |
+| Display (hero, section heads) | **Literata** variable (`opsz`, `wght`) | `font-display` |
 | Body, UI | **Geist** variable | `font-body` (default) |
 | Metadata, year labels, captions | **Geist Mono** variable | `font-mono` |
+
+> **Font substitution note**: Stitch substituted Literata for the originally-specified Fraunces during design generation. The whole composition (line lengths, type scale, optical sizes) is tuned to Literata's proportions. Adopt Literata as the display face. Other references in this doc that mention "Fraunces" are historical — read them as Literata.
 
 Self-host via `astro-font` to avoid third-party requests and CLS. Subset to Latin + extended Latin (Spanish accents).
 

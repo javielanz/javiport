@@ -13,6 +13,10 @@ Build a polished, cinematic-editorial-dark personal portfolio for **Javier Lanz 
 
 **Deploy target**: GitHub Pages project page at `https://javielanz.github.io/javiport`.
 
+**Companion docs (read before executing)**:
+- `COPY_REGISTER.md` — every visible string on the site in EN + ES. Use verbatim. Do not improvise copy.
+- `AUDIT.md` — append-only change log (auto-maintained; do not edit by hand outside the audit-trail skill).
+
 ---
 
 ## 1. Non-negotiable constraints
@@ -159,6 +163,8 @@ src/content/
 └── config.ts             ← Zod schemas; parity check
 ```
 
+**Copy source**: `src/content/ui/strings.{en,es}.json` and all section text MUST be populated from `COPY_REGISTER.md` at repo root. The register is the canonical source — do not paraphrase, translate, or invent. If a slot is missing from the register, request it; do not improvise.
+
 ### Zod schemas (excerpt — full in `src/content/config.ts`)
 
 ```ts
@@ -303,6 +309,62 @@ Type scale (clamp-based, fluid):
 **Reduced motion**: render the particles as a static dotted grid (home positions, no animation, no cursor reaction). Same visual texture, zero motion.
 
 **Touch behavior**: `pointerdown` creates a brief outward impulse from the touch point (300 ms decay), then particles settle home. No persistent drag.
+
+### Particle field — tuning notes & visual target
+
+The §7 starting values produce a defensible baseline. Reaching the "antigravity feel" requires 1–2 iteration passes. Use this envelope.
+
+**The feel to match** (verbatim reference: antigravity.google hero, 2026): cursor moves slowly across the canvas; particles part *softly* in front of it like reeds in slow water; when the cursor leaves, particles *glide* home over ~1.5 s. The sensation is mass + viscosity, not a force field. If particles snap, oscillate, or feel "elastic," you're too far from this.
+
+**Parameter envelopes** (start at middle, adjust toward symptom):
+
+| Param | Start | Min | Max | Symptom → adjust |
+|---|---|---|---|---|
+| `spring k` (return-home stiffness) | 0.02 | 0.01 | 0.05 | Slow to return → ↑ k. Oscillating after return → ↑ damping instead. |
+| `damping` (per-axis velocity decay per frame) | 0.88 | 0.82 | 0.92 | Bouncy/jittery → ↑ damping. Feels dead/laggy → ↓ damping. |
+| `repel radius` (px) | 180 | 100 | 240 | Cursor presence invisible → ↑ radius. Whole field reacts at once → ↓ radius. |
+| `repel max force` (px/frame at d→0) | 4.0 | 2.0 | 8.0 | Particles fleeing aggressively → ↓ force. Cursor feels weightless → ↑ force. |
+| `repel falloff` | inverse-square, soft floor at d=20 px | — | — | Linear falloff feels mushy; inverse-square is sharper. Don't change without A/B. |
+| `ambient noise amplitude` | 0.05 | 0 | 0.15 | Field looks "dead" with no cursor → add noise. Looks anxious → remove. |
+| `color lerp distance` (px) | 0 → full, 120 → none | — | — | Particles within this range warm toward `--color-particle-hot`. |
+| `connecting lines max distance` (px) | 80 (desktop only) | — | — | Skip below 768 px and skip if frame budget exceeded. |
+| `line alpha formula` | `(maxDist - d) / maxDist * 0.4` | — | — | Cap alpha at 0.4 — lines should hint, not draw. |
+
+**Density tiers** (per §7 — repeat here for tuning context):
+- ≥ 1280 px: ~140 particles, lines on
+- 768–1279 px: ~90 particles, lines on
+- 375–767 px: ~50 particles, lines off, cursor disabled (touch-impulse only)
+
+**Performance budget**: < 2 ms per frame at 1080p on a 2020-era laptop. If `performance.now()` measures > 2 ms for two consecutive frames, the loop should:
+1. Drop connecting lines first.
+2. Reduce density by 25%.
+3. Cap to 30 fps if still over budget.
+Log the degradation once to console (`info`); don't spam.
+
+**Failure modes & fixes**:
+
+| Symptom | Likely cause | Fix |
+|---|---|---|
+| Particles oscillate after cursor leaves | Spring too stiff for damping | ↑ damping by 0.02, retry |
+| Particles flee aggressively | Repel force too high or radius too small | ↓ force OR ↑ radius |
+| Cursor presence invisible | Radius too small or force too low | ↑ radius first |
+| Field looks dead / static when idle | Missing ambient noise | Set `noiseAmp` to 0.05 |
+| Connecting lines visually noisy | Alpha cap too high or too many lines | ↓ alpha cap to 0.25, ↓ density |
+| Cursor "snaps" particles | Falloff too sharp or floor too low | Raise inverse-square floor to 30 px |
+| Frame drops on mid-range laptops | Density too high or lines on | Apply degradation ladder above |
+
+**Reduced motion** (per `prefers-reduced-motion: reduce`): render `home` positions as static 1.5 px dots at base color. No `requestAnimationFrame` loop at all. Cursor and touch events ignored. Visually it should still feel like the same texture, just frozen.
+
+**Implementation checkpoints for the agent building this**:
+1. Get static field rendering at correct density per breakpoint. Commit.
+2. Add spring return-to-home (no cursor yet). Verify particles drift gently in a wave if you perturb one.
+3. Add cursor force. Tune to envelope above.
+4. Add color lerp.
+5. Add connecting lines (desktop only).
+6. Add touch-impulse path.
+7. Add `prefers-reduced-motion` branch.
+8. Add perf-budget degradation ladder.
+9. A/B against the feel target on antigravity.google before declaring done.
 
 ---
 

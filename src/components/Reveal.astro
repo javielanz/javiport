@@ -1,0 +1,34 @@
+---
+interface Props {
+  type?: 'mask' | 'fade';
+  delay?: number;
+  tag?: string;
+  class?: string;
+}
+
+const { type = 'fade', delay = 0, tag: Tag = 'div', class: className = '' } = Astro.props;
+const revealClass = type === 'mask' ? 'scroll-reveal-mask' : 'scroll-reveal-fade';
+const style = delay ? `transition-delay: ${delay}ms;` : '';
+---
+
+<Tag class={`${revealClass} ${className}`} style={style}>
+  <slot />
+</Tag>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: '0px', threshold: 0.15 }
+  );
+
+  document.querySelectorAll('.scroll-reveal-mask, .scroll-reveal-fade').forEach((el) => {
+    observer.observe(el);
+  });
+</script>

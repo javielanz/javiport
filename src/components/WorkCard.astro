@@ -1,0 +1,86 @@
+---
+interface Props {
+  slug: string;
+  tag: string;
+  title: string;
+  summary: string;
+  cta: string;
+  cover?: string;
+  coverAlt?: string;
+  lang: 'en' | 'es';
+  offset?: boolean;
+  delay?: number;
+}
+
+const {
+  slug,
+  tag,
+  title,
+  summary,
+  cta,
+  cover,
+  coverAlt = '',
+  lang,
+  offset = false,
+  delay = 0,
+} = Astro.props;
+
+const href = `/javiport/${lang}/work/${slug}/`;
+const style = [
+  offset ? 'margin-top: 4rem;' : '',
+  delay ? `transition-delay: ${delay}ms;` : '',
+].filter(Boolean).join(' ');
+---
+
+<a
+  href={href}
+  class="group cursor-pointer scroll-reveal-fade block"
+  style={style}
+  aria-label={title}
+>
+  <div
+    class="aspect-video overflow-hidden mb-6 border-b transition-colors duration-500"
+    style="background: var(--color-bg-elev); border-color: var(--color-line);"
+  >
+    {cover ? (
+      <img
+        src={cover}
+        alt={coverAlt}
+        class="work-card-image w-full h-full object-cover"
+        style="filter: grayscale(60%); opacity: 0.85;"
+        loading="lazy"
+        decoding="async"
+      />
+    ) : (
+      <div class="w-full h-full" style="background: var(--color-bg-elev);" />
+    )}
+  </div>
+
+  <span
+    class="work-card-summary font-mono text-xs tracking-widest uppercase block mb-2"
+    style="color: var(--color-text-muted);"
+  >
+    {tag}
+  </span>
+
+  <h3
+    class="work-card-title font-display transition-colors duration-300 mb-3"
+    style="font-size: var(--text-display-md); line-height: 1.2; color: var(--color-text);"
+  >
+    {title}
+  </h3>
+
+  <p
+    class="mb-4"
+    style="font-size: var(--text-body); color: var(--color-text-muted); line-height: 1.6;"
+  >
+    {summary}
+  </p>
+
+  <span
+    class="font-mono text-xs tracking-widest"
+    style="color: var(--color-accent);"
+  >
+    {cta}
+  </span>
+</a>

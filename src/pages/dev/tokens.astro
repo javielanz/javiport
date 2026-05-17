@@ -1,0 +1,94 @@
+---
+import '../../styles/global.css';
+
+if (import.meta.env.PROD) {
+  return Astro.redirect('/javiport/es/');
+}
+
+const colors = [
+  { token: '--color-bg',          hex: '#0A0908', label: 'bg' },
+  { token: '--color-bg-elev',     hex: '#14110F', label: 'bg-elev' },
+  { token: '--color-bg-overlay',  hex: '#1F1B18', label: 'bg-overlay' },
+  { token: '--color-text',        hex: '#F5F1EA', label: 'text' },
+  { token: '--color-text-muted',  hex: '#8A8074', label: 'text-muted' },
+  { token: '--color-text-subtle', hex: '#5C544B', label: 'text-subtle' },
+  { token: '--color-line',        hex: '#2A2521', label: 'line' },
+  { token: '--color-accent',      hex: '#C99A5B', label: 'accent' },
+  { token: '--color-accent-soft', hex: '#6E5234', label: 'accent-soft' },
+];
+---
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Design Tokens — DEV ONLY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body { background:#0A0908; color:#F5F1EA; padding:3rem 2rem; font-family:'Geist',sans-serif; }
+    h1 { font-family:'Literata',serif; font-size:2rem; font-weight:300; margin-bottom:3rem; }
+    h2 { font-size:0.75rem; letter-spacing:0.1em; color:#C99A5B; margin-bottom:1.5rem; font-family:'Geist Mono',monospace; text-transform:uppercase; }
+    section { margin-bottom:3rem; }
+    .swatch-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1rem; }
+    .swatch { display:flex; align-items:center; gap:0.75rem; }
+    .swatch-box { width:3rem; height:3rem; border:1px solid #2A2521; flex-shrink:0; }
+    .swatch-token { font-size:0.7rem; color:#C99A5B; font-family:'Geist Mono',monospace; }
+    .swatch-label { font-size:0.875rem; }
+    .swatch-hex { font-size:0.7rem; color:#8A8074; font-family:'Geist Mono',monospace; }
+    .type-stack { display:flex; flex-direction:column; gap:2rem; border-left:1px solid #2A2521; padding-left:2rem; }
+    .type-meta { font-size:0.7rem; color:#8A8074; font-family:'Geist Mono',monospace; margin-bottom:0.5rem; }
+  </style>
+</head>
+<body>
+
+<h1>Design Tokens</h1>
+
+<section>
+  <h2>Colors</h2>
+  <div class="swatch-grid">
+    {colors.map((c) => (
+      <div class="swatch">
+        <div class="swatch-box" style={`background:${c.hex};`}></div>
+        <div>
+          <div class="swatch-token">{c.token}</div>
+          <div class="swatch-label">{c.label}</div>
+          <div class="swatch-hex">{c.hex}</div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<section>
+  <h2>Type Scale</h2>
+  <div class="type-stack">
+    <div>
+      <div class="type-meta">display-xl &middot; clamp(4rem,10vw,9rem) &middot; Literata 300</div>
+      <div style="font-family:'Literata',serif; font-size:clamp(4rem,10vw,9rem); font-weight:300; line-height:1.05;">Javier</div>
+    </div>
+    <div>
+      <div class="type-meta">display-lg &middot; clamp(2.5rem,6vw,5rem) &middot; Literata 400</div>
+      <div style="font-family:'Literata',serif; font-size:clamp(2.5rem,6vw,5rem); font-weight:400; line-height:1.15;">Strategy at 24 frames per second.</div>
+    </div>
+    <div>
+      <div class="type-meta">display-md &middot; clamp(1.75rem,3.5vw,2.75rem) &middot; Literata 400</div>
+      <div style="font-family:'Literata',serif; font-size:clamp(1.75rem,3.5vw,2.75rem); font-weight:400; line-height:1.2;">Content Strategist with a director's eye.</div>
+    </div>
+    <div>
+      <div class="type-meta">body-lg &middot; 1.125rem &middot; Geist 400</div>
+      <div style="font-size:1.125rem; line-height:1.7; color:#8A8074; max-width:680px;">I'm a Communication Social student at Universidad Monteávila and Content Strategist at EGCars.</div>
+    </div>
+    <div>
+      <div class="type-meta">eyebrow &middot; 0.75rem &middot; Geist Mono 500 &middot; uppercase</div>
+      <div style="font-family:'Geist Mono',monospace; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:#C99A5B;">CONTENT STRATEGIST &middot; CARACAS, 2026</div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

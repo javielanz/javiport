@@ -1,0 +1,34 @@
+---
+interface Props {
+  eyebrow: string;
+  headline: string;
+  sub?: string;
+  align?: 'left' | 'center';
+}
+
+const { eyebrow, headline, sub, align = 'left' } = Astro.props;
+const textAlign = align === 'center' ? 'text-center' : 'text-left';
+---
+
+<div class={textAlign}>
+  <span
+    class="scroll-reveal-fade block mb-4 font-mono text-xs tracking-widest uppercase"
+    style="color: var(--color-accent);"
+  >
+    {eyebrow}
+  </span>
+  <h2
+    class="scroll-reveal-mask font-display mb-6"
+    style="font-size: var(--text-display-lg); line-height: 1.15; color: var(--color-text);"
+  >
+    {headline}
+  </h2>
+  {sub && (
+    <p
+      class="scroll-reveal-fade"
+      style="font-size: var(--text-body-lg); color: var(--color-text-muted); transition-delay: 100ms;"
+    >
+      {sub}
+    </p>
+  )}
+</div>

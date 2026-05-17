@@ -1,18 +1,23 @@
 ---
-import '../../styles/global.css';
+import Layout from '../../components/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import Footer from '../../components/Footer.astro';
+
+const lang = 'es' as const;
 ---
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Javier Lanz — Estratega de Contenido y Narrador</title>
-  </head>
-  <body style="background:#0A0908;color:#F5F1EA;font-family:sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;text-align:center;">
-    <div>
-      <p style="font-size:0.75rem;letter-spacing:0.1em;color:#8A8074;margin-bottom:1rem;">JAVIER LANZ</p>
-      <h1 style="font-size:2rem;font-weight:300;margin:0 0 0.5rem;">scaffold OK — ES</h1>
-      <p style="color:#8A8074;font-size:0.875rem;">M1 complete · M3 will replace this</p>
-    </div>
-  </body>
-</html>
+
+<Layout
+  title="Javier Lanz — Estratega de Contenido y Narrador"
+  description="Estudiante de Comunicación Social y Content Strategist en EGCars / Suzuki Venezuela. Trabajo seleccionado en estrategia de marca, fotografía, periodismo y cine."
+  lang={lang}
+>
+  <Nav lang={lang} />
+  <main id="main-content">
+    <Hero lang={lang} />
+    <About lang={lang} />
+    <!-- M7: Work, Capabilities, Experience, Education, Contact sections -->
+  </main>
+  <Footer lang={lang} />
+</Layout>

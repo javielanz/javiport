@@ -1,0 +1,85 @@
+---
+interface Props {
+  lang: 'en' | 'es';
+}
+
+const { lang } = Astro.props;
+
+const strings = {
+  en: {
+    eyebrow: 'CONTENT STRATEGIST · CARACAS, 2026',
+    tagline: 'Content Strategist with a director\'s eye.',
+    scroll: 'Scroll',
+  },
+  es: {
+    eyebrow: 'CONTENT STRATEGIST · CARACAS, 2026',
+    tagline: 'Content Strategist con ojo de director.',
+    scroll: 'Desliza',
+  },
+};
+
+const t = strings[lang];
+---
+
+<section
+  id="hero"
+  class="relative flex flex-col justify-center items-center text-center overflow-hidden bg-amber-glow"
+  style="min-height: 100svh; padding: 0 1.25rem;"
+  aria-label={lang === 'es' ? 'Sección principal' : 'Hero section'}
+>
+  <canvas
+    id="particle-canvas"
+    aria-hidden="true"
+    role="presentation"
+    aria-label={lang === 'es' ? 'Fondo animado decorativo' : 'Decorative animated background'}
+  ></canvas>
+
+  <div class="z-10 relative pointer-events-none" style="max-width: min(900px, 92vw);">
+    <p
+      id="hero-eyebrow"
+      class="hero-fade-in font-mono uppercase tracking-widest mb-8"
+      style="font-size: var(--text-eyebrow); color: var(--color-text-muted); transition-delay: 0ms;"
+    >
+      {t.eyebrow}
+    </p>
+
+    <h1
+      id="hero-title"
+      class="font-display mb-8"
+      style="font-size: var(--text-display-xl); line-height: 1.05; letter-spacing: -0.02em; font-weight: 300; color: var(--color-text);"
+    >
+      <span class="hero-word" style="animation-delay: 100ms;">Javier</span>{' '}
+      <span class="hero-word" style="animation-delay: 300ms;">Lanz</span>{' '}
+      <span class="hero-word" style="animation-delay: 500ms;">Bethencourt</span>
+    </h1>
+
+    <p
+      class="hero-fade-in font-display"
+      style="font-size: var(--text-display-md); color: var(--color-text-muted); font-weight: 300; transition-delay: 800ms;"
+    >
+      {t.tagline}
+    </p>
+  </div>
+
+  <div
+    class="absolute hero-fade-in flex flex-col items-center gap-2"
+    style="bottom: 3rem; left: 50%; transform: translateX(-50%); opacity: 0.5; transition-delay: 1200ms;"
+  >
+    <span class="font-mono uppercase tracking-widest" style="font-size: var(--text-eyebrow); color: var(--color-text-muted);">
+      {t.scroll}
+    </span>
+    <svg width="16" height="20" viewBox="0 0 16 20" fill="none" aria-hidden="true" class="animate-bounce">
+      <path d="M8 2v16M1 13l7 7 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-text-muted);"/>
+    </svg>
+  </div>
+</section>
+
+<script>
+  import './ParticleField.client.ts';
+
+  // Trigger hero entrance after a short delay
+  setTimeout(() => {
+    document.querySelectorAll('.hero-word').forEach((el) => el.classList.add('reveal'));
+    document.querySelectorAll('.hero-fade-in').forEach((el) => el.classList.add('reveal'));
+  }, 100);
+</script>

@@ -15,6 +15,7 @@ const workSchema = z.object({
   tags: z.array(z.string()),
   cover: z.string().optional(),
   coverAlt: z.string().optional(),
+  vimeoUrl: z.string().url().optional(),
   order: z.number().int(),
   feature: z.boolean().default(false),
 });

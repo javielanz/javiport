@@ -68,6 +68,18 @@ const gallery = galleries[data.slug];
       prev={prev}
       next={next}
     >
+      {data.vimeoUrl && (
+        <div class="case-study-video">
+          <iframe
+            src={data.vimeoUrl}
+            title={data.title}
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      )}
+
       <Content />
 
       {gallery && (

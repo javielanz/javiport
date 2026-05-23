@@ -11,8 +11,23 @@ order: 3
 feature: false
 ---
 
-Co-leading content for the digital-marketing initiative behind Suzuki's 2026 launch in Venezuela, as part of EGCars' emerging in-house agency model.
+Suzuki hasn't had a meaningful presence in Venezuela in years. EGCars is the importer building it back — and I'm one of three people running the digital marketing engine that has to introduce the brand to a market that doesn't remember it.
 
-Scope spans positioning the brand for a market that hasn't seen a fresh Suzuki play in years, building the Instagram and TikTok narrative for awareness and lead capture, and writing creative briefs that translate AI-assisted ideation into production-ready assets.
+## The brief
 
-Campaign assets and case write-up to be added.
+Build a content operation that can carry the brand through three phases: *awareness* (people remember Suzuki exists, and that it's back), *consideration* (people understand the lineup and price-to-value story), and *lead capture* (qualified leads land in the dealership's CRM with enough context to skip the cold open).
+
+The unusual constraint: no media budget for the first quarter. Everything has to earn its reach.
+
+## What that means in practice
+
+- **Positioning** — Suzuki's global identity (small, reliable, fuel-efficient) doesn't sell itself in a Venezuelan market that has been retrained to value flash. The play is to lean into the *reliability* angle in a market where downtime is expensive — and to do it through stories of owners, not specs.
+- **Instagram and TikTok** — narrative-driven shorts over product demos. Algorithm cares about completion rate; the way to get completion rate on a car brand is to make people forget they're watching an ad.
+- **AI-assisted production** — Midjourney for moodboards and pre-viz, Claude with MCP for first-draft copy across English and Spanish, DALL-E for one-off graphics. The human time goes into briefs and final cuts, not into stock-image hunting.
+- **Pitch flow** — building creative proposals to bring on additional clients beyond the founding Suzuki account, on the bet that the agency model EGCars is testing can compound.
+
+## The throughline
+
+The content function here is the same one I'm building toward as a generalist — strategy upstream, story in the middle, taste at the cut. The hardware happens to be cars.
+
+*Case write-up will deepen as the launch progresses — public-facing campaign assets pending approval.*

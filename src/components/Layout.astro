@@ -11,6 +11,11 @@ interface Props {
 
 const { title, description = '', lang = 'es', ogImage } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const otherLang = lang === 'es' ? 'en' : 'es';
+const otherPath = Astro.url.pathname.replace(/^\/javiport\/(es|en)\//, `/javiport/${otherLang}/`);
+const otherHref = new URL(otherPath, Astro.site);
+const xDefaultPath = Astro.url.pathname.replace(/^\/javiport\/(es|en)\//, '/javiport/');
+const xDefaultHref = new URL(xDefaultPath, Astro.site);
 ---
 <!DOCTYPE html>
 <html lang={lang} class="dark">
@@ -21,14 +26,24 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
     <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang={lang} href={canonicalURL} />
+    <link rel="alternate" hreflang={otherLang} href={otherHref} />
+    <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
+    <meta name="theme-color" content="#0A0908" />
+    <meta name="color-scheme" content="dark" />
 
     <!-- OG / Twitter -->
     <meta property="og:title" content={title} />
     {description && <meta property="og:description" content={description} />}
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
+    <meta property="og:locale" content={lang === 'es' ? 'es_VE' : 'en_US'} />
+    <meta property="og:locale:alternate" content={otherLang === 'es' ? 'es_VE' : 'en_US'} />
     {ogImage && <meta property="og:image" content={ogImage} />}
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
 
     <!-- Fonts: Google Fonts variable fonts (self-host in M10) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

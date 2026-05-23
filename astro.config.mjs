@@ -13,6 +13,14 @@ export default defineConfig({
     locales: ['es', 'en'],
     routing: { prefixDefaultLocale: true, redirectToDefaultLocale: false },
   },
-  integrations: [react(), sitemap()],
+  integrations: [
+    react(),
+    sitemap({
+      i18n: {
+        defaultLocale: 'es',
+        locales: { es: 'es-VE', en: 'en-US' },
+      },
+    }),
+  ],
   vite: { plugins: [tailwind()] },
 });

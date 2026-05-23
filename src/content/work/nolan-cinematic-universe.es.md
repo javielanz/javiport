@@ -15,7 +15,7 @@ Tesis de bachillerato escrita en Colegio Los Arcos. El argumento: Christopher No
 
 ## Tres recursos, una gramática
 
-Tres recursos se repiten en la filmografía de Nolan: tiempo no lineal (*Memento*, *Origen*, *Tenet*, *Dunkerque*), ensambles de expertos (*Origen*, *Interestelar*, *Oppenheimer*), y aritmética moral bajo presión (*El Caballero de la Noche*, *Oppenheimer*, *Interestelar*). La tesis argumenta que cada recurso cumple la misma función — le pide al público *trabajar* mientras ve.
+Tres recursos se repiten en la filmografía de Nolan: tiempo no lineal (*Memento*, *Origen*, *Tenet*, *Dunkerque*), ensambles de expertos (*Origen*, *Interestelar*, *Oppenheimer*), y aritmética moral bajo presión (*El Caballero Oscuro*, *Oppenheimer*, *Interestelar*). La tesis argumenta que cada recurso cumple la misma función — le pide al público *trabajar* mientras ve.
 
 > Las películas de Nolan no confían en el público con sorpresas; confían en el público con estructura. El placer no está en que te cuenten una historia. El placer está en resolver una.
 

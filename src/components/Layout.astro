@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 
 interface Props {
@@ -54,7 +54,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       .skip-link:focus { top: 1rem; }
     </style>
 
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body>
     <a class="skip-link" href="#main-content">

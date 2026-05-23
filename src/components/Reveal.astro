@@ -2,16 +2,17 @@
 interface Props {
   type?: 'mask' | 'fade';
   delay?: number;
-  tag?: string;
+  tag?: keyof HTMLElementTagNameMap;
   class?: string;
 }
 
-const { type = 'fade', delay = 0, tag: Tag = 'div', class: className = '' } = Astro.props;
+const { type = 'fade', delay = 0, tag = 'div', class: className = '' } = Astro.props;
+const Tag = tag as any;
 const revealClass = type === 'mask' ? 'scroll-reveal-mask' : 'scroll-reveal-fade';
 const style = delay ? `transition-delay: ${delay}ms;` : '';
 ---
 
-<Tag class={`${revealClass} ${className}`} style={style}>
+<Tag class={`${revealClass} ${className}`.trim()} style={style}>
   <slot />
 </Tag>
 

@@ -49,16 +49,14 @@ AUDIT.md
 .claude-flow/
 .mcp.json
 ruvector.db
+agentdb.rvf
+agentdb.rvf.lock
 *.db-shm
 *.db-wal
 
 # Session scratch
 What the next session needs to do.txt
 
-# Raw media files not in media/web/
-*.MP4
-*.mov
-*.MOV
-*.jpeg
-*.jpg
+# Ensure built web media is tracked (counteracts media/raw/ ignore above)
+!media/web/
 !media/web/**

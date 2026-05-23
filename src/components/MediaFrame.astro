@@ -1,0 +1,75 @@
+---
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
+
+interface Props {
+  src: string;
+  alt: string;
+  widths?: number[];
+  sizes?: string;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  decorative?: boolean;
+  class?: string;
+  pictureClass?: string;
+}
+
+const VALID_WIDTHS = new Set([480, 960, 1440, 2880]);
+
+const {
+  src,
+  alt,
+  widths = [480, 960, 1440],
+  sizes = '100vw',
+  loading = 'lazy',
+  fetchpriority = 'auto',
+  decorative = false,
+  class: className,
+  pictureClass,
+} = Astro.props;
+
+if (!decorative && (!alt || alt.trim() === '')) {
+  throw new Error(`MediaFrame: alt required for "${src}"`);
+}
+for (const w of widths) {
+  if (!VALID_WIDTHS.has(w)) {
+    throw new Error(`MediaFrame: width ${w} not produced by media:build for "${src}"`);
+  }
+}
+
+const metaPath = path.resolve(process.cwd(), 'media', 'web', `${src}.meta.json`);
+let intrinsic: { width: number; height: number };
+try {
+  intrinsic = JSON.parse(await readFile(metaPath, 'utf8'));
+} catch {
+  throw new Error(`MediaFrame: media/web/${src}.meta.json missing — run \`npm run media:build\``);
+}
+
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const url = (w: number, ext: 'avif' | 'webp' | 'jpg') => `${base}media/web/${src}-${w}w.${ext}`;
+const srcset = (ext: 'avif' | 'webp' | 'jpg') =>
+  widths.map((w) => `${url(w, ext)} ${w}w`).join(', ');
+
+const maxW = Math.max(...widths);
+const scaledH = Math.round(maxW * (intrinsic.height / intrinsic.width));
+const wrapperClass = pictureClass ?? className;
+---
+
+<picture class={wrapperClass}>
+  <source type="image/avif" srcset={srcset('avif')} sizes={sizes} />
+  <source type="image/webp" srcset={srcset('webp')} sizes={sizes} />
+  <img
+    src={url(maxW, 'jpg')}
+    srcset={srcset('jpg')}
+    sizes={sizes}
+    width={maxW}
+    height={scaledH}
+    alt={decorative ? '' : alt}
+    aria-hidden={decorative ? 'true' : undefined}
+    loading={loading}
+    fetchpriority={fetchpriority}
+    decoding="async"
+  />
+</picture>

@@ -7,6 +7,8 @@ summary: "A documentary series on the city as it is, not as it's reported."
 year: 2025
 role: "Photographer, Editor"
 tags: ["photography", "documentary", "caracas"]
+cover: "caracas-essay-01"
+coverAlt: "A woman in denim walking past colored shutters in a Caracas street"
 order: 1
 feature: true
 ---

@@ -1,4 +1,6 @@
 ---
+import MediaFrame from './MediaFrame.astro';
+
 interface Props {
   slug: string;
   tag: string;
@@ -43,13 +45,13 @@ const style = [
     style="background: var(--color-bg-elev); border-color: var(--color-line);"
   >
     {cover ? (
-      <img
+      <MediaFrame
         src={cover}
         alt={coverAlt}
-        class="work-card-image w-full h-full object-cover"
-        style="filter: grayscale(60%); opacity: 0.85;"
+        widths={[480, 960, 1440]}
+        sizes="(min-width: 768px) 50vw, 100vw"
         loading="lazy"
-        decoding="async"
+        pictureClass="work-card-picture block w-full h-full"
       />
     ) : (
       <div class="w-full h-full" style="background: var(--color-bg-elev);" />

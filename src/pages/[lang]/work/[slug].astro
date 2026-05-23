@@ -1,0 +1,88 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../../components/Layout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import CaseStudyLayout from '../../../components/CaseStudyLayout.astro';
+import MediaFrame from '../../../components/MediaFrame.astro';
+import { getStrings, type Lang } from '../../../lib/strings';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('work');
+  return entries.map((entry) => ({
+    params: { lang: entry.data.lang, slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const lang = entry.data.lang as Lang;
+const data = entry.data;
+const { Content } = await render(entry);
+
+const allInLang = (await getCollection('work', (e) => e.data.lang === lang))
+  .sort((a, b) => a.data.order - b.data.order);
+const idx = allInLang.findIndex((e) => e.data.slug === data.slug);
+const prev = idx > 0
+  ? { slug: allInLang[idx - 1].data.slug, title: allInLang[idx - 1].data.title }
+  : undefined;
+const next = idx < allInLang.length - 1
+  ? { slug: allInLang[idx + 1].data.slug, title: allInLang[idx + 1].data.title }
+  : undefined;
+
+const s = getStrings(lang);
+const pageTitle = `${data.title} — ${s.nav.brand}`;
+const galleries: Record<string, { src: string; alt: string }[]> = {
+  'caracas-photo-essay': [
+    { src: 'caracas-essay-01', alt: data.coverAlt ?? data.title },
+    {
+      src: 'caracas-essay-02',
+      alt: lang === 'es'
+        ? 'Detalle de un portón verde con vegetación al fondo en Caracas'
+        : 'A green shutter and the soft green of the trees behind it, Caracas',
+    },
+    {
+      src: 'caracas-essay-03',
+      alt: lang === 'es'
+        ? 'Personas cruzando una intersección sin semáforo en una mañana de Caracas'
+        : 'People crossing an unsignaled intersection on a Caracas morning',
+    },
+  ],
+};
+const gallery = galleries[data.slug];
+---
+
+<Layout title={pageTitle} description={data.summary} lang={lang}>
+  <Nav lang={lang} />
+  <main id="main-content">
+    <CaseStudyLayout
+      lang={lang}
+      title={data.title}
+      tag={data.tag}
+      summary={data.summary}
+      year={data.year}
+      role={data.role}
+      tags={data.tags}
+      cover={data.cover}
+      coverAlt={data.coverAlt}
+      prev={prev}
+      next={next}
+    >
+      <Content />
+
+      {gallery && (
+        <div class="case-study-gallery">
+          {gallery.map((g) => (
+            <MediaFrame
+              src={g.src}
+              alt={g.alt}
+              widths={[480, 960, 1440]}
+              sizes="(min-width: 768px) 50vw, 100vw"
+            />
+          ))}
+        </div>
+      )}
+    </CaseStudyLayout>
+  </main>
+  <Footer lang={lang} />
+</Layout>

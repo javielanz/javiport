@@ -1,0 +1,113 @@
+{
+  "lang": "es",
+  "meta": {
+    "title": "Javier Lanz — Estratega de Contenido y Narrador",
+    "description": "Estudiante de Comunicación Social y Content Strategist en EGCars / Suzuki Venezuela. Trabajo seleccionado en estrategia de marca, fotografía, periodismo y cine.",
+    "ogTitle": "Javier Lanz — Estratega de Contenido y Narrador",
+    "ogDescription": "Estrategia a 24 cuadros por segundo."
+  },
+  "nav": {
+    "brand": "Javier Lanz",
+    "items": {
+      "about": "Sobre Mí",
+      "work": "Proyectos",
+      "capabilities": "Capacidades",
+      "experience": "Experiencia",
+      "education": "Educación",
+      "contact": "Contacto"
+    },
+    "langToggle": {
+      "label": "ES",
+      "target": "EN",
+      "ariaLabel": "Cambiar a inglés"
+    },
+    "skipLink": "Saltar al contenido principal"
+  },
+  "hero": {
+    "eyebrow": "CONTENT STRATEGIST · CARACAS, 2026",
+    "tagline": "Content Strategist con ojo de director.",
+    "scroll": "Desliza"
+  },
+  "about": {
+    "eyebrow": "SOBRE MÍ",
+    "headline": "Estrategia a 24 cuadros por segundo.",
+    "p1": "Soy estudiante de Comunicación Social en la Universidad Monteávila y Content Strategist en EGCars, donde estoy ayudando a lanzar Suzuki en Venezuela. Mi trabajo vive en la intersección entre cine, marca y nuevas herramientas de IA — entiendo la estrategia de contenido como un director entiende una película: cada plano se gana su lugar.",
+    "p2": "Cuando no estoy escribiendo campañas, dirijo videoclips, hago periodismo de calle en Caracas, o analizo cómo franquicias como las de Nolan construyen audiencias leales.",
+    "fact": "Lic. Comunicación Social · Índice 17.00 / 20.00 · Cambridge B2"
+  },
+  "work": {
+    "eyebrow": "TRABAJO SELECCIONADO",
+    "headline": "Cuatro piezas, un mismo hilo.",
+    "subline": "Estrategia, narrativa, imagen — a veces los tres a la vez.",
+    "ctaView": "Ver ensayo →",
+    "ctaRead": "Leer tesis →",
+    "ctaSee": "Ver el trabajo →",
+    "ctaWatch": "Ver el reel →"
+  },
+  "capabilities": {
+    "eyebrow": "CAPACIDADES",
+    "headline": "Formado en narrativa. Fluido en software.",
+    "clusters": [
+      {
+        "label": "Contenido y Creatividad",
+        "skills": "Storytelling. Copywriting. Concepto visual. Posicionamiento de marca. Escritura editorial."
+      },
+      {
+        "label": "Herramientas de IA",
+        "skills": "Claude con MCP. Midjourney. DALL-E. Copywriting generativo. Prompt engineering."
+      },
+      {
+        "label": "Diseño y Edición",
+        "skills": "Canva (avanzado). Capcut. Edición de foto y video."
+      },
+      {
+        "label": "Productividad",
+        "skills": "Microsoft Office. Google Workspace."
+      }
+    ]
+  },
+  "experience": {
+    "eyebrow": "EXPERIENCIA",
+    "headline": "Donde sucede el trabajo."
+  },
+  "education": {
+    "eyebrow": "EDUCACIÓN",
+    "headline": "Lo que formó la mirada."
+  },
+  "contact": {
+    "eyebrow": "CONTACTO",
+    "headline": "Construyamos algo.",
+    "body": "Abierto a colaboraciones, trabajo freelance de contenido y conversaciones sobre cine, marca e IA.",
+    "buttons": {
+      "email": { "label": "Correo", "ariaLabel": "Enviar correo a Javier" },
+      "whatsapp": { "label": "WhatsApp", "ariaLabel": "Escribir a Javier por WhatsApp" },
+      "linkedin": { "label": "LinkedIn", "ariaLabel": "Ver a Javier en LinkedIn" },
+      "instagram": { "label": "Instagram", "ariaLabel": "Seguir a Javier en Instagram" }
+    },
+    "replyExpectation": "Suele responder en 24h"
+  },
+  "footer": {
+    "credit": "© 2026 Javier Lanz Bethencourt · Caracas, Venezuela",
+    "techCredit": "Construido con Astro · Hospedado en GitHub Pages",
+    "langSwitch": "English",
+    "backToTop": "Volver arriba"
+  },
+  "errors": {
+    "notFound": {
+      "headline": "Perdido en el corte.",
+      "body": "Esta página quedó en la sala de edición.",
+      "cta": "Volver al inicio →"
+    }
+  },
+  "a11y": {
+    "externalLinkSuffix": "(abre en una pestaña nueva)",
+    "particleField": "Fondo animado decorativo",
+    "loading": "Cargando",
+    "imageUnavailable": "Imagen no disponible",
+    "videoPlay": "Clic para reproducir",
+    "videoMute": "Sonido apagado — clic para activar"
+  },
+  "loading": {
+    "brandMark": "JAVIER LANZ"
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "lang": "en",
+  "meta": {
+    "title": "Javier Lanz — Content Strategist & Storyteller",
+    "description": "Communication Social student and Content Strategist at EGCars / Suzuki Venezuela. Selected work in brand strategy, photography, journalism, and film.",
+    "ogTitle": "Javier Lanz — Content Strategist & Storyteller",
+    "ogDescription": "Strategy at 24 frames per second."
+  },
+  "nav": {
+    "brand": "Javier Lanz",
+    "items": {
+      "about": "About",
+      "work": "Work",
+      "capabilities": "Capabilities",
+      "experience": "Experience",
+      "education": "Education",
+      "contact": "Contact"
+    },
+    "langToggle": {
+      "label": "EN",
+      "target": "ES",
+      "ariaLabel": "Switch to Spanish"
+    },
+    "skipLink": "Skip to main content"
+  },
+  "hero": {
+    "eyebrow": "CONTENT STRATEGIST · CARACAS, 2026",
+    "tagline": "Content Strategist with a director's eye.",
+    "scroll": "Scroll"
+  },
+  "about": {
+    "eyebrow": "ABOUT",
+    "headline": "Strategy at 24 frames per second.",
+    "p1": "I'm a Communication Social student at Universidad Monteávila and Content Strategist at EGCars, where I'm helping launch Suzuki in Venezuela. My work sits at the intersection of cinema, brand, and emerging AI tooling — I treat content strategy the way a director treats a film: every frame earns its place.",
+    "p2": "When I'm not writing campaigns, I'm directing music videos, shooting street-journalism in Caracas, or analyzing how franchises like Nolan's build loyal audiences.",
+    "fact": "B.A. Communication Social · GPA 17.00 / 20.00 · Cambridge B2"
+  },
+  "work": {
+    "eyebrow": "SELECTED WORK",
+    "headline": "Four pieces, one throughline.",
+    "subline": "Strategy, story, image — sometimes all three at once.",
+    "ctaView": "View essay →",
+    "ctaRead": "Read thesis →",
+    "ctaSee": "See the work →",
+    "ctaWatch": "Watch the reel →"
+  },
+  "capabilities": {
+    "eyebrow": "CAPABILITIES",
+    "headline": "Trained in story. Fluent in software.",
+    "clusters": [
+      {
+        "label": "Content & Creative",
+        "skills": "Storytelling. Copywriting. Visual concept. Brand positioning. Editorial writing."
+      },
+      {
+        "label": "AI Tools",
+        "skills": "Claude with MCP. Midjourney. DALL-E. Generative copywriting. Prompt engineering."
+      },
+      {
+        "label": "Design & Editing",
+        "skills": "Canva (advanced). Capcut. Photo & video editing."
+      },
+      {
+        "label": "Productivity",
+        "skills": "Microsoft Office. Google Workspace."
+      }
+    ]
+  },
+  "experience": {
+    "eyebrow": "EXPERIENCE",
+    "headline": "Where the work happens."
+  },
+  "education": {
+    "eyebrow": "EDUCATION",
+    "headline": "What shaped the eye."
+  },
+  "contact": {
+    "eyebrow": "CONTACT",
+    "headline": "Let's build something.",
+    "body": "Open to collaborations, freelance content work, and conversations about cinema, brand, and AI.",
+    "buttons": {
+      "email": { "label": "Email", "ariaLabel": "Send Javier an email" },
+      "whatsapp": { "label": "WhatsApp", "ariaLabel": "Message Javier on WhatsApp" },
+      "linkedin": { "label": "LinkedIn", "ariaLabel": "View Javier on LinkedIn" },
+      "instagram": { "label": "Instagram", "ariaLabel": "Follow Javier on Instagram" }
+    },
+    "replyExpectation": "Typically replies within 24h"
+  },
+  "footer": {
+    "credit": "© 2026 Javier Lanz Bethencourt · Caracas, Venezuela",
+    "techCredit": "Built with Astro · Hosted on GitHub Pages",
+    "langSwitch": "Español",
+    "backToTop": "Back to top"
+  },
+  "errors": {
+    "notFound": {
+      "headline": "Lost in the cut.",
+      "body": "This page is on the cutting-room floor.",
+      "cta": "Back to the reel →"
+    }
+  },
+  "a11y": {
+    "externalLinkSuffix": "(opens in new tab)",
+    "particleField": "Decorative animated background",
+    "loading": "Loading",
+    "imageUnavailable": "Image unavailable",
+    "videoPlay": "Click to play",
+    "videoMute": "Sound off — click to unmute"
+  },
+  "loading": {
+    "brandMark": "JAVIER LANZ"
+  }
+}

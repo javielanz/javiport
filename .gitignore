@@ -44,6 +44,17 @@ media/raw/
 # Auto-generated AUDIT file (per audit-trail skill)
 AUDIT.md
 
+# Ruflo / claude-flow runtime artifacts
+.swarm/
+.claude-flow/
+.mcp.json
+ruvector.db
+*.db-shm
+*.db-wal
+
+# Session scratch
+What the next session needs to do.txt
+
 # Raw media files not in media/web/
 *.MP4
 *.mov

@@ -1,0 +1,57 @@
+---
+import { getCollection } from 'astro:content';
+import SectionHeader from './SectionHeader.astro';
+import WorkCard from './WorkCard.astro';
+import Reveal from './Reveal.astro';
+import { getStrings, type Lang } from '../lib/strings';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getStrings(lang).work;
+
+const ctaBySlug: Record<string, keyof typeof t> = {
+  'caracas-photo-essay': 'ctaView',
+  'nolan-cinematic-universe': 'ctaRead',
+  'egcars-suzuki-launch': 'ctaSee',
+  'short-films': 'ctaWatch',
+};
+
+const entries = (await getCollection('work', (e) => e.data.lang === lang))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<section
+  id="work"
+  class="w-full"
+  style="padding: clamp(6rem,12vw,12rem) 0;"
+>
+  <div class="mx-auto px-5" style="max-width: min(1440px, 92vw);">
+    <Reveal type="fade">
+      <SectionHeader
+        eyebrow={t.eyebrow}
+        headline={t.headline}
+        sub={t.subline}
+      />
+    </Reveal>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20 mt-20">
+      {entries.map((entry, i) => (
+        <WorkCard
+          slug={entry.data.slug}
+          tag={entry.data.tag}
+          title={entry.data.title}
+          summary={entry.data.summary}
+          cta={t[ctaBySlug[entry.data.slug] ?? 'ctaView']}
+          cover={entry.data.cover}
+          coverAlt={entry.data.coverAlt}
+          lang={lang}
+          offset={i % 2 === 1}
+          delay={i * 80}
+        />
+      ))}
+    </div>
+  </div>
+</section>

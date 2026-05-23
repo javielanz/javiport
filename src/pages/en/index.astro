@@ -3,21 +3,28 @@ import Layout from '../../components/Layout.astro';
 import Nav from '../../components/Nav.astro';
 import Hero from '../../components/Hero.astro';
 import About from '../../components/About.astro';
+import Work from '../../components/Work.astro';
+import Capabilities from '../../components/Capabilities.astro';
+import Experience from '../../components/Experience.astro';
+import Education from '../../components/Education.astro';
+import Contact from '../../components/Contact.astro';
 import Footer from '../../components/Footer.astro';
+import { getStrings } from '../../lib/strings';
 
 const lang = 'en' as const;
+const meta = getStrings(lang).meta;
 ---
 
-<Layout
-  title="Javier Lanz — Content Strategist & Storyteller"
-  description="Communication Social student and Content Strategist at EGCars / Suzuki Venezuela. Selected work in brand strategy, photography, journalism, and film."
-  lang={lang}
->
+<Layout title={meta.title} description={meta.description} lang={lang}>
   <Nav lang={lang} />
   <main id="main-content">
     <Hero lang={lang} />
     <About lang={lang} />
-    <!-- M7: Work, Capabilities, Experience, Education, Contact sections -->
+    <Work lang={lang} />
+    <Capabilities lang={lang} />
+    <Experience lang={lang} />
+    <Education lang={lang} />
+    <Contact lang={lang} />
   </main>
   <Footer lang={lang} />
 </Layout>

@@ -1,0 +1,67 @@
+---
+import { getCollection } from 'astro:content';
+import SectionHeader from './SectionHeader.astro';
+import Reveal from './Reveal.astro';
+import { getStrings, type Lang } from '../lib/strings';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getStrings(lang).education;
+
+const entries = (await getCollection('education', (e) => e.data.lang === lang))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<section
+  id="education"
+  class="w-full border-t"
+  style="padding: clamp(6rem,12vw,12rem) 0; border-color: var(--color-line); background: var(--color-bg-elev);"
+>
+  <div class="mx-auto px-5" style="max-width: min(1440px, 92vw);">
+    <Reveal type="fade">
+      <SectionHeader eyebrow={t.eyebrow} headline={t.headline} />
+    </Reveal>
+
+    <ul class="mt-16 list-none p-0 m-0 grid gap-10">
+      {entries.map((entry, i) => (
+        <Reveal type="fade" tag="li" delay={i * 80}>
+          <article class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            <div class="md:col-span-4">
+              <div
+                class="font-mono text-xs tracking-widest uppercase"
+                style="color: var(--color-text-subtle);"
+              >
+                {entry.data.dates}
+              </div>
+            </div>
+            <div class="md:col-span-8">
+              <h3
+                class="font-display mb-1"
+                style="font-size: var(--text-display-md); line-height: 1.2; color: var(--color-text);"
+              >
+                {entry.data.institution}
+              </h3>
+              <div
+                class="mb-2"
+                style="font-size: var(--text-body); color: var(--color-text);"
+              >
+                {entry.data.degree}
+              </div>
+              {entry.data.meta && (
+                <div
+                  class="font-mono text-xs tracking-widest"
+                  style="color: var(--color-accent);"
+                >
+                  {entry.data.meta}
+                </div>
+              )}
+            </div>
+          </article>
+        </Reveal>
+      ))}
+    </ul>
+  </div>
+</section>

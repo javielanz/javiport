@@ -1,0 +1,120 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import Reveal from './Reveal.astro';
+import { getStrings, type Lang } from '../lib/strings';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getStrings(lang).contact;
+const a11y = getStrings(lang).a11y;
+const externalSuffix = a11y.externalLinkSuffix;
+
+const buttons = [
+  {
+    key: 'email' as const,
+    href: 'mailto:javielanz@gmail.com',
+    label: t.buttons.email.label,
+    aria: t.buttons.email.ariaLabel,
+    external: false,
+  },
+  {
+    key: 'whatsapp' as const,
+    href: 'https://wa.me/584242334996',
+    label: t.buttons.whatsapp.label,
+    aria: t.buttons.whatsapp.ariaLabel,
+    external: true,
+  },
+  {
+    key: 'linkedin' as const,
+    href: 'https://www.linkedin.com/in/javierlanzb',
+    label: t.buttons.linkedin.label,
+    aria: t.buttons.linkedin.ariaLabel,
+    external: true,
+  },
+  {
+    key: 'instagram' as const,
+    href: 'https://www.instagram.com/javilanzb',
+    label: t.buttons.instagram.label,
+    aria: t.buttons.instagram.ariaLabel,
+    external: true,
+  },
+];
+---
+
+<section
+  id="contact"
+  class="w-full"
+  style="padding: clamp(6rem,12vw,12rem) 0;"
+>
+  <div class="mx-auto px-5" style="max-width: min(1440px, 92vw);">
+    <Reveal type="fade">
+      <SectionHeader eyebrow={t.eyebrow} headline={t.headline} />
+    </Reveal>
+
+    <Reveal type="fade" delay={120}>
+      <p
+        class="mt-6 max-w-prose"
+        style="font-size: var(--text-body-lg); color: var(--color-text-muted); line-height: 1.6; max-width: min(680px, 92vw);"
+      >
+        {t.body}
+      </p>
+    </Reveal>
+
+    <Reveal type="fade" delay={200}>
+      <ul class="mt-12 flex flex-wrap gap-4 list-none p-0 m-0">
+        {buttons.map((b) => (
+          <li>
+            <a
+              href={b.href}
+              aria-label={b.aria}
+              {...(b.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              class="contact-button font-mono text-xs tracking-widest uppercase inline-flex items-center px-6 py-4 border transition-colors duration-300"
+            >
+              {b.label}
+              {b.external && (
+                <span class="sr-only">{` ${externalSuffix}`}</span>
+              )}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </Reveal>
+
+    <Reveal type="fade" delay={280}>
+      <p
+        class="mt-8 font-mono text-xs tracking-widest uppercase"
+        style="color: var(--color-text-subtle);"
+      >
+        {t.replyExpectation}
+      </p>
+    </Reveal>
+  </div>
+</section>
+
+<style>
+  .contact-button {
+    color: var(--color-text);
+    border-color: var(--color-line);
+    background: transparent;
+    text-decoration: none;
+  }
+  .contact-button:hover,
+  .contact-button:focus-visible {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>

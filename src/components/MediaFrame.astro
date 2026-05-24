@@ -37,12 +37,12 @@ for (const w of widths) {
   }
 }
 
-const metaPath = path.resolve(process.cwd(), 'media', 'web', `${src}.meta.json`);
+const metaPath = path.resolve(process.cwd(), 'public', 'media', 'web', `${src}.meta.json`);
 let intrinsic: { width: number; height: number };
 try {
   intrinsic = JSON.parse(await readFile(metaPath, 'utf8'));
 } catch {
-  throw new Error(`MediaFrame: media/web/${src}.meta.json missing — run \`npm run media:build\``);
+  throw new Error(`MediaFrame: public/media/web/${src}.meta.json missing — run \`npm run media:build\``);
 }
 
 const base = import.meta.env.BASE_URL.endsWith('/')

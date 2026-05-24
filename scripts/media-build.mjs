@@ -9,7 +9,7 @@ import sharp from 'sharp';
 
 const ROOT          = path.resolve(fileURLToPath(import.meta.url), '..', '..');
 const RAW_DIR       = path.join(ROOT, 'media', 'raw');
-const WEB_DIR       = path.join(ROOT, 'media', 'web');
+const WEB_DIR       = path.join(ROOT, 'public', 'media', 'web');
 const IMAGE_WIDTHS  = [480, 960, 1440, 2880];
 const VIDEO_HEIGHTS = [1080, 720];
 const IMAGE_EXT     = new Set(['.jpg', '.jpeg', '.png', '.heic']);

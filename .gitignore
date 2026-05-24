@@ -57,6 +57,5 @@ agentdb.rvf.lock
 # Session scratch
 What the next session needs to do.txt
 
-# Ensure built web media is tracked (counteracts media/raw/ ignore above)
-!media/web/
-!media/web/**
+# Built web media now lives under public/ so Astro copies it to dist/.
+# (media/raw/ above stays ignored; public/ is fully tracked.)

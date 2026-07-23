@@ -57,6 +57,19 @@
   --text-eyebrow:     0.75rem;
 }
 
+/* ─── Motion system ─────────────────────────────────────── */
+/* Every animated surface draws from this scale so the page moves as one:
+   micro (color/border) · hover (transform accents) · move (media/hover
+   travel) · reveal (scroll entrances) · hero (the one opening flourish). */
+:root {
+  --ease-brand: cubic-bezier(0.2, 0, 0, 1);
+  --dur-micro: 300ms;
+  --dur-hover: 400ms;
+  --dur-move: 700ms;
+  --dur-reveal: 1000ms;
+  --dur-hero: 1200ms;
+}
+
 /* ─── Base ─────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
@@ -84,7 +97,7 @@ body {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
   }
   .hero-word.reveal {
-    animation: maskReveal 1200ms cubic-bezier(0.2, 0, 0, 1) forwards;
+    animation: maskReveal var(--dur-hero) var(--ease-brand) forwards;
   }
   @keyframes maskReveal {
     0%   { opacity: 0; transform: translateY(12px); clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); }
@@ -94,7 +107,7 @@ body {
   .hero-fade-in {
     opacity: 0;
     transform: translateY(12px);
-    transition: opacity 1200ms cubic-bezier(0.2, 0, 0, 1), transform 1200ms cubic-bezier(0.2, 0, 0, 1);
+    transition: opacity var(--dur-hero) var(--ease-brand), transform var(--dur-hero) var(--ease-brand);
   }
   .hero-fade-in.reveal { opacity: 1; transform: translateY(0); }
 
@@ -105,15 +118,15 @@ body {
      reveal would never fire. */
   .scroll-reveal-mask {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 1000ms cubic-bezier(0.2, 0, 0, 1),
-                transform 1000ms cubic-bezier(0.2, 0, 0, 1);
+    transform: translateY(20px);
+    transition: opacity var(--dur-reveal) var(--ease-brand),
+                transform var(--dur-reveal) var(--ease-brand);
   }
   /* Vertices extend 10% past the box so oversized display glyphs that
      overflow their column are not cut once revealed. */
   .scroll-reveal-mask > * {
     clip-path: polygon(-10% 110%, 110% 110%, 110% 110%, -10% 110%);
-    transition: clip-path 1000ms cubic-bezier(0.2, 0, 0, 1);
+    transition: clip-path var(--dur-reveal) var(--ease-brand);
   }
   .scroll-reveal-mask.is-revealed { opacity: 1; transform: translateY(0); }
   .scroll-reveal-mask.is-revealed > * { clip-path: polygon(-10% -10%, 110% -10%, 110% 110%, -10% 110%); }
@@ -121,9 +134,16 @@ body {
   .scroll-reveal-fade {
     opacity: 0;
     transform: translateY(12px);
-    transition: opacity 1000ms cubic-bezier(0.2, 0, 0, 1), transform 1000ms cubic-bezier(0.2, 0, 0, 1);
+    transition: opacity var(--dur-reveal) var(--ease-brand), transform var(--dur-reveal) var(--ease-brand);
   }
   .scroll-reveal-fade.is-revealed { opacity: 1; transform: translateY(0); }
+
+  /* Page swaps share the same easing family as everything else. */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 300ms;
+    animation-timing-function: var(--ease-brand);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -143,7 +163,9 @@ body {
   object-fit: cover;
   filter: grayscale(60%);
   opacity: 0.85;
-  transition: transform 700ms cubic-bezier(0.2, 0, 0, 1), filter 700ms ease, opacity 700ms ease;
+  transition: transform var(--dur-move) var(--ease-brand),
+              filter var(--dur-move) var(--ease-brand),
+              opacity var(--dur-move) var(--ease-brand);
 }
 .group:hover .work-card-image,
 .group:hover .work-card-picture img {
@@ -161,11 +183,11 @@ body {
   bottom: -2px;
   left: 0;
   background-color: var(--color-accent);
-  transition: width 400ms cubic-bezier(0.2, 0, 0, 1);
+  transition: width var(--dur-hover) var(--ease-brand);
 }
 .group:hover .work-card-title::after { width: 100%; }
 
-.work-card-summary { transition: letter-spacing 400ms ease, color 300ms ease; }
+.work-card-summary { transition: letter-spacing var(--dur-hover) var(--ease-brand), color var(--dur-micro) var(--ease-brand); }
 .group:hover .work-card-summary { letter-spacing: 0.1em; color: var(--color-accent); }
 
 /* ─── Nav scroll state ──────────────────────────────────── */
@@ -173,7 +195,9 @@ body {
   background-color: transparent;
   backdrop-filter: blur(0px);
   border-bottom-color: transparent;
-  transition: background-color 500ms, backdrop-filter 500ms, border-color 500ms;
+  transition: background-color var(--dur-hover) var(--ease-brand),
+              backdrop-filter var(--dur-hover) var(--ease-brand),
+              border-color var(--dur-hover) var(--ease-brand);
 }
 #main-nav.scrolled {
   background-color: rgba(10, 9, 8, 0.8);
@@ -205,4 +229,9 @@ body {
   width: 100%;
   height: 100%;
   display: block;
+  opacity: 0;
+  transition: opacity var(--dur-hero) var(--ease-brand);
+}
+#prism-scene canvas.is-live {
+  opacity: 1;
 }

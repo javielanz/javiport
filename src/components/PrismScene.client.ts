@@ -95,13 +95,21 @@ async function createScene(container: HTMLElement): Promise<SceneHandle | null> 
   rimLight.position.set(-3, -1, -2);
   scene.add(keyLight, rimLight, new THREE.AmbientLight(GLASS, 0.5));
 
+  let baseScale = 1;
   const fitScale = () => {
     const s = Math.min(1, container.clientWidth / 1100) * (container.clientWidth < 768 ? 0.8 : 1);
-    group.scale.setScalar(Math.max(0.55, s));
+    baseScale = Math.max(0.55, s);
+    group.scale.setScalar(baseScale);
   };
   fitScale();
 
-  const clock = new THREE.Clock();
+  // Own accumulated time instead of THREE.Clock: Clock.start() resets elapsed
+  // time, which would replay the intro and snap the rotation phase every time
+  // the hero re-enters the viewport.
+  let tAccum = 0;
+  let introElapsed = 0;
+  let lastNow = 0;
+  const INTRO_S = 1.2; // matches --dur-hero so scale and opacity finish together
   const pointerTarget = { x: 0, y: 0 };
   const pointer = { x: 0, y: 0 };
   let rafId = 0;
@@ -121,12 +129,23 @@ async function createScene(container: HTMLElement): Promise<SceneHandle | null> 
   };
 
   const renderFrame = () => {
-    const t = clock.getElapsedTime();
+    const now = performance.now();
+    const delta = lastNow === 0 ? 0 : Math.min(0.1, (now - lastNow) / 1000);
+    lastNow = now;
+    tAccum += delta;
+    // Materialize once: scale eases 0.92 -> 1 in step with the canvas opacity
+    // transition, latched so hero re-entries never replay it.
+    if (introElapsed < INTRO_S) introElapsed = Math.min(INTRO_S, introElapsed + delta);
+    const intro = reducedMotion ? 1 : introElapsed / INTRO_S;
+    const introEased = 1 - Math.pow(1 - intro, 3);
+    group.scale.setScalar(baseScale * (0.92 + 0.08 * introEased));
     pointer.x += (pointerTarget.x - pointer.x) * 0.05;
     pointer.y += (pointerTarget.y - pointer.y) * 0.05;
-    group.rotation.y = t * 0.15 + pointer.x * 0.3;
+    const scroll = reducedMotion ? 0 : window.scrollY;
+    const t = tAccum;
+    group.rotation.y = t * 0.15 + pointer.x * 0.3 + scroll * 0.00045;
     group.rotation.x = Math.sin(t * 0.2) * 0.06 - pointer.y * 0.2;
-    group.position.y = Math.sin(t * 0.5) * 0.08;
+    group.position.y = Math.sin(t * 0.5) * 0.08 + scroll * 0.0002;
     positionShards(t);
     renderer.render(scene, camera);
   };
@@ -162,13 +181,12 @@ async function createScene(container: HTMLElement): Promise<SceneHandle | null> 
   const start = () => {
     if (running || reducedMotion) return;
     running = true;
-    clock.start();
+    lastNow = 0; // first frame after a pause contributes zero delta — no time jump
     rafId = requestAnimationFrame(loop);
   };
   const stop = () => {
     if (!running) return;
     running = false;
-    clock.stop();
     cancelAnimationFrame(rafId);
   };
 
@@ -194,8 +212,11 @@ async function createScene(container: HTMLElement): Promise<SceneHandle | null> 
   intersectionObserver.observe(container);
 
   if (reducedMotion) {
+    renderer.domElement.style.transition = 'none';
     renderFrame();
   }
+  // Fade the canvas in once a frame exists (CSS handles the transition).
+  requestAnimationFrame(() => renderer.domElement.classList.add('is-live'));
 
   return {
     dispose() {

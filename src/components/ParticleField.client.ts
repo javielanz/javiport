@@ -45,11 +45,19 @@ export function initParticleField(canvas: HTMLCanvasElement): () => void {
   let frameTime = 0;
   let overBudgetCount = 0;
 
+  // Logical (CSS-pixel) size; the backing store is scaled by dpr for crisp
+  // dots on high-DPI screens. All simulation math stays in logical pixels.
+  let vw = 0;
+  let vh = 0;
+  let dprCap = 2;
+
   // Degradation flags
   let linesEnabled = true;
   let densityFactor = 1;
   let fpsTarget = 60;
   let lastFrameTs = 0;
+  let lastRenderTs = 0;
+  let slowStreak = 0;
 
   // Spring / physics constants
   const SPRING_K   = 0.02;
@@ -60,18 +68,28 @@ export function initParticleField(canvas: HTMLCanvasElement): () => void {
   const LINES_MAX_DIST = 80;
   const COLOR_LERP_R = 120;
 
+  // Backing-store sizing is split from seeding so the DPR degradation rung can
+  // rescale without teleporting every particle (their state is in logical px).
+  function applySize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, dprCap);
+    canvas.width  = Math.round(vw * dpr);
+    canvas.height = Math.round(vh * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
   function resize() {
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
+    vw = window.innerWidth;
+    vh = window.innerHeight;
+    applySize();
     initParticles();
   }
 
   function initParticles() {
-    const count = Math.floor(getParticleCount(canvas.width) * densityFactor);
+    const count = Math.floor(getParticleCount(vw) * densityFactor);
     particles = [];
     for (let i = 0; i < count; i++) {
-      const x = Math.random() * canvas.width;
-      const y = Math.random() * canvas.height;
+      const x = Math.random() * vw;
+      const y = Math.random() * vh;
       particles.push({
         x, y,
         baseX: x, baseY: y,
@@ -90,10 +108,10 @@ export function initParticleField(canvas: HTMLCanvasElement): () => void {
     p.baseX += p.vx;
     p.baseY += p.vy;
 
-    if (p.baseX < 0 || p.baseX > canvas.width)  { p.vx *= -1; p.baseX = Math.max(0, Math.min(canvas.width,  p.baseX)); }
-    if (p.baseY < 0 || p.baseY > canvas.height)  { p.vy *= -1; p.baseY = Math.max(0, Math.min(canvas.height, p.baseY)); }
+    if (p.baseX < 0 || p.baseX > vw)  { p.vx *= -1; p.baseX = Math.max(0, Math.min(vw, p.baseX)); }
+    if (p.baseY < 0 || p.baseY > vh)  { p.vy *= -1; p.baseY = Math.max(0, Math.min(vh, p.baseY)); }
 
-    const mobile = isMobile(canvas.width);
+    const mobile = isMobile(vw);
 
     if (!mobile && mouse.x !== null && mouse.y !== null) {
       const dx = mouse.x - p.x;
@@ -136,7 +154,7 @@ export function initParticleField(canvas: HTMLCanvasElement): () => void {
   }
 
   function drawConnections() {
-    if (!linesEnabled || isMobile(canvas.width)) return;
+    if (!linesEnabled || isMobile(vw)) return;
     ctx.save();
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
@@ -166,7 +184,12 @@ export function initParticleField(canvas: HTMLCanvasElement): () => void {
 
     const t0 = performance.now();
 
+    // Clear in device space — Math.round(vw*dpr) can exceed vw*dpr, and a
+    // logical-space clear would leave a sliver of residue on that edge.
+    ctx.save();
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.restore();
 
     drawConnections();
 
@@ -180,33 +203,53 @@ export function initParticleField(canvas: HTMLCanvasElement): () => void {
 
     frameTime = performance.now() - t0;
 
-    // Perf-budget degradation ladder (>2ms × 2 consecutive frames)
+    // Perf-budget degradation ladder (>2ms × 2 consecutive frames). The CPU
+    // budget can't see GPU fill cost, so sustained missed frames (gap between
+    // *rendered* frames well above the target interval) feed the same ladder.
+    const renderGap = lastRenderTs ? ts - lastRenderTs : 0;
+    lastRenderTs = ts;
+    if (fpsTarget === 60 && renderGap > 28) {
+      slowStreak++;
+    } else {
+      slowStreak = Math.max(0, slowStreak - 1);
+    }
+
     if (frameTime > 2) {
       overBudgetCount++;
-      if (overBudgetCount >= 2) {
-        if (linesEnabled) {
-          linesEnabled = false;
-          console.info('[ParticleField] frame budget exceeded — dropping connecting lines');
-        } else if (densityFactor > 0.75) {
-          densityFactor = 0.75;
-          initParticles();
-          console.info('[ParticleField] frame budget exceeded — reducing particle density 25%');
-        } else if (fpsTarget > 30) {
-          fpsTarget = 30;
-          console.info('[ParticleField] frame budget exceeded — capping to 30 fps');
-        }
-        overBudgetCount = 0;
-      }
     } else {
       overBudgetCount = 0;
+    }
+
+    if (overBudgetCount >= 2 || slowStreak >= 30) {
+      degrade();
+      overBudgetCount = 0;
+      slowStreak = 0;
     }
 
     rafId = requestAnimationFrame(frame);
   }
 
+  function degrade() {
+    if (linesEnabled) {
+      linesEnabled = false;
+      console.info('[ParticleField] frame budget exceeded — dropping connecting lines');
+    } else if (densityFactor > 0.75) {
+      densityFactor = 0.75;
+      initParticles();
+      console.info('[ParticleField] frame budget exceeded — reducing particle density 25%');
+    } else if (dprCap > 1 && (window.devicePixelRatio || 1) > 1) {
+      dprCap = 1;
+      applySize();
+      console.info('[ParticleField] frame budget exceeded — dropping to 1x pixel ratio');
+    } else if (fpsTarget > 30) {
+      fpsTarget = 30;
+      console.info('[ParticleField] frame budget exceeded — capping to 30 fps');
+    }
+  }
+
   // Touch impulse — brief outward push from touch point, decays in ~300ms
   function handleTouch(e: TouchEvent) {
-    if (!isMobile(canvas.width)) return;
+    if (!isMobile(vw)) return;
     const touch = e.touches[0];
     if (!touch) return;
     const tx = touch.clientX;
@@ -258,14 +301,18 @@ export function initParticleField(canvas: HTMLCanvasElement): () => void {
 // Static grid for prefers-reduced-motion
 function renderStaticGrid(canvas: HTMLCanvasElement) {
   const ctx = canvas.getContext('2d')!;
-  canvas.width  = window.innerWidth;
-  canvas.height = window.innerHeight;
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  canvas.width  = Math.round(vw * dpr);
+  canvas.height = Math.round(vh * dpr);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-  const count = getParticleCount(canvas.width);
+  const count = getParticleCount(vw);
   ctx.fillStyle = BASE_COLOR;
   for (let i = 0; i < count; i++) {
-    const x = Math.random() * canvas.width;
-    const y = Math.random() * canvas.height;
+    const x = Math.random() * vw;
+    const y = Math.random() * vh;
     ctx.beginPath();
     ctx.arc(x, y, 1.5, 0, Math.PI * 2);
     ctx.fill();

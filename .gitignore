@@ -59,3 +59,8 @@ What the next session needs to do.txt
 
 # Built web media now lives under public/ so Astro copies it to dist/.
 # (media/raw/ above stays ignored; public/ is fully tracked.)
+
+# Local agent tooling and CV source material — never ship
+.claude/
+CV Javier Lanz 2026.pdf
+Javier_Lanz_Resume_*.pdf

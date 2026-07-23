@@ -17,6 +17,7 @@ const ctaBySlug: Record<string, keyof typeof t> = {
   'nolan-cinematic-universe': 'ctaRead',
   'egcars-suzuki-launch': 'ctaSee',
   'short-films': 'ctaWatch',
+  'street-journalism': 'ctaStreet',
 };
 
 const entries = (await getCollection('work', (e) => e.data.lang === lang))

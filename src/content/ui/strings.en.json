@@ -2,9 +2,9 @@
   "lang": "en",
   "meta": {
     "title": "Javier Lanz — Content Strategist & Storyteller",
-    "description": "Communications student and Content Strategist at EGCars / Suzuki Venezuela. Selected work in brand strategy, photography, journalism, and film.",
+    "description": "Content Strategist at EGCars — Suzuki importer, Venezuela. Content strategy and client acquisition: prospecting, pitches, and lead-generation content. Available for commercial and marketing internships.",
     "ogTitle": "Javier Lanz — Content Strategist & Storyteller",
-    "ogDescription": "Strategy at 24 frames per second."
+    "ogDescription": "Content strategy that turns attention into customers."
   },
   "nav": {
     "brand": "Javier Lanz",
@@ -25,29 +25,40 @@
   },
   "hero": {
     "eyebrow": "CONTENT STRATEGIST · CARACAS, 2026",
-    "tagline": "Content Strategist with a director's eye.",
+    "tagline": "Content strategy that turns attention into customers.",
+    "availability": "Available for commercial & marketing internships · 2026",
     "scroll": "Scroll"
+  },
+  "cv": {
+    "label": "Download CV (PDF)",
+    "ariaLabel": "Download Javier's CV as a PDF",
+    "file": "CV_Javier_Lanz_2026_EN.pdf"
   },
   "about": {
     "eyebrow": "ABOUT",
     "headline": "Strategy at 24 frames per second.",
-    "p1": "I'm a Communications student at Universidad Monteávila and Content Strategist at EGCars, where I'm helping launch Suzuki in Venezuela. My work sits at the intersection of cinema, brand, and emerging AI tooling — I treat content strategy the way a director treats a film: every frame earns its place.",
-    "p2": "When I'm not writing campaigns, I'm directing music videos, shooting street-journalism in Caracas, or analyzing how franchises like Nolan's build loyal audiences.",
-    "fact": "B.A. Communications · GPA 17.00 / 20.00 · Cambridge B2"
+    "p1": "I'm a Social Communication student at Universidad Monteávila and Content Strategist at EGCars, where I collaborate on the launch of Suzuki in Venezuela. My focus is client acquisition — prospecting, pitching new accounts, and lead-generation content — supported by AI tools to produce high-volume, on-brand work.",
+    "p2": "Outside work I direct music videos, do street journalism in Caracas, and study how creators like Nolan build loyal audiences. Those interests train the narrative eye I bring to every campaign.",
+    "fact": "B.A. in Social Communication (in progress) · Cambridge B2"
   },
   "work": {
     "eyebrow": "SELECTED WORK",
-    "headline": "Four pieces, one throughline.",
+    "headline": "Five pieces, one throughline.",
     "subline": "Strategy, story, image — sometimes all three at once.",
     "ctaView": "View essay →",
     "ctaRead": "Read thesis →",
     "ctaSee": "See the work →",
-    "ctaWatch": "Watch the reel →"
+    "ctaWatch": "Watch the reel →",
+    "ctaStreet": "Read the case →"
   },
   "capabilities": {
     "eyebrow": "CAPABILITIES",
     "headline": "Trained in story. Fluent in software.",
     "clusters": [
+      {
+        "label": "Commercial",
+        "skills": "Lead generation. Prospecting. Pitches & proposals. Client communication. Excel."
+      },
       {
         "label": "Content & Creative",
         "skills": "Storytelling. Copywriting. Visual concept. Brand positioning. Editorial writing."
@@ -77,7 +88,7 @@
   "contact": {
     "eyebrow": "CONTACT",
     "headline": "Let's build something.",
-    "body": "Open to collaborations, freelance content work, and conversations about cinema, brand, and AI.",
+    "body": "Open to commercial and marketing internships, freelance content work, and collaborations.",
     "buttons": {
       "email": { "label": "Email", "ariaLabel": "Send Javier an email" },
       "whatsapp": { "label": "WhatsApp", "ariaLabel": "Message Javier on WhatsApp" },

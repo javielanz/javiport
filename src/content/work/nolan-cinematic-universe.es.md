@@ -7,7 +7,7 @@ summary: "Tesis de bachillerato sobre cómo la arquitectura narrativa de Nolan c
 year: 2024
 role: "Autor"
 tags: ["ensayo", "tesis", "cine"]
-order: 2
+order: 4
 feature: false
 ---
 

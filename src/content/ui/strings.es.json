@@ -2,9 +2,9 @@
   "lang": "es",
   "meta": {
     "title": "Javier Lanz — Estratega de Contenido y Narrador",
-    "description": "Estudiante de Comunicación Social y Content Strategist en EGCars / Suzuki Venezuela. Trabajo seleccionado en estrategia de marca, fotografía, periodismo y cine.",
+    "description": "Content Strategist en EGCars — Importadora Suzuki, Venezuela. Estrategia de contenido y captación de clientes: prospección, pitches y contenido de generación de leads. Disponible para pasantías comerciales y de marketing.",
     "ogTitle": "Javier Lanz — Estratega de Contenido y Narrador",
-    "ogDescription": "Estrategia a 24 cuadros por segundo."
+    "ogDescription": "Estrategia de contenido que convierte atención en clientes."
   },
   "nav": {
     "brand": "Javier Lanz",
@@ -25,29 +25,40 @@
   },
   "hero": {
     "eyebrow": "CONTENT STRATEGIST · CARACAS, 2026",
-    "tagline": "Content Strategist con ojo de director.",
+    "tagline": "Estrategia de contenido que convierte atención en clientes.",
+    "availability": "Disponible para pasantías comerciales y de marketing · 2026",
     "scroll": "Desliza"
+  },
+  "cv": {
+    "label": "Descargar CV (PDF)",
+    "ariaLabel": "Descargar el CV de Javier en PDF",
+    "file": "CV_Javier_Lanz_2026_ES.pdf"
   },
   "about": {
     "eyebrow": "SOBRE MÍ",
     "headline": "Estrategia a 24 cuadros por segundo.",
-    "p1": "Soy estudiante de Comunicación Social en la Universidad Monteávila y Content Strategist en EGCars, donde estoy ayudando a lanzar Suzuki en Venezuela. Mi trabajo vive en la intersección entre cine, marca y nuevas herramientas de IA — entiendo la estrategia de contenido como un director entiende una película: cada plano se gana su lugar.",
-    "p2": "Cuando no estoy escribiendo campañas, dirijo videoclips, hago periodismo de calle en Caracas, o analizo cómo franquicias como las de Nolan construyen audiencias leales.",
-    "fact": "Lic. Comunicación Social · Índice 17.00 / 20.00 · Cambridge B2"
+    "p1": "Soy estudiante de Comunicación Social en la Universidad Monteávila y Content Strategist en EGCars, donde colaboro en el lanzamiento de Suzuki en Venezuela. Mi foco es la captación de clientes — prospección, pitches a cuentas nuevas y contenido de generación de leads — apoyado en herramientas de IA para producir contenido de alto volumen alineado a la marca.",
+    "p2": "Fuera del trabajo dirijo videoclips, hago periodismo de calle en Caracas y estudio cómo creadores como Nolan construyen audiencias leales. Esos intereses entrenan el ojo narrativo que traigo a cada campaña.",
+    "fact": "Lic. en Comunicación Social (en curso) · Cambridge B2"
   },
   "work": {
     "eyebrow": "TRABAJO SELECCIONADO",
-    "headline": "Cuatro piezas, un mismo hilo.",
+    "headline": "Cinco piezas, un mismo hilo.",
     "subline": "Estrategia, narrativa, imagen — a veces los tres a la vez.",
     "ctaView": "Ver ensayo →",
     "ctaRead": "Leer tesis →",
     "ctaSee": "Ver el trabajo →",
-    "ctaWatch": "Ver el reel →"
+    "ctaWatch": "Ver el reel →",
+    "ctaStreet": "Ver el caso →"
   },
   "capabilities": {
     "eyebrow": "CAPACIDADES",
     "headline": "Formado en narrativa. Fluido en software.",
     "clusters": [
+      {
+        "label": "Comercial",
+        "skills": "Generación de leads. Prospección. Pitches y propuestas. Comunicación con clientes. Excel."
+      },
       {
         "label": "Contenido y Creatividad",
         "skills": "Storytelling. Copywriting. Concepto visual. Posicionamiento de marca. Escritura editorial."
@@ -77,7 +88,7 @@
   "contact": {
     "eyebrow": "CONTACTO",
     "headline": "Construyamos algo.",
-    "body": "Abierto a colaboraciones, trabajo freelance de contenido y conversaciones sobre cine, marca e IA.",
+    "body": "Abierto a pasantías comerciales y de marketing, freelance de contenido y colaboraciones.",
     "buttons": {
       "email": { "label": "Correo", "ariaLabel": "Enviar correo a Javier" },
       "whatsapp": { "label": "WhatsApp", "ariaLabel": "Escribir a Javier por WhatsApp" },

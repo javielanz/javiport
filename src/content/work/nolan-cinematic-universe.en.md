@@ -7,7 +7,7 @@ summary: "Senior thesis on how Nolan's narrative architecture builds fan loyalty
 year: 2024
 role: "Author"
 tags: ["essay", "thesis", "film"]
-order: 2
+order: 4
 feature: false
 ---
 

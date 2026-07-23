@@ -7,8 +7,13 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = getStrings(lang).hero;
+const cv = getStrings(lang).cv;
 const a11y = getStrings(lang).a11y;
 const heroAriaLabel = lang === 'es' ? 'Sección principal' : 'Hero section';
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const cvHref = `${base}${cv.file}`;
 ---
 
 <section
@@ -23,6 +28,8 @@ const heroAriaLabel = lang === 'es' ? 'Sección principal' : 'Hero section';
     role="presentation"
     aria-label={a11y.particleField}
   ></canvas>
+
+  <div id="prism-scene" aria-hidden="true"></div>
 
   <div class="z-10 relative pointer-events-none" style="max-width: min(900px, 92vw);">
     <p
@@ -49,6 +56,23 @@ const heroAriaLabel = lang === 'es' ? 'Sección principal' : 'Hero section';
     >
       {t.tagline}
     </p>
+
+    <p
+      class="hero-fade-in font-mono uppercase tracking-widest"
+      style="font-size: var(--text-eyebrow); color: var(--color-accent); margin-top: 2rem; transition-delay: 1000ms;"
+    >
+      {t.availability}
+    </p>
+
+    <a
+      href={cvHref}
+      download
+      aria-label={cv.ariaLabel}
+      class="hero-cv-link hero-fade-in font-mono text-xs tracking-widest uppercase inline-flex items-center px-6 py-3 border transition-colors duration-300"
+      style="margin-top: 1.5rem; transition-delay: 1100ms;"
+    >
+      {cv.label}
+    </a>
   </div>
 
   <div
@@ -62,8 +86,23 @@ const heroAriaLabel = lang === 'es' ? 'Sección principal' : 'Hero section';
   </div>
 </section>
 
+<style>
+  .hero-cv-link {
+    pointer-events: auto;
+    color: var(--color-text-muted);
+    border-color: var(--color-line);
+    text-decoration: none;
+  }
+  .hero-cv-link:hover,
+  .hero-cv-link:focus-visible {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+</style>
+
 <script>
   import './ParticleField.client.ts';
+  import './PrismScene.client.ts';
 
   setTimeout(() => {
     document.querySelectorAll('.hero-word').forEach((el) => el.classList.add('reveal'));

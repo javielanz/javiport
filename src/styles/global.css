@@ -68,15 +68,22 @@ body {
   .hero-fade-in.reveal { opacity: 1; transform: translateY(0); }
 
   /* ─── Scroll reveal ──────────────────────────────────── */
+  /* The clip lives on the child, not the observed wrapper: Chrome computes
+     IntersectionObserver rects on the target's own clipped area, so a
+     fully-collapsed clip-path on the wrapper would never intersect and the
+     reveal would never fire. */
   .scroll-reveal-mask {
     opacity: 0;
     transform: translateY(24px);
-    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
     transition: opacity 1000ms cubic-bezier(0.2, 0, 0, 1),
-                transform 1000ms cubic-bezier(0.2, 0, 0, 1),
-                clip-path 1000ms cubic-bezier(0.2, 0, 0, 1);
+                transform 1000ms cubic-bezier(0.2, 0, 0, 1);
   }
-  .scroll-reveal-mask.is-revealed { opacity: 1; transform: translateY(0); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+  .scroll-reveal-mask > * {
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+    transition: clip-path 1000ms cubic-bezier(0.2, 0, 0, 1);
+  }
+  .scroll-reveal-mask.is-revealed { opacity: 1; transform: translateY(0); }
+  .scroll-reveal-mask.is-revealed > * { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
 
   .scroll-reveal-fade {
     opacity: 0;
@@ -149,4 +156,20 @@ body {
   height: 100%;
   pointer-events: none;
   z-index: 1;
+}
+
+/* ─── Hero 3D prism scene ───────────────────────────────── */
+#prism-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+#prism-scene canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
 }

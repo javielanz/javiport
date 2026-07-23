@@ -9,7 +9,7 @@ role: "Photographer, Editor"
 tags: ["photography", "documentary", "caracas"]
 cover: "caracas-essay-01"
 coverAlt: "A woman in denim walking past colored shutters in a Caracas street"
-order: 1
+order: 3
 feature: true
 ---
 

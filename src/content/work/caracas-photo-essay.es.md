@@ -9,7 +9,7 @@ role: "Fotógrafo, Editor"
 tags: ["fotografía", "documental", "caracas"]
 cover: "caracas-essay-01"
 coverAlt: "Una mujer en jeans caminando frente a portones de colores en una calle de Caracas"
-order: 1
+order: 3
 feature: true
 ---
 

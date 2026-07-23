@@ -32,7 +32,9 @@
 |---|---|---|
 | Eyebrow (mono, uppercase, tracking-wider) | `CONTENT STRATEGIST · CARACAS, 2026` | `CONTENT STRATEGIST · CARACAS, 2026` |
 | Display name (kinetic type, display-xl Fraunces) | `Javier Lanz Bethencourt` | `Javier Lanz Bethencourt` |
-| Tagline (display-md Fraunces, muted) | `Content Strategist with a director's eye.` | `Content Strategist con ojo de director.` |
+| Tagline (display-md Fraunces, muted) | `Content strategy that turns attention into customers.` | `Estrategia de contenido que convierte atención en clientes.` |
+| Availability line (mono, accent) | `Available for commercial & marketing internships · 2026` | `Disponible para pasantías comerciales y de marketing · 2026` |
+| CV link (secondary, ghost button) | `Download CV (PDF)` → `/CV_Javier_Lanz_2026_EN.pdf` | `Descargar CV (PDF)` → `/CV_Javier_Lanz_2026_ES.pdf` |
 | Scroll cue (mono, caption) | `Scroll` | `Desliza` |
 
 **Kinetic type note for agents**: the name reveals word-by-word per §7 of PLAN.md. Word boundaries: `Javier` · `Lanz` · `Bethencourt`. Stagger 60 ms.
@@ -63,9 +65,9 @@
 |---|---|---|
 | Eyebrow | `ABOUT` | `SOBRE MÍ` |
 | Headline (display-lg) | `Strategy at 24 frames per second.` | `Estrategia a 24 cuadros por segundo.` |
-| Body paragraph 1 | I'm a Communication Social student at Universidad Monteávila and Content Strategist at EGCars, where I'm helping launch Suzuki in Venezuela. My work sits at the intersection of cinema, brand, and emerging AI tooling — I treat content strategy the way a director treats a film: every frame earns its place. | Soy estudiante de Comunicación Social en la Universidad Monteávila y Content Strategist en EGCars, donde estoy ayudando a lanzar Suzuki en Venezuela. Mi trabajo vive en la intersección entre cine, marca y nuevas herramientas de IA — entiendo la estrategia de contenido como un director entiende una película: cada plano se gana su lugar. |
-| Body paragraph 2 | When I'm not writing campaigns, I'm directing music videos, shooting street-journalism in Caracas, or analyzing how franchises like Nolan's build loyal audiences. | Cuando no estoy escribiendo campañas, dirijo videoclips, hago periodismo de calle en Caracas, o analizo cómo franquicias como las de Nolan construyen audiencias leales. |
-| Fact line (mono, muted) | `B.A. Communication Social · GPA 17.00 / 20.00 · Cambridge B2` | `Lic. Comunicación Social · Índice 17.00 / 20.00 · Cambridge B2` |
+| Body paragraph 1 | I'm a Social Communication student at Universidad Monteávila and Content Strategist at EGCars, where I collaborate on the launch of Suzuki in Venezuela. My focus is client acquisition — prospecting, pitching new accounts, and lead-generation content — supported by AI tools to produce high-volume, on-brand work. | Soy estudiante de Comunicación Social en la Universidad Monteávila y Content Strategist en EGCars, donde colaboro en el lanzamiento de Suzuki en Venezuela. Mi foco es la captación de clientes — prospección, pitches a cuentas nuevas y contenido de generación de leads — apoyado en herramientas de IA para producir contenido de alto volumen alineado a la marca. |
+| Body paragraph 2 | Outside work I direct music videos, do street journalism in Caracas, and study how creators like Nolan build loyal audiences. Those interests train the narrative eye I bring to every campaign. | Fuera del trabajo dirijo videoclips, hago periodismo de calle en Caracas y estudio cómo creadores como Nolan construyen audiencias leales. Esos intereses entrenan el ojo narrativo que traigo a cada campaña. |
+| Fact line (mono, muted) | `B.A. in Social Communication (in progress) · Cambridge B2` | `Lic. en Comunicación Social (en curso) · Cambridge B2` |
 
 ---
 
@@ -74,28 +76,12 @@
 | Slot | EN | ES |
 |---|---|---|
 | Eyebrow | `SELECTED WORK` | `TRABAJO SELECCIONADO` |
-| Headline (display-lg) | `Four pieces, one throughline.` | `Cuatro piezas, un mismo hilo.` |
+| Headline (display-lg) | `Five pieces, one throughline.` | `Cinco piezas, un mismo hilo.` |
 | Sub (muted body) | Strategy, story, image — sometimes all three at once. | Estrategia, narrativa, imagen — a veces los tres a la vez. |
 
 ### Work cards (display order matches the array)
 
-#### Card 1 — `caracas-photo-essay`
-| Slot | EN | ES |
-|---|---|---|
-| Tag (mono eyebrow) | `2025 · PHOTOGRAPHY` | `2025 · FOTOGRAFÍA` |
-| Title (display-md) | The Streets of Caracas | Las Calles de Caracas |
-| Summary (body) | A documentary series on the city as it is, not as it's reported. | Una serie documental sobre la ciudad como es, no como se cuenta. |
-| CTA microcopy (link label) | View essay → | Ver ensayo → |
-
-#### Card 2 — `nolan-cinematic-universe`
-| Slot | EN | ES |
-|---|---|---|
-| Tag | `2024 · ESSAY` | `2024 · ENSAYO` |
-| Title | The Cinematic Universe of Christopher Nolan | El Universo Cinematográfico de Christopher Nolan |
-| Summary | Senior thesis on how Nolan's narrative architecture builds fan loyalty. | Tesis de bachillerato sobre cómo la arquitectura narrativa de Nolan construye lealtad. |
-| CTA | Read thesis → | Leer tesis → |
-
-#### Card 3 — `egcars-suzuki-launch`
+#### Card 1 — `egcars-suzuki-launch`
 | Slot | EN | ES |
 |---|---|---|
 | Tag | `2026 · STRATEGY` | `2026 · ESTRATEGIA` |
@@ -103,7 +89,31 @@
 | Summary | Content engine for a 3-person team standing up Suzuki's Venezuelan presence from zero. | Motor de contenido para un equipo de 3 lanzando la presencia venezolana de Suzuki desde cero. |
 | CTA | See the work → | Ver el trabajo → |
 
-#### Card 4 — `short-films`
+#### Card 2 — `street-journalism`
+| Slot | EN | ES |
+|---|---|---|
+| Tag | `2024 · JOURNALISM` | `2024 · PERIODISMO` |
+| Title | Street Journalism | Periodismo de Calle |
+| Summary | Interviewing strangers on the streets of Caracas — cold approaches, active listening, and field reporting, published as team pieces with a narrative angle. | Entrevistas a desconocidos en las calles de Caracas — abordaje en frío, escucha activa y levantamiento de información en campo, publicadas en equipo con enfoque narrativo. |
+| CTA | Read the case → | Ver el caso → |
+
+#### Card 3 — `caracas-photo-essay`
+| Slot | EN | ES |
+|---|---|---|
+| Tag (mono eyebrow) | `2025 · PHOTOGRAPHY` | `2025 · FOTOGRAFÍA` |
+| Title (display-md) | The Streets of Caracas | Las Calles de Caracas |
+| Summary (body) | A documentary series on the city as it is, not as it's reported. | Una serie documental sobre la ciudad como es, no como se cuenta. |
+| CTA microcopy (link label) | View essay → | Ver ensayo → |
+
+#### Card 4 — `nolan-cinematic-universe`
+| Slot | EN | ES |
+|---|---|---|
+| Tag | `2024 · ESSAY` | `2024 · ENSAYO` |
+| Title | The Cinematic Universe of Christopher Nolan | El Universo Cinematográfico de Christopher Nolan |
+| Summary | Senior thesis on how Nolan's narrative architecture builds fan loyalty. | Tesis de bachillerato sobre cómo la arquitectura narrativa de Nolan construye lealtad. |
+| CTA | Read thesis → | Leer tesis → |
+
+#### Card 5 — `short-films`
 | Slot | EN | ES |
 |---|---|---|
 | Tag | `2024–25 · DIRECTION & EDIT` | `2024–25 · DIRECCIÓN Y EDICIÓN` |
@@ -127,22 +137,28 @@
 #### Cluster 1
 | | EN | ES |
 |---|---|---|
+| Label | Commercial | Comercial |
+| Skills | Lead generation. · Prospecting. · Pitches & proposals. · Client communication. · Excel. | Generación de leads. · Prospección. · Pitches y propuestas. · Comunicación con clientes. · Excel. |
+
+#### Cluster 2
+| | EN | ES |
+|---|---|---|
 | Label | Content & Creative | Contenido y Creatividad |
 | Skills (comma list, display-md, line break per item) | Storytelling. · Copywriting. · Visual concept. · Brand positioning. · Editorial writing. | Storytelling. · Copywriting. · Concepto visual. · Posicionamiento de marca. · Escritura editorial. |
 
-#### Cluster 2
+#### Cluster 3
 | | EN | ES |
 |---|---|---|
 | Label | AI Tools | Herramientas de IA |
 | Skills | Claude with MCP. · Midjourney. · DALL-E. · Generative copywriting. · Prompt engineering. | Claude con MCP. · Midjourney. · DALL-E. · Copywriting generativo. · Prompt engineering. |
 
-#### Cluster 3
+#### Cluster 4
 | | EN | ES |
 |---|---|---|
 | Label | Design & Editing | Diseño y Edición |
 | Skills | Canva (advanced). · Capcut. · Photo & video editing. | Canva (avanzado). · Capcut. · Edición de foto y video. |
 
-#### Cluster 4
+#### Cluster 5
 | | EN | ES |
 |---|---|---|
 | Label | Productivity | Productividad |
@@ -163,10 +179,10 @@
 | Company | EGCars — Suzuki Importer, Venezuela | EGCars — Importadora Suzuki, Venezuela |
 | Role | Content Strategist | Content Strategist |
 | Dates (mono) | `2026 — Present` | `2026 — Presente` |
-| Bullet 1 | Co-leading a 3-person digital marketing initiative building a client-acquisition engine for the launch of Suzuki in Venezuela — the founding content function of an emerging agency model. | Co-liderando una iniciativa de marketing digital de 3 personas para construir un motor de captación de clientes para el lanzamiento de Suzuki en Venezuela — la función de contenido fundadora de un modelo emergente de agencia. |
-| Bullet 2 | Developing content strategy across Instagram and TikTok to position the brand, generate awareness, and attract qualified leads. | Desarrollando estrategia de contenido en Instagram y TikTok para posicionar la marca, generar awareness y atraer leads calificados. |
-| Bullet 3 | Designing creative concepts and visual assets with Canva, Capcut, and AI-assisted ideation (Midjourney, DALL-E) to produce high-volume, on-brand content. | Diseñando conceptos creativos y activos visuales con Canva, Capcut e ideación asistida por IA (Midjourney, DALL-E) para producir contenido de alto volumen alineado con la marca. |
-| Bullet 4 | Preparing pitches and creative proposals to acquire and represent additional clients beyond the founding account. | Preparando pitches y propuestas creativas para captar y representar a clientes adicionales más allá de la cuenta fundadora. |
+| Bullet 1 | Collaborating on a 3-person digital marketing initiative building a client-acquisition engine for the launch of Suzuki in Venezuela — the founding content function of an emerging marketing-agency model. | Colaborando en una iniciativa de marketing digital de 3 personas que construye un motor de captación de clientes para el lanzamiento de Suzuki en Venezuela — la función de contenido fundadora de un modelo emergente de agencia de marketing. |
+| Bullet 2 | Preparing pitches and creative proposals to acquire and represent additional clients beyond the founding account. | Preparando pitches y propuestas creativas para captar y representar clientes adicionales más allá de la cuenta fundadora. |
+| Bullet 3 | Developing content strategy across Instagram and TikTok to position the brand, generate awareness, and attract qualified leads. | Desarrollando estrategia de contenido en Instagram y TikTok para posicionar la marca, generar awareness y atraer leads calificados. |
+| Bullet 4 | Designing creative concepts and visual assets with Canva, Capcut, and AI-assisted ideation (Midjourney, DALL-E) to produce high-volume, on-brand content. | Diseñando conceptos creativos y activos visuales con Canva, Capcut e ideación asistida por IA (Midjourney, DALL-E) para producir contenido de alto volumen alineado a la marca. |
 
 ---
 
@@ -181,9 +197,10 @@
 | Slot | EN | ES |
 |---|---|---|
 | Institution | Universidad Monteávila | Universidad Monteávila |
-| Degree | B.A. Communication Social | Lic. en Comunicación Social |
-| Dates | 2024–2028 | 2024–2028 |
-| Meta line (mono, muted) | `Current GPA: 17.00 / 20.00` | `Índice académico actual: 17.00 / 20.00` |
+| Degree | B.A. in Social Communication | Lic. en Comunicación Social |
+| Dates | 2024 — 2028 (expected) | 2024 — 2028 (en curso) |
+
+> GPA removed 2026-07-23 per Javi — the CV does not show it; never reintroduce an academic index on the site.
 
 ### Item 2 — Colegio Los Arcos
 | Slot | EN | ES |
@@ -194,6 +211,16 @@
 | Highlight 1 | Senior Thesis: *The Cinematic Universe of Christopher Nolan* — analysis of narrative structures and pop-culture impact. | Tesis: *El Universo Cinematográfico de Christopher Nolan* — análisis de estructuras narrativas e impacto en la cultura pop. |
 | Highlight 2 | Cambridge B2 English Certification. | Certificación de inglés Cambridge nivel B2. |
 
+### Item 3 — Cambridge English
+| Slot | EN | ES |
+|---|---|---|
+| Institution | Cambridge English | Cambridge English |
+| Degree | B2 First Certificate in English | Certificación de Inglés Cambridge B2 |
+| Dates | 2024 | 2024 |
+| Meta line (mono, muted) | `English — Cambridge B2` | `Inglés — Cambridge B2` |
+
+> Never pair "Advanced"/"Avanzado" with B2 — B2 is upper-intermediate. Label is exactly "English — Cambridge B2" / "Inglés — Cambridge B2".
+
 ---
 
 ## 9. Contact
@@ -202,7 +229,10 @@
 |---|---|---|
 | Eyebrow | `CONTACT` | `CONTACTO` |
 | Headline (display-lg) | `Let's build something.` | `Construyamos algo.` |
-| Body (one line, muted) | Open to collaborations, freelance content work, and conversations about cinema, brand, and AI. | Abierto a colaboraciones, trabajo freelance de contenido y conversaciones sobre cine, marca e IA. |
+| Body (one line, muted) | Open to commercial and marketing internships, freelance content work, and collaborations. | Abierto a pasantías comerciales y de marketing, freelance de contenido y colaboraciones. |
+| CV button label (primary, filled accent) | Download CV (PDF) | Descargar CV (PDF) |
+| CV button aria-label | Download Javier's CV as a PDF | Descargar el CV de Javier en PDF |
+| CV file (per language, in /public/) | `/CV_Javier_Lanz_2026_EN.pdf` | `/CV_Javier_Lanz_2026_ES.pdf` |
 | Email button label | Email | Correo |
 | WhatsApp button label | WhatsApp | WhatsApp |
 | LinkedIn button label | LinkedIn | LinkedIn |
@@ -240,10 +270,10 @@
 | Field | EN | ES |
 |---|---|---|
 | `<title>` | Javier Lanz — Content Strategist & Storyteller | Javier Lanz — Estratega de Contenido y Narrador |
-| `<meta description>` | Communication Social student and Content Strategist at EGCars / Suzuki Venezuela. Selected work in brand strategy, photography, journalism, and film. | Estudiante de Comunicación Social y Content Strategist en EGCars / Suzuki Venezuela. Trabajo seleccionado en estrategia de marca, fotografía, periodismo y cine. |
+| `<meta description>` | Content Strategist at EGCars — Suzuki importer, Venezuela. Content strategy and client acquisition: prospecting, pitches, and lead-generation content. Available for commercial and marketing internships. | Content Strategist en EGCars — Importadora Suzuki, Venezuela. Estrategia de contenido y captación de clientes: prospección, pitches y contenido de generación de leads. Disponible para pasantías comerciales y de marketing. |
 | OG title | Javier Lanz — Content Strategist & Storyteller | Javier Lanz — Estratega de Contenido y Narrador |
-| OG description | Strategy at 24 frames per second. | Estrategia a 24 cuadros por segundo. |
-| OG image | `/og/home-en.jpg` (1200×630) | `/og/home-es.jpg` (1200×630) |
+| OG description | Content strategy that turns attention into customers. | Estrategia de contenido que convierte atención en clientes. |
+| OG image | `/og.png` (1200×630, shared) | `/og.png` (1200×630, shared) |
 
 ### Case studies (template — fill per slug)
 | Field | Pattern (EN) | Pattern (ES) |
@@ -252,7 +282,7 @@
 | `<meta description>` | Use the work card `Summary` from §5 | Use the work card `Summary` from §5 |
 | OG image | `/og/{slug}-en.jpg` | `/og/{slug}-es.jpg` |
 
-OG image generation is **out of scope** for M1–M10. M10 may add static placeholders or punt to a follow-up.
+OG image: `/public/og.png` shipped 2026-07-23 (typographic, dark theme, shared across pages/languages). Per-slug OG images remain a possible follow-up.
 
 ---
 

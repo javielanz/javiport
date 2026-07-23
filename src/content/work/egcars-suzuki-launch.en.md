@@ -7,7 +7,7 @@ summary: "Content engine for a 3-person team standing up Suzuki's Venezuelan pre
 year: 2026
 role: "Content Strategist"
 tags: ["strategy", "brand", "social"]
-order: 3
+order: 1
 feature: false
 ---
 
@@ -25,6 +25,14 @@ The unusual constraint: no media budget for the first quarter. Everything has to
 - **Instagram and TikTok** — narrative-driven shorts over product demos. Algorithm cares about completion rate; the way to get completion rate on a car brand is to make people forget they're watching an ad.
 - **AI-assisted production** — Midjourney for moodboards and pre-viz, Claude with MCP for first-draft copy across English and Spanish, DALL-E for one-off graphics. The human time goes into briefs and final cuts, not into stock-image hunting.
 - **Pitch flow** — building creative proposals to bring on additional clients beyond the founding Suzuki account, on the bet that the agency model EGCars is testing can compound.
+
+## My part in client acquisition
+
+- **Pitches to new accounts** — preparing decks and creative proposals to acquire and represent clients beyond the founding Suzuki account.
+- **Lead-oriented content** — pieces built so qualified leads land in the dealership's CRM with enough context for a first commercial conversation.
+- **Bilingual work** — copy and materials in Spanish and English depending on audience and channel.
+
+<!-- métricas pendientes -->
 
 ## The throughline
 

@@ -7,7 +7,7 @@ summary: "Motor de contenido para un equipo de 3 lanzando la presencia venezolan
 year: 2026
 role: "Content Strategist"
 tags: ["estrategia", "marca", "social"]
-order: 3
+order: 1
 feature: false
 ---
 
@@ -25,6 +25,14 @@ La restricción inusual: sin presupuesto de medios para el primer trimestre. Tod
 - **Instagram y TikTok** — cortos narrativos por encima de demos de producto. El algoritmo premia tasa de completado; la forma de conseguir tasa de completado en una marca de autos es hacer que la gente olvide que está viendo publicidad.
 - **Producción asistida por IA** — Midjourney para moodboards y pre-viz, Claude con MCP para primer borrador de copy en inglés y español, DALL-E para gráficos puntuales. El tiempo humano se invierte en briefs y cortes finales, no en cazar imágenes de stock.
 - **Flujo de pitches** — construyendo propuestas creativas para sumar clientes más allá de la cuenta fundadora de Suzuki, apostando a que el modelo de agencia que EGCars está probando puede componer.
+
+## Mi parte en la captación
+
+- **Pitches a cuentas nuevas** — preparación de presentaciones y propuestas creativas para captar y representar clientes adicionales más allá de la cuenta fundadora de Suzuki.
+- **Contenido orientado a leads** — piezas pensadas para que leads calificados lleguen al CRM del concesionario con contexto suficiente para una primera conversación comercial.
+- **Trabajo bilingüe** — copy y materiales en español e inglés según la audiencia y el canal.
+
+<!-- métricas pendientes -->
 
 ## El hilo conductor
 

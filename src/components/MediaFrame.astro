@@ -45,14 +45,19 @@ try {
   throw new Error(`MediaFrame: public/media/web/${src}.meta.json missing — run \`npm run media:build\``);
 }
 
+// media:build never upscales — only widths <= the source's intrinsic width exist on disk
+// (falling back to a single intrinsic-width file for sources narrower than 480px).
+const available = widths.filter((w) => w <= intrinsic.width);
+const effWidths = available.length > 0 ? available : [intrinsic.width];
+
 const base = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const url = (w: number, ext: 'avif' | 'webp' | 'jpg') => `${base}media/web/${src}-${w}w.${ext}`;
 const srcset = (ext: 'avif' | 'webp' | 'jpg') =>
-  widths.map((w) => `${url(w, ext)} ${w}w`).join(', ');
+  effWidths.map((w) => `${url(w, ext)} ${w}w`).join(', ');
 
-const maxW = Math.max(...widths);
+const maxW = Math.max(...effWidths);
 const scaledH = Math.round(maxW * (intrinsic.height / intrinsic.width));
 const wrapperClass = pictureClass ?? className;
 ---

@@ -34,7 +34,7 @@
 | Display name (kinetic type, display-xl Fraunces) | `Javier Lanz Bethencourt` | `Javier Lanz Bethencourt` |
 | Tagline (display-md Fraunces, muted) | `Content strategy that turns attention into customers.` | `Estrategia de contenido que convierte atención en clientes.` |
 | Availability line (mono, accent) | `Available for commercial & marketing internships · 2026` | `Disponible para pasantías comerciales y de marketing · 2026` |
-| CV link (secondary, ghost button) | `Download CV (PDF)` → `/CV_Javier_Lanz_2026_EN.pdf` | `Descargar CV (PDF)` → `/CV_Javier_Lanz_2026_ES.pdf` |
+| CV link (secondary, ghost button) | `Download CV (PDF)` → `/cv/CV_Javier_Lanz_2026_EN.pdf` | `Descargar CV (PDF)` → `/cv/CV_Javier_Lanz_2026_ES.pdf` |
 | Scroll cue (mono, caption) | `Scroll` | `Desliza` |
 
 **Kinetic type note for agents**: the name reveals word-by-word per §7 of PLAN.md. Word boundaries: `Javier` · `Lanz` · `Bethencourt`. Stagger 60 ms.
@@ -232,7 +232,7 @@
 | Body (one line, muted) | Open to commercial and marketing internships, freelance content work, and collaborations. | Abierto a pasantías comerciales y de marketing, freelance de contenido y colaboraciones. |
 | CV button label (primary, filled accent) | Download CV (PDF) | Descargar CV (PDF) |
 | CV button aria-label | Download Javier's CV as a PDF | Descargar el CV de Javier en PDF |
-| CV file (per language, in /public/) | `/CV_Javier_Lanz_2026_EN.pdf` | `/CV_Javier_Lanz_2026_ES.pdf` |
+| CV file (per language, in /public/) | `/cv/CV_Javier_Lanz_2026_EN.pdf` | `/cv/CV_Javier_Lanz_2026_ES.pdf` |
 | Email button label | Email | Correo |
 | WhatsApp button label | WhatsApp | WhatsApp |
 | LinkedIn button label | LinkedIn | LinkedIn |
@@ -273,7 +273,7 @@
 | `<meta description>` | Content Strategist at EGCars — Suzuki importer, Venezuela. Content strategy and client acquisition: prospecting, pitches, and lead-generation content. Available for commercial and marketing internships. | Content Strategist en EGCars — Importadora Suzuki, Venezuela. Estrategia de contenido y captación de clientes: prospección, pitches y contenido de generación de leads. Disponible para pasantías comerciales y de marketing. |
 | OG title | Javier Lanz — Content Strategist & Storyteller | Javier Lanz — Estratega de Contenido y Narrador |
 | OG description | Content strategy that turns attention into customers. | Estrategia de contenido que convierte atención en clientes. |
-| OG image | `/og.png` (1200×630, shared) | `/og.png` (1200×630, shared) |
+| OG image | `/og/home.png` (1200×630, shared) | `/og/home.png` (1200×630, shared) |
 
 ### Case studies (template — fill per slug)
 | Field | Pattern (EN) | Pattern (ES) |
@@ -282,7 +282,7 @@
 | `<meta description>` | Use the work card `Summary` from §5 | Use the work card `Summary` from §5 |
 | OG image | `/og/{slug}-en.jpg` | `/og/{slug}-es.jpg` |
 
-OG image: `/public/og.png` shipped 2026-07-23 (typographic, dark theme, shared across pages/languages). Per-slug OG images remain a possible follow-up.
+OG image: `/public/og/home.png` (home, shared) + `/public/og/{slug}-{lang}.png` per case, shipped 2026-07-23 (typographic, dark theme, shared across pages/languages). Per-slug OG images remain a possible follow-up.
 
 ---
 

@@ -32,7 +32,7 @@
   "cv": {
     "label": "Download CV (PDF)",
     "ariaLabel": "Download Javier's CV as a PDF",
-    "file": "CV_Javier_Lanz_2026_EN.pdf"
+    "file": "cv/CV_Javier_Lanz_2026_EN.pdf"
   },
   "about": {
     "eyebrow": "ABOUT",

@@ -14,7 +14,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const basePath = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
-const resolvedOgImage = ogImage ?? new URL(`${basePath}og.png`, Astro.site).href;
+const resolvedOgImage = ogImage ?? new URL(`${basePath}og/home.png`, Astro.site).href;
 const otherLang = lang === 'es' ? 'en' : 'es';
 const otherPath = Astro.url.pathname.replace(/^\/javiport\/(es|en)\//, `/javiport/${otherLang}/`);
 const otherHref = new URL(otherPath, Astro.site);

@@ -173,6 +173,15 @@ const backHref = `/javiport/${lang}/#work`;
     background: transparent;
     border: 0;
   }
+  /* Tailwind's md:hidden lives in a cascade layer and loses to this component's
+     unlayered display rules — hide the mobile-only chrome here instead. */
+  @media (min-width: 768px) {
+    .nav-burger,
+    .nav-drawer,
+    .nav-scrim {
+      display: none;
+    }
+  }
   .nav-burger:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 4px;

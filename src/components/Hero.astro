@@ -104,8 +104,14 @@ const cvHref = `${base}${cv.file}`;
   import './ParticleField.client.ts';
   import './PrismScene.client.ts';
 
-  setTimeout(() => {
-    document.querySelectorAll('.hero-word').forEach((el) => el.classList.add('reveal'));
-    document.querySelectorAll('.hero-fade-in').forEach((el) => el.classList.add('reveal'));
-  }, 100);
+  // Re-run on astro:page-load so the hero reveals after soft navigations too.
+  function revealHero() {
+    setTimeout(() => {
+      document.querySelectorAll('.hero-word').forEach((el) => el.classList.add('reveal'));
+      document.querySelectorAll('.hero-fade-in').forEach((el) => el.classList.add('reveal'));
+    }, 100);
+  }
+
+  revealHero();
+  document.addEventListener('astro:page-load', revealHero);
 </script>

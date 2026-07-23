@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { type = 'fade', delay = 0, tag = 'div', class: className = '' } = Astro.props;
-const Tag = tag as any;
+const Tag = tag;
 const revealClass = type === 'mask' ? 'scroll-reveal-mask' : 'scroll-reveal-fade';
 const style = delay ? `transition-delay: ${delay}ms;` : '';
 ---
@@ -29,7 +29,17 @@ const style = delay ? `transition-delay: ${delay}ms;` : '';
     { rootMargin: '0px', threshold: 0.15 }
   );
 
-  document.querySelectorAll('.scroll-reveal-mask, .scroll-reveal-fade').forEach((el) => {
-    observer.observe(el);
-  });
+  // Hoisted scripts run once per hard load, but ClientRouter swaps in new DOM
+  // on soft navigations — re-scan on astro:page-load or nothing ever reveals.
+  function initReveals() {
+    document
+      .querySelectorAll('.scroll-reveal-mask:not([data-reveal-bound]), .scroll-reveal-fade:not([data-reveal-bound])')
+      .forEach((el) => {
+        el.setAttribute('data-reveal-bound', '');
+        observer.observe(el);
+      });
+  }
+
+  initReveals();
+  document.addEventListener('astro:page-load', initReveals);
 </script>

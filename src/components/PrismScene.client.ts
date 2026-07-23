@@ -3,8 +3,6 @@
 // never blocks hero paint/LCP. Degrades: no WebGL2 → nothing (particle field
 // remains); prefers-reduced-motion → single static frame, no animation loop.
 
-type ThreeNS = typeof import('three');
-
 const ACCENT = 0xc99a5b; // --color-accent
 const IVORY = 0xf5f1ea; //  --color-text
 const GLASS = 0x14110f; //  --color-bg-elev

@@ -40,7 +40,7 @@ export function initParticleField(canvas: HTMLCanvasElement): () => void {
 
   const ctx = canvas.getContext('2d')!;
   let particles: Particle[] = [];
-  let mouse = { x: null as number | null, y: null as number | null };
+  const mouse = { x: null as number | null, y: null as number | null };
   let rafId = 0;
   let frameTime = 0;
   let overBudgetCount = 0;
@@ -272,8 +272,24 @@ function renderStaticGrid(canvas: HTMLCanvasElement) {
   }
 }
 
-// Auto-init on the canvas element defined in Hero.astro
-const canvas = document.getElementById('particle-canvas') as HTMLCanvasElement | null;
-if (canvas) {
-  initParticleField(canvas);
+// Auto-init on the canvas element defined in Hero.astro. ClientRouter swaps in
+// a fresh canvas on soft navigations, so re-bind on astro:page-load and tear
+// down the old loop before the swap.
+let cleanup: (() => void) | null = null;
+let boundCanvas: HTMLCanvasElement | null = null;
+
+function init() {
+  const canvas = document.getElementById('particle-canvas') as HTMLCanvasElement | null;
+  if (!canvas || canvas === boundCanvas) return;
+  cleanup?.();
+  boundCanvas = canvas;
+  cleanup = initParticleField(canvas);
 }
+
+init();
+document.addEventListener('astro:page-load', init);
+document.addEventListener('astro:before-swap', () => {
+  cleanup?.();
+  cleanup = null;
+  boundCanvas = null;
+});

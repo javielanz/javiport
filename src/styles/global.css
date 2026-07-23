@@ -78,12 +78,14 @@ body {
     transition: opacity 1000ms cubic-bezier(0.2, 0, 0, 1),
                 transform 1000ms cubic-bezier(0.2, 0, 0, 1);
   }
+  /* Vertices extend 10% past the box so oversized display glyphs that
+     overflow their column are not cut once revealed. */
   .scroll-reveal-mask > * {
-    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+    clip-path: polygon(-10% 110%, 110% 110%, 110% 110%, -10% 110%);
     transition: clip-path 1000ms cubic-bezier(0.2, 0, 0, 1);
   }
   .scroll-reveal-mask.is-revealed { opacity: 1; transform: translateY(0); }
-  .scroll-reveal-mask.is-revealed > * { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+  .scroll-reveal-mask.is-revealed > * { clip-path: polygon(-10% -10%, 110% -10%, 110% 110%, -10% 110%); }
 
   .scroll-reveal-fade {
     opacity: 0;

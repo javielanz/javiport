@@ -293,6 +293,7 @@ OG image: `/public/og.png` shipped 2026-07-23 (typographic, dark theme, shared a
 | Skip link | Skip to main content | Saltar al contenido principal |
 | External link suffix (sr-only) | (opens in new tab) | (abre en una pestaña nueva) |
 | Image alt — Caracas essay cover 1 | A young person in denim walks past colored shutters and parked motorcycles on a Caracas street. | Una persona joven en denim camina junto a portones de colores y motos estacionadas en una calle de Caracas. |
+| Image alt — Caracas essay mosaic (gallery item 1) | Contact-sheet mosaic of the series: colorful streets, motorcycle workshops, welding sparks, and café and home interiors in Caracas | Mosaico de la serie: calles de colores, talleres de moto, chispas de soldadura e interiores de café y hogar en Caracas |
 | Image alt — Caracas essay cover 2 | A figure faces a turquoise shuttered facade between pink and yellow walls, hand raised. | Una figura frente a una fachada de portón turquesa entre paredes rosadas y amarillas, con la mano alzada. |
 | Image alt — Caracas essay cover 3 | A person crosses an intersection in a hillside Caracas neighborhood under tangled power lines. | Una persona cruza una intersección en un barrio de colina en Caracas bajo cables enredados. |
 | Particle field aria | Decorative animated background | Fondo animado decorativo |

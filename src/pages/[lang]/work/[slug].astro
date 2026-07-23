@@ -32,9 +32,18 @@ const next = idx < allInLang.length - 1
 
 const s = getStrings(lang);
 const pageTitle = `${data.title} — ${s.nav.brand}`;
+const basePath = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const ogImage = new URL(`${basePath}og/${data.slug}-${lang}.png`, Astro.site).href;
 const galleries: Record<string, { src: string; alt: string }[]> = {
   'caracas-photo-essay': [
-    { src: 'caracas-essay-01', alt: data.coverAlt ?? data.title },
+    {
+      src: 'caracas-essay-mosaic',
+      alt: lang === 'es'
+        ? 'Mosaico de la serie: calles de colores, talleres de moto, chispas de soldadura e interiores de café y hogar en Caracas'
+        : 'Contact-sheet mosaic of the series: colorful streets, motorcycle workshops, welding sparks, and café and home interiors in Caracas',
+    },
     {
       src: 'caracas-essay-02',
       alt: lang === 'es'
@@ -52,7 +61,7 @@ const galleries: Record<string, { src: string; alt: string }[]> = {
 const gallery = galleries[data.slug];
 ---
 
-<Layout title={pageTitle} description={data.summary} lang={lang}>
+<Layout title={pageTitle} description={data.summary} lang={lang} ogImage={ogImage}>
   <Nav lang={lang} />
   <main id="main-content">
     <CaseStudyLayout

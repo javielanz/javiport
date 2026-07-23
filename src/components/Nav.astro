@@ -1,10 +1,12 @@
 ---
 interface Props {
   lang: 'en' | 'es';
+  variant?: 'home' | 'case';
   currentPath?: string;
 }
 
-const { lang } = Astro.props;
+const { lang, variant = 'home' } = Astro.props;
+const isCase = variant === 'case';
 
 const navLinks = {
   en: [
@@ -31,14 +33,19 @@ const otherLabel = lang === 'es' ? 'EN' : 'ES';
 const toggleAriaLabel = lang === 'es' ? 'Switch to English' : 'Cambiar a inglés';
 const menuLabel = lang === 'es' ? 'Menú' : 'Menu';
 const closeLabel = lang === 'es' ? 'Cerrar menú' : 'Close menu';
+const backLabel = lang === 'es' ? '← Volver a inicio' : '← Back to home';
+const backLabelShort = lang === 'es' ? '← Inicio' : '← Home';
+const backHref = `/javiport/${lang}/#work`;
 ---
 
 <header
   id="main-nav"
-  class="fixed top-0 w-full z-50 border-b"
-  transition:persist
+  class:list={['fixed top-0 w-full z-50 border-b', isCase && 'scrolled']}
+  transition:persist={isCase ? 'nav-case' : 'nav-home'}
 >
-  <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-hidden="true" tabindex="-1" />
+  {!isCase && (
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-hidden="true" tabindex="-1" />
+  )}
 
   <div
     class="flex justify-between items-center w-full px-5 py-6 mx-auto"
@@ -52,25 +59,37 @@ const closeLabel = lang === 'es' ? 'Cerrar menú' : 'Close menu';
       Javier Lanz
     </a>
 
-    <nav
-      class="hidden md:block"
-      aria-label={lang === 'es' ? 'Navegación principal' : 'Main navigation'}
-    >
-      <ul class="flex gap-8 list-none m-0 p-0">
-        {links.map((link) => (
-          <li>
-            <a
-              href={link.href}
-              class="nav-link font-mono text-xs tracking-widest uppercase transition-colors duration-300"
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    {!isCase && (
+      <nav
+        class="hidden md:block"
+        aria-label={lang === 'es' ? 'Navegación principal' : 'Main navigation'}
+      >
+        <ul class="flex gap-8 list-none m-0 p-0">
+          {links.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="nav-link font-mono text-xs tracking-widest uppercase transition-colors duration-300"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    )}
 
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-6">
+      {isCase && (
+        <a
+          href={backHref}
+          class="nav-link font-mono text-xs tracking-widest uppercase transition-colors duration-300 whitespace-nowrap"
+        >
+          <span class="hidden sm:inline">{backLabel}</span>
+          <span class="sm:hidden">{backLabelShort}</span>
+        </a>
+      )}
+
       <button
         id="lang-toggle"
         class="font-mono text-xs tracking-widest uppercase transition-colors duration-300 cursor-pointer border-0 bg-transparent"
@@ -81,44 +100,50 @@ const closeLabel = lang === 'es' ? 'Cerrar menú' : 'Close menu';
         {otherLabel}
       </button>
 
-      <label
-        for="nav-toggle"
-        class="nav-burger md:hidden"
-        aria-label={menuLabel}
-        role="button"
-        tabindex="0"
-      >
-        <span class="nav-burger-bar"></span>
-        <span class="nav-burger-bar"></span>
-        <span class="nav-burger-bar"></span>
-      </label>
+      {!isCase && (
+        <label
+          for="nav-toggle"
+          class="nav-burger md:hidden"
+          aria-label={menuLabel}
+          role="button"
+          tabindex="0"
+        >
+          <span class="nav-burger-bar"></span>
+          <span class="nav-burger-bar"></span>
+          <span class="nav-burger-bar"></span>
+        </label>
+      )}
     </div>
   </div>
 
-  <div class="nav-drawer md:hidden" id="nav-drawer">
-    <nav aria-label={lang === 'es' ? 'Navegación móvil' : 'Mobile navigation'}>
-      <ul class="flex flex-col gap-6 list-none m-0 p-0 px-8 py-12">
-        {links.map((link) => (
-          <li>
-            <a
-              href={link.href}
-              class="nav-drawer-link font-display text-3xl"
-              data-nav-close
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  </div>
+  {!isCase && (
+    <div class="nav-drawer md:hidden" id="nav-drawer">
+      <nav aria-label={lang === 'es' ? 'Navegación móvil' : 'Mobile navigation'}>
+        <ul class="flex flex-col gap-6 list-none m-0 p-0 px-8 py-12">
+          {links.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="nav-drawer-link font-display text-3xl"
+                data-nav-close
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  )}
 
-  <label
-    for="nav-toggle"
-    class="nav-scrim md:hidden"
-    aria-label={closeLabel}
-    tabindex="-1"
-  ></label>
+  {!isCase && (
+    <label
+      for="nav-toggle"
+      class="nav-scrim md:hidden"
+      aria-label={closeLabel}
+      tabindex="-1"
+    ></label>
+  )}
 </header>
 
 <style>
@@ -224,41 +249,40 @@ const closeLabel = lang === 'es' ? 'Cerrar menú' : 'Close menu';
 </style>
 
 <script>
-  const nav = document.getElementById('main-nav');
-  const hero = document.getElementById('hero');
+  // All handlers are document-level delegation registered once, so they keep
+  // working across ClientRouter swaps regardless of which nav variant renders.
+  window.addEventListener(
+    'scroll',
+    () => {
+      const nav = document.getElementById('main-nav');
+      if (!nav) return;
+      const hero = document.getElementById('hero');
+      if (!hero) return; // case variant is statically solid
+      nav.classList.toggle('scrolled', window.scrollY > hero.offsetHeight - 100);
+    },
+    { passive: true }
+  );
 
-  if (nav && hero) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > hero.offsetHeight - 100) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-    }, { passive: true });
-  }
+  document.addEventListener('click', (e) => {
+    const target = e.target as Element;
 
-  const toggle = document.getElementById('lang-toggle');
-  if (toggle) {
-    toggle.addEventListener('click', () => {
-      const otherLang = (toggle as HTMLElement).dataset.otherLang as string;
+    const toggle = target.closest('#lang-toggle') as HTMLElement | null;
+    if (toggle) {
+      const otherLang = toggle.dataset.otherLang as string;
       localStorage.setItem('lang', otherLang);
-      const current = window.location.pathname;
-      const next = current.replace(/\/(es|en)\//, `/${otherLang}/`);
-      window.location.href = next;
-    });
-  }
+      window.location.href = window.location.pathname.replace(/\/(es|en)\//, `/${otherLang}/`);
+      return;
+    }
 
-  const navToggleCheckbox = document.getElementById('nav-toggle') as HTMLInputElement | null;
-  if (navToggleCheckbox) {
-    document.querySelectorAll('[data-nav-close]').forEach((el) => {
-      el.addEventListener('click', () => {
-        navToggleCheckbox.checked = false;
-      });
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && navToggleCheckbox.checked) {
-        navToggleCheckbox.checked = false;
-      }
-    });
-  }
+    if (target.closest('[data-nav-close]')) {
+      const checkbox = document.getElementById('nav-toggle') as HTMLInputElement | null;
+      if (checkbox) checkbox.checked = false;
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    const checkbox = document.getElementById('nav-toggle') as HTMLInputElement | null;
+    if (checkbox?.checked) checkbox.checked = false;
+  });
 </script>

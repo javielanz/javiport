@@ -38,8 +38,6 @@ const {
 
 const prevLabel = lang === 'es' ? 'Anterior' : 'Previous';
 const nextLabel = lang === 'es' ? 'Siguiente' : 'Next';
-const backLabel = lang === 'es' ? '← Volver a inicio' : '← Back to home';
-const homeHref = `/javiport/${lang}/#work`;
 const workHref = (slug: string) => `/javiport/${lang}/work/${slug}/`;
 ---
 
@@ -63,80 +61,66 @@ const workHref = (slug: string) => `/javiport/${lang}/work/${slug}/`;
   )}
 
   <div class="mx-auto px-5" style="max-width: min(1440px, 92vw);">
-    <Reveal type="fade">
-      <a
-        href={homeHref}
-        class="font-mono text-xs tracking-widest uppercase inline-block mt-12"
-        style="color: var(--color-text-muted);"
-      >
-        {backLabel}
-      </a>
-    </Reveal>
+    <div class={cover ? 'pt-12' : 'pt-32'}>
+      <Reveal type="fade">
+        <div
+          class="font-mono text-xs tracking-widest uppercase mb-6"
+          style="color: var(--color-accent);"
+        >
+          {tag}
+        </div>
+      </Reveal>
 
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mt-12">
-      <div class="md:col-span-8">
-        <Reveal type="fade">
-          <div
-            class="font-mono text-xs tracking-widest uppercase mb-6"
-            style="color: var(--color-accent);"
-          >
-            {tag}
-          </div>
-        </Reveal>
+      <Reveal type="mask">
+        <h1 class="case-study-title font-display">
+          {title}
+        </h1>
+      </Reveal>
 
-        <Reveal type="mask">
-          <h1
-            class="font-display"
-            style="font-size: var(--text-display-xl); line-height: 1.05; color: var(--color-text); margin-bottom: 1.5rem;"
-          >
-            {title}
-          </h1>
-        </Reveal>
-
-        <Reveal type="fade" delay={120}>
-          <p
-            class="mb-12"
-            style="font-size: var(--text-body-lg); color: var(--color-text-muted); line-height: 1.6;"
-          >
-            {summary}
-          </p>
-        </Reveal>
-      </div>
-
-      <aside class="md:col-span-4 md:pt-20">
-        <Reveal type="fade" delay={160}>
-          <dl class="grid gap-4">
-            <div>
-              <dt class="font-mono text-xs tracking-widest uppercase" style="color: var(--color-text-subtle);">
-                {lang === 'es' ? 'Año' : 'Year'}
-              </dt>
-              <dd style="color: var(--color-text);">{year}</dd>
-            </div>
-            <div>
-              <dt class="font-mono text-xs tracking-widest uppercase" style="color: var(--color-text-subtle);">
-                {lang === 'es' ? 'Rol' : 'Role'}
-              </dt>
-              <dd style="color: var(--color-text);">{role}</dd>
-            </div>
-            <div>
-              <dt class="font-mono text-xs tracking-widest uppercase" style="color: var(--color-text-subtle);">
-                {lang === 'es' ? 'Tags' : 'Tags'}
-              </dt>
-              <dd class="flex flex-wrap gap-2 mt-1">
-                {tags.map((t) => (
-                  <span
-                    class="font-mono text-xs tracking-widest uppercase px-2 py-1 border"
-                    style="color: var(--color-text-muted); border-color: var(--color-line);"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </dd>
-            </div>
-          </dl>
-        </Reveal>
-      </aside>
+      <Reveal type="fade" delay={120}>
+        <p
+          class="mb-12"
+          style="font-size: var(--text-body-lg); color: var(--color-text-muted); line-height: 1.6; max-width: min(680px, 92vw);"
+        >
+          {summary}
+        </p>
+      </Reveal>
     </div>
+
+    <Reveal type="fade" delay={160}>
+      <dl
+        class="case-study-meta grid grid-cols-2 md:grid-cols-3 gap-8 border-t border-b py-8"
+        style="border-color: var(--color-line);"
+      >
+        <div>
+          <dt class="font-mono text-xs tracking-widest uppercase mb-2" style="color: var(--color-text-subtle);">
+            {lang === 'es' ? 'Año' : 'Year'}
+          </dt>
+          <dd class="font-mono text-xs tracking-widest uppercase" style="color: var(--color-text);">{year}</dd>
+        </div>
+        <div>
+          <dt class="font-mono text-xs tracking-widest uppercase mb-2" style="color: var(--color-text-subtle);">
+            {lang === 'es' ? 'Rol' : 'Role'}
+          </dt>
+          <dd class="font-mono text-xs tracking-widest uppercase" style="color: var(--color-text);">{role}</dd>
+        </div>
+        <div>
+          <dt class="font-mono text-xs tracking-widest uppercase mb-2" style="color: var(--color-text-subtle);">
+            Tags
+          </dt>
+          <dd class="flex flex-wrap gap-2">
+            {tags.map((t) => (
+              <span
+                class="font-mono text-xs tracking-widest uppercase px-2 py-1 border"
+                style="color: var(--color-text-muted); border-color: var(--color-line);"
+              >
+                {t}
+              </span>
+            ))}
+          </dd>
+        </div>
+      </dl>
+    </Reveal>
 
     <div class="case-study-body mt-12">
       <Reveal type="fade">
@@ -182,6 +166,18 @@ const workHref = (slug: string) => `/javiport/${lang}/work/${slug}/`;
 </article>
 
 <style is:global>
+  /* Sized so the longest single word across case titles ("Cinematográfico")
+     fits the container at every viewport; balance + break-word as safety. */
+  .case-study-title {
+    font-size: clamp(2.125rem, 8.5vw, 8rem);
+    line-height: 1.05;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+    max-width: 24ch;
+    text-wrap: balance;
+    hyphens: auto;
+    overflow-wrap: break-word;
+  }
   .case-study-hero {
     position: relative;
     width: 100%;

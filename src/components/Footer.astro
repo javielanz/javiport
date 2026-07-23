@@ -1,26 +1,12 @@
 ---
+import { getStrings, type Lang } from '../lib/strings';
+
 interface Props {
-  lang: 'en' | 'es';
+  lang: Lang;
 }
 
 const { lang } = Astro.props;
-
-const strings = {
-  en: {
-    credit: '© 2026 Javier Lanz Bethencourt · Caracas, Venezuela',
-    tech: 'Built with Astro · Hosted on GitHub Pages',
-    langSwitch: 'Español',
-    backToTop: 'Back to top',
-  },
-  es: {
-    credit: '© 2026 Javier Lanz Bethencourt · Caracas, Venezuela',
-    tech: 'Construido con Astro · Hospedado en GitHub Pages',
-    langSwitch: 'English',
-    backToTop: 'Volver arriba',
-  },
-};
-
-const t = strings[lang];
+const t = getStrings(lang).footer;
 const otherLang = lang === 'es' ? 'en' : 'es';
 ---
 
@@ -33,10 +19,7 @@ const otherLang = lang === 'es' ? 'en' : 'es';
     style="max-width: min(1440px, 92vw);"
   >
     <div class="md:col-span-6">
-      <div
-        class="font-display mb-2"
-        style="font-size: 1.5rem; color: var(--color-text);"
-      >
+      <div class="font-display mb-2" style="font-size: 1.5rem; color: var(--color-text);">
         Javier Lanz
       </div>
       <div style="font-size: var(--text-caption); color: var(--color-text-muted);">
@@ -74,7 +57,7 @@ const otherLang = lang === 'es' ? 'en' : 'es';
 
   <div class="px-5 mt-8 mx-auto" style="max-width: min(1440px, 92vw);">
     <p style="font-size: var(--text-caption); color: var(--color-text-subtle);">
-      {t.tech}
+      {t.techCredit}
     </p>
   </div>
 </footer>

@@ -1,40 +1,31 @@
 ---
+import { getStrings, type Lang } from '../lib/strings';
+
 interface Props {
-  lang: 'en' | 'es';
+  lang: Lang;
   variant?: 'home' | 'case';
-  currentPath?: string;
 }
 
 const { lang, variant = 'home' } = Astro.props;
 const isCase = variant === 'case';
+const t = getStrings(lang).nav;
 
-const navLinks = {
-  en: [
-    { label: 'About',        href: '#about' },
-    { label: 'Work',         href: '#work' },
-    { label: 'Capabilities', href: '#capabilities' },
-    { label: 'Experience',   href: '#experience' },
-    { label: 'Education',    href: '#education' },
-    { label: 'Contact',      href: '#contact' },
-  ],
-  es: [
-    { label: 'Sobre Mí',    href: '#about' },
-    { label: 'Proyectos',   href: '#work' },
-    { label: 'Capacidades', href: '#capabilities' },
-    { label: 'Experiencia', href: '#experience' },
-    { label: 'Educación',   href: '#education' },
-    { label: 'Contacto',    href: '#contact' },
-  ],
-};
+const links = [
+  { label: t.items.about, href: '#about' },
+  { label: t.items.work, href: '#work' },
+  { label: t.items.capabilities, href: '#capabilities' },
+  { label: t.items.experience, href: '#experience' },
+  { label: t.items.education, href: '#education' },
+  { label: t.items.contact, href: '#contact' },
+];
 
-const links = navLinks[lang];
 const otherLang = lang === 'es' ? 'en' : 'es';
-const otherLabel = lang === 'es' ? 'EN' : 'ES';
-const toggleAriaLabel = lang === 'es' ? 'Switch to English' : 'Cambiar a inglés';
-const menuLabel = lang === 'es' ? 'Menú' : 'Menu';
-const closeLabel = lang === 'es' ? 'Cerrar menú' : 'Close menu';
-const backLabel = lang === 'es' ? '← Volver a inicio' : '← Back to home';
-const backLabelShort = lang === 'es' ? '← Inicio' : '← Home';
+const otherLabel = t.langToggle.target;
+const toggleAriaLabel = t.langToggle.ariaLabel;
+const menuLabel = t.menu;
+const closeLabel = t.menuClose;
+const backLabel = t.back;
+const backLabelShort = t.backShort;
 const backHref = `/javiport/${lang}/#work`;
 ---
 
@@ -43,9 +34,17 @@ const backHref = `/javiport/${lang}/#work`;
   class:list={['fixed top-0 w-full z-50 border-b', isCase && 'scrolled']}
   transition:persist={isCase ? 'nav-case' : 'nav-home'}
 >
-  {!isCase && (
-    <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-hidden="true" tabindex="-1" />
-  )}
+  {
+    !isCase && (
+      <input
+        type="checkbox"
+        id="nav-toggle"
+        class="nav-toggle-input"
+        aria-hidden="true"
+        tabindex="-1"
+      />
+    )
+  }
 
   <div
     class="flex justify-between items-center w-full px-5 py-6 mx-auto"
@@ -59,36 +58,40 @@ const backHref = `/javiport/${lang}/#work`;
       Javier Lanz
     </a>
 
-    {!isCase && (
-      <nav
-        class="hidden md:block"
-        aria-label={lang === 'es' ? 'Navegación principal' : 'Main navigation'}
-      >
-        <ul class="flex gap-8 list-none m-0 p-0">
-          {links.map((link) => (
-            <li>
-              <a
-                href={link.href}
-                class="nav-link font-mono text-xs tracking-widest uppercase transition-colors duration-300"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    )}
+    {
+      !isCase && (
+        <nav
+          class="hidden md:block"
+          aria-label={lang === 'es' ? 'Navegación principal' : 'Main navigation'}
+        >
+          <ul class="flex gap-8 list-none m-0 p-0">
+            {links.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="nav-link font-mono text-xs tracking-widest uppercase transition-colors duration-300"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )
+    }
 
     <div class="flex items-center gap-6">
-      {isCase && (
-        <a
-          href={backHref}
-          class="nav-link font-mono text-xs tracking-widest uppercase transition-colors duration-300 whitespace-nowrap"
-        >
-          <span class="hidden sm:inline">{backLabel}</span>
-          <span class="sm:hidden">{backLabelShort}</span>
-        </a>
-      )}
+      {
+        isCase && (
+          <a
+            href={backHref}
+            class="nav-link font-mono text-xs tracking-widest uppercase transition-colors duration-300 whitespace-nowrap"
+          >
+            <span class="hidden sm:inline">{backLabel}</span>
+            <span class="sm:hidden">{backLabelShort}</span>
+          </a>
+        )
+      }
 
       <button
         id="lang-toggle"
@@ -100,50 +103,47 @@ const backHref = `/javiport/${lang}/#work`;
         {otherLabel}
       </button>
 
-      {!isCase && (
-        <label
-          for="nav-toggle"
-          class="nav-burger md:hidden"
-          aria-label={menuLabel}
-          role="button"
-          tabindex="0"
-        >
-          <span class="nav-burger-bar"></span>
-          <span class="nav-burger-bar"></span>
-          <span class="nav-burger-bar"></span>
-        </label>
-      )}
+      {
+        !isCase && (
+          <label
+            for="nav-toggle"
+            class="nav-burger md:hidden"
+            aria-label={menuLabel}
+            role="button"
+            tabindex="0"
+          >
+            <span class="nav-burger-bar" />
+            <span class="nav-burger-bar" />
+            <span class="nav-burger-bar" />
+          </label>
+        )
+      }
     </div>
   </div>
 
-  {!isCase && (
-    <div class="nav-drawer md:hidden" id="nav-drawer">
-      <nav aria-label={lang === 'es' ? 'Navegación móvil' : 'Mobile navigation'}>
-        <ul class="flex flex-col gap-6 list-none m-0 p-0 px-8 py-12">
-          {links.map((link) => (
-            <li>
-              <a
-                href={link.href}
-                class="nav-drawer-link font-display text-3xl"
-                data-nav-close
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </div>
-  )}
+  {
+    !isCase && (
+      <div class="nav-drawer md:hidden" id="nav-drawer">
+        <nav aria-label={lang === 'es' ? 'Navegación móvil' : 'Mobile navigation'}>
+          <ul class="flex flex-col gap-6 list-none m-0 p-0 px-8 py-12">
+            {links.map((link) => (
+              <li>
+                <a href={link.href} class="nav-drawer-link font-display text-3xl" data-nav-close>
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    )
+  }
 
-  {!isCase && (
-    <label
-      for="nav-toggle"
-      class="nav-scrim md:hidden"
-      aria-label={closeLabel}
-      tabindex="-1"
-    ></label>
-  )}
+  {
+    !isCase && (
+      <label for="nav-toggle" class="nav-scrim md:hidden" aria-label={closeLabel} tabindex="-1" />
+    )
+  }
 </header>
 
 <style>
@@ -191,7 +191,9 @@ const backHref = `/javiport/${lang}/#work`;
     height: 2px;
     width: 100%;
     background: var(--color-text);
-    transition: transform var(--dur-micro) var(--ease-brand), opacity var(--dur-micro) var(--ease-brand);
+    transition:
+      transform var(--dur-micro) var(--ease-brand),
+      opacity var(--dur-micro) var(--ease-brand);
     transform-origin: center;
   }
 

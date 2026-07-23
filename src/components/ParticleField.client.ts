@@ -15,7 +15,7 @@ interface Particle {
 
 function getParticleCount(width: number): number {
   if (width >= 1280) return 140;
-  if (width >= 768)  return 90;
+  if (width >= 768) return 90;
   return 50;
 }
 
@@ -27,9 +27,9 @@ function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t;
 }
 
-const BASE_COLOR  = 'rgba(245, 241, 234, 0.55)';
-const HOT_COLOR   = [201, 154, 91] as const;
-const BASE_ALPHA  = 0.55;
+const BASE_COLOR = 'rgba(245, 241, 234, 0.55)';
+const HOT_COLOR = [201, 154, 91] as const;
+const BASE_ALPHA = 0.55;
 
 export function initParticleField(canvas: HTMLCanvasElement): () => void {
   // Respect prefers-reduced-motion: render static grid, no animation.
@@ -60,11 +60,11 @@ export function initParticleField(canvas: HTMLCanvasElement): () => void {
   let slowStreak = 0;
 
   // Spring / physics constants
-  const SPRING_K   = 0.02;
-  const DAMPING    = 0.88;
-  const REPEL_R    = 180;
+  const SPRING_K = 0.02;
+  const DAMPING = 0.88;
+  const REPEL_R = 180;
   const REPEL_FORCE = 4.0;
-  const NOISE_AMP  = 0.05;
+  const NOISE_AMP = 0.05;
   const LINES_MAX_DIST = 80;
   const COLOR_LERP_R = 120;
 
@@ -72,7 +72,7 @@ export function initParticleField(canvas: HTMLCanvasElement): () => void {
   // rescale without teleporting every particle (their state is in logical px).
   function applySize() {
     const dpr = Math.min(window.devicePixelRatio || 1, dprCap);
-    canvas.width  = Math.round(vw * dpr);
+    canvas.width = Math.round(vw * dpr);
     canvas.height = Math.round(vh * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
@@ -91,8 +91,10 @@ export function initParticleField(canvas: HTMLCanvasElement): () => void {
       const x = Math.random() * vw;
       const y = Math.random() * vh;
       particles.push({
-        x, y,
-        baseX: x, baseY: y,
+        x,
+        y,
+        baseX: x,
+        baseY: y,
         size: Math.random() * 1.5 + 0.5,
         vx: (Math.random() - 0.5) * 0.2,
         vy: (Math.random() - 0.5) * 0.2,
@@ -108,8 +110,14 @@ export function initParticleField(canvas: HTMLCanvasElement): () => void {
     p.baseX += p.vx;
     p.baseY += p.vy;
 
-    if (p.baseX < 0 || p.baseX > vw)  { p.vx *= -1; p.baseX = Math.max(0, Math.min(vw, p.baseX)); }
-    if (p.baseY < 0 || p.baseY > vh)  { p.vy *= -1; p.baseY = Math.max(0, Math.min(vh, p.baseY)); }
+    if (p.baseX < 0 || p.baseX > vw) {
+      p.vx *= -1;
+      p.baseX = Math.max(0, Math.min(vw, p.baseX));
+    }
+    if (p.baseY < 0 || p.baseY > vh) {
+      p.vy *= -1;
+      p.baseY = Math.max(0, Math.min(vh, p.baseY));
+    }
 
     const mobile = isMobile(vw);
 
@@ -176,10 +184,16 @@ export function initParticleField(canvas: HTMLCanvasElement): () => void {
   }
 
   function frame(ts: number) {
-    if (document.hidden) { rafId = requestAnimationFrame(frame); return; }
+    if (document.hidden) {
+      rafId = requestAnimationFrame(frame);
+      return;
+    }
 
     const fpsMs = 1000 / fpsTarget;
-    if (ts - lastFrameTs < fpsMs) { rafId = requestAnimationFrame(frame); return; }
+    if (ts - lastFrameTs < fpsMs) {
+      rafId = requestAnimationFrame(frame);
+      return;
+    }
     lastFrameTs = ts;
 
     const t0 = performance.now();
@@ -255,8 +269,8 @@ export function initParticleField(canvas: HTMLCanvasElement): () => void {
     const tx = touch.clientX;
     const ty = touch.clientY;
     const impulseRadius = 150;
-    const impulseForce  = 6;
-    const decayFrames   = 18; // ~300ms at 60fps
+    const impulseForce = 6;
+    const decayFrames = 18; // ~300ms at 60fps
 
     let frame = 0;
     function decay() {
@@ -277,13 +291,19 @@ export function initParticleField(canvas: HTMLCanvasElement): () => void {
   }
 
   // Wire up events
-  const onMouseMove = (e: MouseEvent) => { mouse.x = e.clientX; mouse.y = e.clientY; };
-  const onMouseOut  = () => { mouse.x = null; mouse.y = null; };
-  const onResize    = () => resize();
+  const onMouseMove = (e: MouseEvent) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  };
+  const onMouseOut = () => {
+    mouse.x = null;
+    mouse.y = null;
+  };
+  const onResize = () => resize();
 
   window.addEventListener('mousemove', onMouseMove, { passive: true });
-  window.addEventListener('mouseout',  onMouseOut,  { passive: true });
-  window.addEventListener('resize',    onResize,    { passive: true });
+  window.addEventListener('mouseout', onMouseOut, { passive: true });
+  window.addEventListener('resize', onResize, { passive: true });
   canvas.addEventListener('touchstart', handleTouch, { passive: true });
 
   resize();
@@ -292,8 +312,8 @@ export function initParticleField(canvas: HTMLCanvasElement): () => void {
   return () => {
     cancelAnimationFrame(rafId);
     window.removeEventListener('mousemove', onMouseMove);
-    window.removeEventListener('mouseout',  onMouseOut);
-    window.removeEventListener('resize',    onResize);
+    window.removeEventListener('mouseout', onMouseOut);
+    window.removeEventListener('resize', onResize);
     canvas.removeEventListener('touchstart', handleTouch);
   };
 }
@@ -304,7 +324,7 @@ function renderStaticGrid(canvas: HTMLCanvasElement) {
   const vw = window.innerWidth;
   const vh = window.innerHeight;
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  canvas.width  = Math.round(vw * dpr);
+  canvas.width = Math.round(vw * dpr);
   canvas.height = Math.round(vh * dpr);
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 

@@ -21,7 +21,11 @@
       "target": "EN",
       "ariaLabel": "Cambiar a inglés"
     },
-    "skipLink": "Saltar al contenido principal"
+    "skipLink": "Saltar al contenido principal",
+    "back": "← Volver a inicio",
+    "backShort": "← Inicio",
+    "menu": "Menú",
+    "menuClose": "Cerrar menú"
   },
   "hero": {
     "eyebrow": "CONTENT STRATEGIST · CARACAS, 2026",
@@ -90,10 +94,22 @@
     "headline": "Construyamos algo.",
     "body": "Abierto a pasantías comerciales y de marketing, freelance de contenido y colaboraciones.",
     "buttons": {
-      "email": { "label": "Correo", "ariaLabel": "Enviar correo a Javier" },
-      "whatsapp": { "label": "WhatsApp", "ariaLabel": "Escribir a Javier por WhatsApp" },
-      "linkedin": { "label": "LinkedIn", "ariaLabel": "Ver a Javier en LinkedIn" },
-      "instagram": { "label": "Instagram", "ariaLabel": "Seguir a Javier en Instagram" }
+      "email": {
+        "label": "Correo",
+        "ariaLabel": "Enviar correo a Javier"
+      },
+      "whatsapp": {
+        "label": "WhatsApp",
+        "ariaLabel": "Escribir a Javier por WhatsApp"
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "ariaLabel": "Ver a Javier en LinkedIn"
+      },
+      "instagram": {
+        "label": "Instagram",
+        "ariaLabel": "Seguir a Javier en Instagram"
+      }
     },
     "replyExpectation": "Suele responder en 24h"
   },

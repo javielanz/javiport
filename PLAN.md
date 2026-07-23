@@ -1,3 +1,5 @@
+> **STATUS (2026-07-23): historical document.** M1–M10 shipped in May 2026; the CV repositioning, 3D hero prism, and asset/motion overhaul shipped 2026-07-23. Current guidance lives in `CLAUDE.md` — where this plan and CLAUDE.md conflict, CLAUDE.md wins (e.g. analytics: GoatCounter shipped; fonts: self-hosted).
+
 # javiport — Execution Plan (v1)
 
 > Source of truth for the build. Any execution agent (e.g. reflow swarm) reads this top to bottom.

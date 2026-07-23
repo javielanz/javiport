@@ -1,0 +1,6 @@
+# Prose and generated trees stay out of prettier
+src/content/**/*.md
+dist/
+.astro/
+node_modules/
+public/

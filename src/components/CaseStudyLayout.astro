@@ -22,19 +22,7 @@ interface Props {
   next?: NavEntry;
 }
 
-const {
-  lang,
-  title,
-  tag,
-  summary,
-  year,
-  role,
-  tags,
-  cover,
-  coverAlt,
-  prev,
-  next,
-} = Astro.props;
+const { lang, title, tag, summary, year, role, tags, cover, coverAlt, prev, next } = Astro.props;
 
 const prevLabel = lang === 'es' ? 'Anterior' : 'Previous';
 const nextLabel = lang === 'es' ? 'Siguiente' : 'Next';
@@ -42,23 +30,22 @@ const workHref = (slug: string) => `/javiport/${lang}/work/${slug}/`;
 ---
 
 <article class="case-study">
-  {cover && coverAlt && (
-    <header class="case-study-hero">
-      <MediaFrame
-        src={cover}
-        alt={coverAlt}
-        widths={[480, 960, 1440]}
-        sizes="100vw"
-        loading="eager"
-        fetchpriority="high"
-        pictureClass="case-study-cover-picture"
-      />
-      <div
-        class="case-study-cover-scrim"
-        aria-hidden="true"
-      ></div>
-    </header>
-  )}
+  {
+    cover && coverAlt && (
+      <header class="case-study-hero">
+        <MediaFrame
+          src={cover}
+          alt={coverAlt}
+          widths={[480, 960, 1440]}
+          sizes="100vw"
+          loading="eager"
+          fetchpriority="high"
+          pictureClass="case-study-cover-picture"
+        />
+        <div class="case-study-cover-scrim" aria-hidden="true" />
+      </header>
+    )
+  }
 
   <div class="mx-auto px-5" style="max-width: min(1440px, 92vw);">
     <div class={cover ? 'pt-12' : 'pt-32'}>
@@ -93,30 +80,45 @@ const workHref = (slug: string) => `/javiport/${lang}/work/${slug}/`;
         style="border-color: var(--color-line);"
       >
         <div>
-          <dt class="font-mono text-xs tracking-widest uppercase mb-2" style="color: var(--color-text-subtle);">
+          <dt
+            class="font-mono text-xs tracking-widest uppercase mb-2"
+            style="color: var(--color-text-subtle);"
+          >
             {lang === 'es' ? 'Año' : 'Year'}
           </dt>
-          <dd class="font-mono text-xs tracking-widest uppercase" style="color: var(--color-text);">{year}</dd>
+          <dd class="font-mono text-xs tracking-widest uppercase" style="color: var(--color-text);">
+            {year}
+          </dd>
         </div>
         <div>
-          <dt class="font-mono text-xs tracking-widest uppercase mb-2" style="color: var(--color-text-subtle);">
+          <dt
+            class="font-mono text-xs tracking-widest uppercase mb-2"
+            style="color: var(--color-text-subtle);"
+          >
             {lang === 'es' ? 'Rol' : 'Role'}
           </dt>
-          <dd class="font-mono text-xs tracking-widest uppercase" style="color: var(--color-text);">{role}</dd>
+          <dd class="font-mono text-xs tracking-widest uppercase" style="color: var(--color-text);">
+            {role}
+          </dd>
         </div>
         <div>
-          <dt class="font-mono text-xs tracking-widest uppercase mb-2" style="color: var(--color-text-subtle);">
+          <dt
+            class="font-mono text-xs tracking-widest uppercase mb-2"
+            style="color: var(--color-text-subtle);"
+          >
             Tags
           </dt>
           <dd class="flex flex-wrap gap-2">
-            {tags.map((t) => (
-              <span
-                class="font-mono text-xs tracking-widest uppercase px-2 py-1 border"
-                style="color: var(--color-text-muted); border-color: var(--color-line);"
-              >
-                {t}
-              </span>
-            ))}
+            {
+              tags.map((t) => (
+                <span
+                  class="font-mono text-xs tracking-widest uppercase px-2 py-1 border"
+                  style="color: var(--color-text-muted); border-color: var(--color-line);"
+                >
+                  {t}
+                </span>
+              ))
+            }
           </dd>
         </div>
       </dl>
@@ -128,40 +130,52 @@ const workHref = (slug: string) => `/javiport/${lang}/work/${slug}/`;
       </Reveal>
     </div>
 
-    {(prev || next) && (
-      <nav
-        class="mt-24 pt-12 border-t grid grid-cols-1 md:grid-cols-2 gap-8"
-        style="border-color: var(--color-line);"
-        aria-label={lang === 'es' ? 'Más trabajo' : 'More work'}
-      >
-        <div>
-          {prev && (
-            <a href={workHref(prev.slug)} class="block group">
-              <div class="font-mono text-xs tracking-widest uppercase mb-2" style="color: var(--color-text-subtle);">← {prevLabel}</div>
-              <div
-                class="font-display group-hover:text-[var(--color-accent)] transition-colors"
-                style="font-size: var(--text-display-md); color: var(--color-text);"
-              >
-                {prev.title}
-              </div>
-            </a>
-          )}
-        </div>
-        <div class="md:text-right">
-          {next && (
-            <a href={workHref(next.slug)} class="block group">
-              <div class="font-mono text-xs tracking-widest uppercase mb-2" style="color: var(--color-text-subtle);">{nextLabel} →</div>
-              <div
-                class="font-display group-hover:text-[var(--color-accent)] transition-colors"
-                style="font-size: var(--text-display-md); color: var(--color-text);"
-              >
-                {next.title}
-              </div>
-            </a>
-          )}
-        </div>
-      </nav>
-    )}
+    {
+      (prev || next) && (
+        <nav
+          class="mt-24 pt-12 border-t grid grid-cols-1 md:grid-cols-2 gap-8"
+          style="border-color: var(--color-line);"
+          aria-label={lang === 'es' ? 'Más trabajo' : 'More work'}
+        >
+          <div>
+            {prev && (
+              <a href={workHref(prev.slug)} class="block group">
+                <div
+                  class="font-mono text-xs tracking-widest uppercase mb-2"
+                  style="color: var(--color-text-subtle);"
+                >
+                  ← {prevLabel}
+                </div>
+                <div
+                  class="font-display group-hover:text-[var(--color-accent)] transition-colors"
+                  style="font-size: var(--text-display-md); color: var(--color-text);"
+                >
+                  {prev.title}
+                </div>
+              </a>
+            )}
+          </div>
+          <div class="md:text-right">
+            {next && (
+              <a href={workHref(next.slug)} class="block group">
+                <div
+                  class="font-mono text-xs tracking-widest uppercase mb-2"
+                  style="color: var(--color-text-subtle);"
+                >
+                  {nextLabel} →
+                </div>
+                <div
+                  class="font-display group-hover:text-[var(--color-accent)] transition-colors"
+                  style="font-size: var(--text-display-md); color: var(--color-text);"
+                >
+                  {next.title}
+                </div>
+              </a>
+            )}
+          </div>
+        </nav>
+      )
+    }
   </div>
 </article>
 

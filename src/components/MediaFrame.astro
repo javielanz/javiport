@@ -42,7 +42,9 @@ let intrinsic: { width: number; height: number };
 try {
   intrinsic = JSON.parse(await readFile(metaPath, 'utf8'));
 } catch {
-  throw new Error(`MediaFrame: public/media/web/${src}.meta.json missing — run \`npm run media:build\``);
+  throw new Error(
+    `MediaFrame: public/media/web/${src}.meta.json missing — run \`npm run media:build\``
+  );
 }
 
 // media:build never upscales — only widths <= the source's intrinsic width exist on disk

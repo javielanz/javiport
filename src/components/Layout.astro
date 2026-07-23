@@ -21,7 +21,8 @@ const otherHref = new URL(otherPath, Astro.site);
 const xDefaultPath = Astro.url.pathname.replace(/^\/javiport\/(es|en)\//, '/javiport/');
 const xDefaultHref = new URL(xDefaultPath, Astro.site);
 ---
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang={lang} class="dark">
   <head>
     <meta charset="utf-8" />
@@ -53,8 +54,20 @@ const xDefaultHref = new URL(xDefaultPath, Astro.site);
     <meta name="twitter:image" content={resolvedOgImage} />
 
     <!-- Fonts: self-hosted variable woff2 (declared in global.css @font-face) -->
-    <link rel="preload" href={`${basePath}fonts/literata-var.woff2`} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={`${basePath}fonts/geist-var.woff2`} as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href={`${basePath}fonts/literata-var.woff2`}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={`${basePath}fonts/geist-var.woff2`}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
     <!-- Skip link -->
     <style>
@@ -69,7 +82,9 @@ const xDefaultHref = new URL(xDefaultPath, Astro.site);
         font-size: 0.875rem;
         transition: top 150ms;
       }
-      .skip-link:focus { top: 1rem; }
+      .skip-link:focus {
+        top: 1rem;
+      }
     </style>
 
     <ClientRouter />

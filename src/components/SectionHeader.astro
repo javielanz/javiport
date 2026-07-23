@@ -24,12 +24,14 @@ const textAlign = align === 'center' ? 'text-center' : 'text-left';
     <!-- block child carries the clip wipe — .scroll-reveal-mask > * needs an element -->
     <span class="block">{headline}</span>
   </h2>
-  {sub && (
-    <p
-      class="scroll-reveal-fade"
-      style="font-size: var(--text-body-lg); color: var(--color-text-muted); transition-delay: 100ms;"
-    >
-      {sub}
-    </p>
-  )}
+  {
+    sub && (
+      <p
+        class="scroll-reveal-fade"
+        style="font-size: var(--text-body-lg); color: var(--color-text-muted); transition-delay: 100ms;"
+      >
+        {sub}
+      </p>
+    )
+  }
 </div>

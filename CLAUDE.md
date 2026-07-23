@@ -21,20 +21,20 @@ npm run media:clean    # deletes public/media/web/ — those are TRACKED files; 
 npm run format         # prettier --write src
 ```
 
-**There are no tests.** The effective verification suite is `npm run check:parity && npm run check && npm run build` — exactly what CI runs. `npm run lint` is currently broken (ESLint 9 flat config has no TypeScript/Astro parser installed, so every `.ts`/`.astro` file fails with parsing errors); do not use it as a gate or "fix" code to satisfy it.
+**There are no tests.** The verification suite is `npm run lint && npm run check:parity && npm run check && npm run build` — exactly what CI runs (lint was wired up 2026-07-23: typescript-eslint + eslint-plugin-astro).
 
 ## Deploy
 
-Push to `main` → `.github/workflows/deploy.yml` (Node 22): `npm ci` → `check:parity` → `astro check` → `astro build` → publish `./dist` to GitHub Pages. A parity or check failure blocks deploy. **CI never runs media:build** — the committed files under `public/media/web/` are the only media that ships. If deploys 404, check repo Settings → Pages source is "GitHub Actions".
+Push to `main` → `.github/workflows/deploy.yml` (Node 22): `npm ci` → `lint` → `check:parity` → `astro check` → `astro build` → publish `./dist` to GitHub Pages. Any gate failure blocks deploy. **CI never runs media:build** — the committed files under `public/media/web/` are the only media that ships. If deploys 404, check repo Settings → Pages source is "GitHub Actions".
 
 ## Architecture
 
 ### Routing & i18n
 - Both locales are URL-prefixed: `/javiport/es/` and `/javiport/en/` (`prefixDefaultLocale: true`, `redirectToDefaultLocale: false` — Astro does NOT redirect the root).
-- Homepages are twin hand-written pages `src/pages/es/index.astro` + `src/pages/en/index.astro` (identical except `lang`), composing the same section components (Nav, Hero, About, Work, Capabilities, Experience, Education, Contact, Footer) with a `lang` prop.
+- The homepage is one dynamic route `src/pages/[lang]/index.astro` (getStaticPaths es/en), composing the section components (Nav, Hero, About, Work, Capabilities, Experience, Education, Contact, Footer) with a `lang` prop.
 - Case studies: one dynamic route `src/pages/[lang]/work/[slug].astro`; `getStaticPaths` maps every `work` entry to `{lang: entry.data.lang, slug: entry.data.slug}` — routing uses frontmatter `slug`/`lang`, never entry ids.
-- Root redirect is dual-path: `src/middleware.ts` (dev/preview only — output is static) and `src/pages/index.astro` meta-refresh, which always sends production visitors to `/es/`.
-- UI strings live in `src/content/ui/strings.{en,es}.json`, loaded via `getStrings(lang)` in `src/lib/strings.ts` (typed off the EN file). Some labels (Nav links, CaseStudyLayout prev/next) are instead hardcoded per-lang inline.
+- Root redirect: `src/pages/index.astro`'s inline script reads `localStorage.lang`, then `navigator.language`, falling back to `/es/` (meta-refresh backstop). There is no middleware.
+- UI strings live in `src/content/ui/strings.{en,es}.json`, loaded via `getStrings(lang)` in `src/lib/strings.ts` (typed off the EN file). Nav and Footer read from it too; only tiny single-use labels (CaseStudyLayout prev/next, skip link) remain inline ternaries.
 
 ### Content collections (`src/content/config.ts`)
 - Three collections: `work` (the case studies), `experience`, `education`. Every entry is a **pair**: `slug.en.md` + `slug.es.md`, frontmatter carries explicit `lang` and `slug`, ordering via numeric `order` field.
@@ -44,11 +44,11 @@ Push to `main` → `.github/workflows/deploy.yml` (Node 22): `npm ci` → `check
 ### Design system & components
 - Dark-only (`<html class="dark">` hardcoded). All tokens live in the Tailwind 4 `@theme` block in `src/styles/global.css`: bg `#0A0908`, amber accent `#C99A5B`, ivory text, Literata (display serif) / Geist (body) / Geist Mono (meta), clamp()-based fluid type scale. Display font is **Literata** — docs mentioning "Fraunces" are historical.
 - Styling convention: Tailwind utilities for layout/spacing + **inline `style` attributes referencing CSS custom properties** for color/type. Follow this; don't introduce Tailwind color classes.
-- All components are `.astro` with vanilla hoisted `<script>` interactivity. **No React islands exist** — react, motion, and astro-font are installed but unused (staged, not dead-code to "clean up").
+- All components are `.astro` with vanilla hoisted `<script>` interactivity. **No React or framework islands** — the react/motion/astro-font staging deps were removed 2026-07-23; three.js (hero prism) is the only client framework code.
 - `ParticleField.client.ts` is the signature hero canvas (density tiers, perf degradation ladder, static-grid fallback for `prefers-reduced-motion`). Perf budget: <5–8KB, <2ms/frame.
 - `PrismScene.client.ts` is the hero 3D prism (three.js, dynamic-imported on idle so it's an async ~188KB gz chunk that never blocks LCP). Keep its materials dark — the ivory headline renders on top of it. It pauses offscreen, degrades DPR→fps under load, renders one static frame under `prefers-reduced-motion`, and disposes/re-inits across view transitions.
-- `Layout.astro` = HTML shell (SEO/OG/hreflang, Google Fonts CDN, ClientRouter view transitions). Caveat: hoisted scripts run once and don't re-init after view-transition navigation; Nav is `transition:persist`.
-- Base path `/javiport` is hardcoded in Nav, WorkCard, CaseStudyLayout, Layout hreflang regexes, middleware, and the root redirect — only MediaFrame uses `import.meta.env.BASE_URL`. Changing the base means touching all of them.
+- `Layout.astro` = HTML shell (SEO/OG/hreflang, self-hosted fonts via `@font-face` in global.css, ClientRouter view transitions). Client scripts re-init on `astro:page-load` and tear down on `astro:before-swap`; Nav uses per-variant `transition:persist` keys and document-level delegated handlers.
+- Base path `/javiport` is hardcoded in Nav, Footer, WorkCard, CaseStudyLayout, Layout hreflang regexes, the root redirect, and the `@font-face` URLs — only MediaFrame and the CV/og links use `import.meta.env.BASE_URL`. Changing the base means touching all of them.
 
 ### Media pipeline
 - Content references images by **bare basename** (e.g. `caracas-essay-01`). `MediaFrame.astro` resolves them at build time into `<picture>` avif/webp/jpg srcsets from `public/media/web/` and reads `{base}.meta.json` for intrinsic size — the build throws if meta is missing (fix: `npm run media:build`) or alt text is absent on non-decorative images. Widths are a subset of 480/960/1440/2880; MediaFrame filters requested widths to those ≤ the source's intrinsic width (mirroring media-build, which never upscales), so only variants that exist on disk are emitted.

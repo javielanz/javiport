@@ -1,11 +1,19 @@
 ---
-// src/middleware.ts handles / → /es/ or /en/ based on Accept-Language + localStorage.
+// Static root: redirect to the preferred language. The Nav/Footer toggles
+// persist the choice in localStorage; first-time visitors fall back to the
+// browser language, then to Spanish (the default locale).
 ---
+
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="refresh" content="0;url=/javiport/es/" />
-    <script>window.location.replace('/javiport/es/')</script>
+    <meta http-equiv="refresh" content="1;url=/javiport/es/" />
+    <script>
+      const stored = localStorage.getItem('lang');
+      const browser = (navigator.language || '').toLowerCase().startsWith('en') ? 'en' : 'es';
+      const lang = stored === 'en' || stored === 'es' ? stored : browser;
+      window.location.replace(`/javiport/${lang}/`);
+    </script>
   </head>
   <body></body>
 </html>

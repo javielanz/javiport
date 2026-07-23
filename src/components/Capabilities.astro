@@ -22,24 +22,26 @@ const t = getStrings(lang).capabilities;
     </Reveal>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-14 mt-16">
-      {t.clusters.map((cluster, i) => (
-        <Reveal type="fade" delay={i * 100}>
-          <div>
-            <h3
-              class="font-mono text-xs tracking-widest uppercase mb-4"
-              style="color: var(--color-accent);"
-            >
-              {cluster.label}
-            </h3>
-            <p
-              class="font-display"
-              style="font-size: var(--text-display-md); line-height: 1.35; color: var(--color-text);"
-            >
-              {cluster.skills}
-            </p>
-          </div>
-        </Reveal>
-      ))}
+      {
+        t.clusters.map((cluster, i) => (
+          <Reveal type="fade" delay={i * 100}>
+            <div>
+              <h3
+                class="font-mono text-xs tracking-widest uppercase mb-4"
+                style="color: var(--color-accent);"
+              >
+                {cluster.label}
+              </h3>
+              <p
+                class="font-display"
+                style="font-size: var(--text-display-md); line-height: 1.35; color: var(--color-text);"
+              >
+                {cluster.skills}
+              </p>
+            </div>
+          </Reveal>
+        ))
+      }
     </div>
   </div>
 </section>

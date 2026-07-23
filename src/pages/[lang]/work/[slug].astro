@@ -20,15 +20,18 @@ const lang = entry.data.lang as Lang;
 const data = entry.data;
 const { Content } = await render(entry);
 
-const allInLang = (await getCollection('work', (e) => e.data.lang === lang))
-  .sort((a, b) => a.data.order - b.data.order);
+const allInLang = (await getCollection('work', (e) => e.data.lang === lang)).sort(
+  (a, b) => a.data.order - b.data.order
+);
 const idx = allInLang.findIndex((e) => e.data.slug === data.slug);
-const prev = idx > 0
-  ? { slug: allInLang[idx - 1].data.slug, title: allInLang[idx - 1].data.title }
-  : undefined;
-const next = idx < allInLang.length - 1
-  ? { slug: allInLang[idx + 1].data.slug, title: allInLang[idx + 1].data.title }
-  : undefined;
+const prev =
+  idx > 0
+    ? { slug: allInLang[idx - 1].data.slug, title: allInLang[idx - 1].data.title }
+    : undefined;
+const next =
+  idx < allInLang.length - 1
+    ? { slug: allInLang[idx + 1].data.slug, title: allInLang[idx + 1].data.title }
+    : undefined;
 
 const s = getStrings(lang);
 const pageTitle = `${data.title} — ${s.nav.brand}`;
@@ -40,21 +43,24 @@ const galleries: Record<string, { src: string; alt: string }[]> = {
   'caracas-photo-essay': [
     {
       src: 'caracas-essay-mosaic',
-      alt: lang === 'es'
-        ? 'Mosaico de la serie: calles de colores, talleres de moto, chispas de soldadura e interiores de café y hogar en Caracas'
-        : 'Contact-sheet mosaic of the series: colorful streets, motorcycle workshops, welding sparks, and café and home interiors in Caracas',
+      alt:
+        lang === 'es'
+          ? 'Mosaico de la serie: calles de colores, talleres de moto, chispas de soldadura e interiores de café y hogar en Caracas'
+          : 'Contact-sheet mosaic of the series: colorful streets, motorcycle workshops, welding sparks, and café and home interiors in Caracas',
     },
     {
       src: 'caracas-essay-02',
-      alt: lang === 'es'
-        ? 'Detalle de un portón verde con vegetación al fondo en Caracas'
-        : 'A green shutter and the soft green of the trees behind it, Caracas',
+      alt:
+        lang === 'es'
+          ? 'Detalle de un portón verde con vegetación al fondo en Caracas'
+          : 'A green shutter and the soft green of the trees behind it, Caracas',
     },
     {
       src: 'caracas-essay-03',
-      alt: lang === 'es'
-        ? 'Personas cruzando una intersección sin semáforo en una mañana de Caracas'
-        : 'People crossing an unsignaled intersection on a Caracas morning',
+      alt:
+        lang === 'es'
+          ? 'Personas cruzando una intersección sin semáforo en una mañana de Caracas'
+          : 'People crossing an unsignaled intersection on a Caracas morning',
     },
   ],
 };
@@ -77,32 +83,36 @@ const gallery = galleries[data.slug];
       prev={prev}
       next={next}
     >
-      {data.vimeoUrl && (
-        <div class="case-study-video">
-          <iframe
-            src={data.vimeoUrl}
-            title={data.title}
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowfullscreen
-            loading="lazy"
-          ></iframe>
-        </div>
-      )}
+      {
+        data.vimeoUrl && (
+          <div class="case-study-video">
+            <iframe
+              src={data.vimeoUrl}
+              title={data.title}
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            />
+          </div>
+        )
+      }
 
       <Content />
 
-      {gallery && (
-        <div class="case-study-gallery">
-          {gallery.map((g) => (
-            <MediaFrame
-              src={g.src}
-              alt={g.alt}
-              widths={[480, 960, 1440]}
-              sizes="(min-width: 768px) 50vw, 100vw"
-            />
-          ))}
-        </div>
-      )}
+      {
+        gallery && (
+          <div class="case-study-gallery">
+            {gallery.map((g) => (
+              <MediaFrame
+                src={g.src}
+                alt={g.alt}
+                widths={[480, 960, 1440]}
+                sizes="(min-width: 768px) 50vw, 100vw"
+              />
+            ))}
+          </div>
+        )
+      }
     </CaseStudyLayout>
   </main>
   <Footer lang={lang} />

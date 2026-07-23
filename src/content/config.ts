@@ -1,8 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-const langAwareId = ({ entry }: { entry: string }) =>
-  entry.replace(/\.md$/, '');
+const langAwareId = ({ entry }: { entry: string }) => entry.replace(/\.md$/, '');
 
 const workSchema = z.object({
   title: z.string(),

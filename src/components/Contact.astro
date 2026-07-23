@@ -49,11 +49,7 @@ const buttons = [
 ];
 ---
 
-<section
-  id="contact"
-  class="w-full"
-  style="padding: clamp(6rem,12vw,12rem) 0;"
->
+<section id="contact" class="w-full" style="padding: clamp(6rem,12vw,12rem) 0;">
   <div class="mx-auto px-5" style="max-width: min(1440px, 92vw);">
     <Reveal type="fade">
       <SectionHeader eyebrow={t.eyebrow} headline={t.headline} />
@@ -80,21 +76,21 @@ const buttons = [
             {cv.label}
           </a>
         </li>
-        {buttons.map((b) => (
-          <li>
-            <a
-              href={b.href}
-              aria-label={b.aria}
-              {...(b.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-              class="contact-button font-mono text-xs tracking-widest uppercase inline-flex items-center px-6 py-4 border transition-colors duration-300"
-            >
-              {b.label}
-              {b.external && (
-                <span class="sr-only">{` ${externalSuffix}`}</span>
-              )}
-            </a>
-          </li>
-        ))}
+        {
+          buttons.map((b) => (
+            <li>
+              <a
+                href={b.href}
+                aria-label={b.aria}
+                {...(b.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                class="contact-button font-mono text-xs tracking-widest uppercase inline-flex items-center px-6 py-4 border transition-colors duration-300"
+              >
+                {b.label}
+                {b.external && <span class="sr-only">{` ${externalSuffix}`}</span>}
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </Reveal>
 
@@ -138,7 +134,7 @@ const buttons = [
     padding: 0;
     margin: -1px;
     overflow: hidden;
-    clip: rect(0,0,0,0);
+    clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
   }

@@ -21,7 +21,11 @@
       "target": "ES",
       "ariaLabel": "Switch to Spanish"
     },
-    "skipLink": "Skip to main content"
+    "skipLink": "Skip to main content",
+    "back": "← Back to home",
+    "backShort": "← Home",
+    "menu": "Menu",
+    "menuClose": "Close menu"
   },
   "hero": {
     "eyebrow": "CONTENT STRATEGIST · CARACAS, 2026",
@@ -90,10 +94,22 @@
     "headline": "Let's build something.",
     "body": "Open to commercial and marketing internships, freelance content work, and collaborations.",
     "buttons": {
-      "email": { "label": "Email", "ariaLabel": "Send Javier an email" },
-      "whatsapp": { "label": "WhatsApp", "ariaLabel": "Message Javier on WhatsApp" },
-      "linkedin": { "label": "LinkedIn", "ariaLabel": "View Javier on LinkedIn" },
-      "instagram": { "label": "Instagram", "ariaLabel": "Follow Javier on Instagram" }
+      "email": {
+        "label": "Email",
+        "ariaLabel": "Send Javier an email"
+      },
+      "whatsapp": {
+        "label": "WhatsApp",
+        "ariaLabel": "Message Javier on WhatsApp"
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "ariaLabel": "View Javier on LinkedIn"
+      },
+      "instagram": {
+        "label": "Instagram",
+        "ariaLabel": "Follow Javier on Instagram"
+      }
     },
     "replyExpectation": "Typically replies within 24h"
   },

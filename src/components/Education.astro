@@ -11,8 +11,9 @@ interface Props {
 const { lang } = Astro.props;
 const t = getStrings(lang).education;
 
-const entries = (await getCollection('education', (e) => e.data.lang === lang))
-  .sort((a, b) => a.data.order - b.data.order);
+const entries = (await getCollection('education', (e) => e.data.lang === lang)).sort(
+  (a, b) => a.data.order - b.data.order
+);
 ---
 
 <section
@@ -26,42 +27,41 @@ const entries = (await getCollection('education', (e) => e.data.lang === lang))
     </Reveal>
 
     <ul class="mt-16 list-none p-0 m-0 grid gap-10">
-      {entries.map((entry, i) => (
-        <Reveal type="fade" tag="li" delay={i * 80}>
-          <article class="grid grid-cols-1 md:grid-cols-12 gap-6">
-            <div class="md:col-span-4">
-              <div
-                class="font-mono text-xs tracking-widest uppercase"
-                style="color: var(--color-text-subtle);"
-              >
-                {entry.data.dates}
-              </div>
-            </div>
-            <div class="md:col-span-8">
-              <h3
-                class="font-display mb-1"
-                style="font-size: var(--text-display-md); line-height: 1.2; color: var(--color-text);"
-              >
-                {entry.data.institution}
-              </h3>
-              <div
-                class="mb-2"
-                style="font-size: var(--text-body); color: var(--color-text);"
-              >
-                {entry.data.degree}
-              </div>
-              {entry.data.meta && (
+      {
+        entries.map((entry, i) => (
+          <Reveal type="fade" tag="li" delay={i * 80}>
+            <article class="grid grid-cols-1 md:grid-cols-12 gap-6">
+              <div class="md:col-span-4">
                 <div
-                  class="font-mono text-xs tracking-widest"
-                  style="color: var(--color-accent);"
+                  class="font-mono text-xs tracking-widest uppercase"
+                  style="color: var(--color-text-subtle);"
                 >
-                  {entry.data.meta}
+                  {entry.data.dates}
                 </div>
-              )}
-            </div>
-          </article>
-        </Reveal>
-      ))}
+              </div>
+              <div class="md:col-span-8">
+                <h3
+                  class="font-display mb-1"
+                  style="font-size: var(--text-display-md); line-height: 1.2; color: var(--color-text);"
+                >
+                  {entry.data.institution}
+                </h3>
+                <div class="mb-2" style="font-size: var(--text-body); color: var(--color-text);">
+                  {entry.data.degree}
+                </div>
+                {entry.data.meta && (
+                  <div
+                    class="font-mono text-xs tracking-widest"
+                    style="color: var(--color-accent);"
+                  >
+                    {entry.data.meta}
+                  </div>
+                )}
+              </div>
+            </article>
+          </Reveal>
+        ))
+      }
     </ul>
   </div>
 </section>

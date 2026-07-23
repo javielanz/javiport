@@ -32,7 +32,6 @@ pnpm-debug.log*
 # Only media/web/ should be tracked.
 media/raw/
 
-# Current loose media at repo root (to be moved into media/raw/ during M5).
 # Ignore by name pattern so they aren't accidentally committed before the move.
 /IMG_*.MOV
 /IMG_*.MP4
@@ -54,8 +53,6 @@ agentdb.rvf.lock
 *.db-shm
 *.db-wal
 
-# Session scratch
-
 # Built web media now lives under public/ so Astro copies it to dist/.
 # (media/raw/ above stays ignored; public/ is fully tracked.)
 
@@ -63,4 +60,3 @@ agentdb.rvf.lock
 .claude/
 docs/*.pdf
 reference/
-Javier_Lanz_Resume_*.pdf

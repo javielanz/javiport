@@ -33,7 +33,9 @@ const style = delay ? `transition-delay: ${delay}ms;` : '';
   // on soft navigations — re-scan on astro:page-load or nothing ever reveals.
   function initReveals() {
     document
-      .querySelectorAll('.scroll-reveal-mask:not([data-reveal-bound]), .scroll-reveal-fade:not([data-reveal-bound])')
+      .querySelectorAll(
+        '.scroll-reveal-mask:not([data-reveal-bound]), .scroll-reveal-fade:not([data-reveal-bound])'
+      )
       .forEach((el) => {
         el.setAttribute('data-reveal-bound', '');
         observer.observe(el);

@@ -54,6 +54,9 @@
 | Lang toggle label (current) | EN | ES |
 | Lang toggle label (target) | ES | EN |
 | Lang toggle aria-label | Switch to Spanish | Cambiar a inglés |
+| Case-page back link | ← Back to home | ← Volver a inicio |
+| Case-page back link (mobile short) | ← Home | ← Inicio |
+| Mobile menu label / close | Menu / Close menu | Menú / Cerrar menú |
 
 **Anchor IDs** (shared, ungendered): `#about`, `#work`, `#capabilities`, `#experience`, `#education`, `#contact`.
 

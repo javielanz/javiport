@@ -1,0 +1,49 @@
+---
+import Layout from '../components/Layout.astro';
+import { getStrings } from '../lib/strings';
+
+// GitHub Pages serves a single 404.html, so this page is bilingual:
+// Spanish (default locale) leads, English follows.
+const es = getStrings('es').errors.notFound;
+const en = getStrings('en').errors.notFound;
+---
+
+<Layout title="404 — Javier Lanz" description={es.body} lang="es">
+  <main
+    id="main-content"
+    class="flex flex-col justify-center items-center text-center px-5"
+    style="min-height: 100svh;"
+  >
+    <p class="font-mono text-xs tracking-widest uppercase mb-6" style="color: var(--color-accent);">
+      404
+    </p>
+    <h1
+      class="font-display mb-4"
+      style="font-size: var(--text-display-lg); line-height: 1.1; color: var(--color-text);"
+    >
+      {es.headline}
+    </h1>
+    <p style="font-size: var(--text-body-lg); color: var(--color-text-muted);">{es.body}</p>
+    <p class="mt-2" style="font-size: var(--text-body); color: var(--color-text-subtle);" lang="en">
+      {en.headline}
+      {en.body}
+    </p>
+    <div class="mt-10 flex gap-6">
+      <a
+        href="/javiport/es/"
+        class="font-mono text-xs tracking-widest uppercase px-6 py-4 border transition-colors duration-300"
+        style="color: var(--color-text); border-color: var(--color-line); text-decoration: none;"
+      >
+        {es.cta}
+      </a>
+      <a
+        href="/javiport/en/"
+        class="font-mono text-xs tracking-widest uppercase px-6 py-4 border transition-colors duration-300"
+        style="color: var(--color-text-muted); border-color: var(--color-line); text-decoration: none;"
+        lang="en"
+      >
+        {en.cta}
+      </a>
+    </div>
+  </main>
+</Layout>

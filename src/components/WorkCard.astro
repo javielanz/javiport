@@ -28,10 +28,9 @@ const {
 } = Astro.props;
 
 const href = `/javiport/${lang}/work/${slug}/`;
-const style = [
-  offset ? 'margin-top: 4rem;' : '',
-  delay ? `transition-delay: ${delay}ms;` : '',
-].filter(Boolean).join(' ');
+const style = [offset ? 'margin-top: 4rem;' : '', delay ? `transition-delay: ${delay}ms;` : '']
+  .filter(Boolean)
+  .join(' ');
 ---
 
 <a
@@ -44,18 +43,20 @@ const style = [
     class="aspect-video overflow-hidden mb-6 border-b transition-colors duration-500"
     style="background: var(--color-bg-elev); border-color: var(--color-line);"
   >
-    {cover ? (
-      <MediaFrame
-        src={cover}
-        alt={coverAlt}
-        widths={[480, 960, 1440]}
-        sizes="(min-width: 768px) 50vw, 100vw"
-        loading="lazy"
-        pictureClass="work-card-picture block w-full h-full"
-      />
-    ) : (
-      <div class="w-full h-full" style="background: var(--color-bg-elev);" />
-    )}
+    {
+      cover ? (
+        <MediaFrame
+          src={cover}
+          alt={coverAlt}
+          widths={[480, 960, 1440]}
+          sizes="(min-width: 768px) 50vw, 100vw"
+          loading="lazy"
+          pictureClass="work-card-picture block w-full h-full"
+        />
+      ) : (
+        <div class="w-full h-full" style="background: var(--color-bg-elev);" />
+      )
+    }
   </div>
 
   <span
@@ -79,10 +80,7 @@ const style = [
     {summary}
   </p>
 
-  <span
-    class="font-mono text-xs tracking-widest"
-    style="color: var(--color-accent);"
-  >
+  <span class="font-mono text-xs tracking-widest" style="color: var(--color-accent);">
     {cta}
   </span>
 </a>

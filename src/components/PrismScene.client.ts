@@ -28,7 +28,11 @@ async function createScene(container: HTMLElement): Promise<SceneHandle | null> 
 
   let renderer: import('three').WebGLRenderer;
   try {
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+    renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true,
+      powerPreference: 'high-performance',
+    });
   } catch {
     return null;
   }
@@ -41,7 +45,12 @@ async function createScene(container: HTMLElement): Promise<SceneHandle | null> 
   container.appendChild(renderer.domElement);
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 50);
+  const camera = new THREE.PerspectiveCamera(
+    45,
+    container.clientWidth / container.clientHeight,
+    0.1,
+    50
+  );
   camera.position.set(0, 0, 6);
 
   const pmrem = new THREE.PMREMGenerator(renderer);
@@ -59,7 +68,11 @@ async function createScene(container: HTMLElement): Promise<SceneHandle | null> 
     envMapIntensity: 0.32,
     flatShading: true,
   });
-  const edgeMaterial = new THREE.LineBasicMaterial({ color: ACCENT, transparent: true, opacity: 0.6 });
+  const edgeMaterial = new THREE.LineBasicMaterial({
+    color: ACCENT,
+    transparent: true,
+    opacity: 0.6,
+  });
 
   const group = new THREE.Group();
   scene.add(group);
@@ -75,7 +88,13 @@ async function createScene(container: HTMLElement): Promise<SceneHandle | null> 
   group.add(prism);
   group.position.z = -1.4;
 
-  const shards: { mesh: import('three').Mesh; radius: number; speed: number; phase: number; tilt: number }[] = [];
+  const shards: {
+    mesh: import('three').Mesh;
+    radius: number;
+    speed: number;
+    phase: number;
+    tilt: number;
+  }[] = [];
   for (let i = 0; i < 5; i++) {
     const mesh = faceted(new THREE.TetrahedronGeometry(0.14 + (i % 3) * 0.05, 0));
     const shard = {
@@ -122,7 +141,11 @@ async function createScene(container: HTMLElement): Promise<SceneHandle | null> 
   const positionShards = (t: number) => {
     for (const s of shards) {
       const a = s.phase + t * s.speed;
-      s.mesh.position.set(Math.cos(a) * s.radius, Math.sin(a * 0.7) * 0.9 + s.tilt, Math.sin(a) * s.radius * 0.5);
+      s.mesh.position.set(
+        Math.cos(a) * s.radius,
+        Math.sin(a * 0.7) * 0.9 + s.tilt,
+        Math.sin(a) * s.radius * 0.5
+      );
       s.mesh.rotation.x = a * 1.4;
       s.mesh.rotation.y = a;
     }
